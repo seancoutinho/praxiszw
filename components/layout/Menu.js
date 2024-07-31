@@ -44,13 +44,13 @@ export default function Menu() {
                         <li><Link href="/checkout">Checkout</Link></li>
                     </ul>
                 </li> */}
-                <li className="dropdown"><Link href="#">Blog</Link>
+                {/* <li className="dropdown"><Link href="#">Blog</Link>
                     <ul>
                         <li><Link href="/blog">Blog Grid</Link></li>
                         <li><Link href="/blog-2">Blog Standard</Link></li>
                         <li><Link href="/blog-details">Blog Details</Link></li>
                     </ul>
-                </li>
+                </li> */}
                 <li><Link href="/contact">Contact</Link></li>
             </ul>
         </>

@@ -53,7 +53,7 @@ export default function Header1({ scroll, isMobileMenu, handleMobileMenu, isSide
                             <ul className="menu-right-content">
                                 <li className="search-box-outer search-toggler" onClick={handlePopup}><i className="icon-4"></i></li>
                                 <li className="btn-box">
-                                    <Link href="/contact">Free Consulting</Link>
+                                    <Link href="/contact">Get A Qoute</Link>
                                 </li>
                             </ul>
                         </div>
