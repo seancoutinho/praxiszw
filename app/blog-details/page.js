@@ -5,7 +5,7 @@ export default function Home() {
 
     return (
         <>
-            <Layout headerStyle={2} footerStyle={1} breadcrumbTitle="Blog Details">
+            <Layout headerStyle={1} footerStyle={1} breadcrumbTitle="Blog Details">
                 {/* sidebar-page-container */}
                 <section className="sidebar-page-container pt_150 pb_150">
                     <div className="auto-container">
@@ -19,7 +19,7 @@ export default function Home() {
                                                 <h2>18<span>APRIL</span></h2>
                                             </div>
                                             <div className="lower-content">
-                                                <ul className="post-info clearfix"> 
+                                                <ul className="post-info clearfix">
                                                     <li><i className="icon-21"></i><Link href="blog-detailsl">Admin</Link></li>
                                                     <li><i className="icon-22"></i><Link href="blog-detailsl">0 Comnt</Link></li>
                                                 </ul>
@@ -50,7 +50,7 @@ export default function Home() {
                                         <h3>Leave A Comments</h3>
                                         <div className="form-inner">
                                             <form action="blog-detailsl" method="post" className="default-form">
-                                                <div className="row clearfix"> 
+                                                <div className="row clearfix">
                                                     <div className="col-lg-6 col-md-6 col-sm-12 form-group">
                                                         <input type="text" name="name" placeholder="Your Name" required />
                                                     </div>

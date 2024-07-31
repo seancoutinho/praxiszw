@@ -39,7 +39,7 @@ export default function Home() {
     }
     return (
         <>
-            <Layout headerStyle={2} footerStyle={1} breadcrumbTitle="Product Details">
+            <Layout headerStyle={1} footerStyle={1} breadcrumbTitle="Product Details">
                 <div>
                     <section className="shop-details p_relative">
                         <div className="auto-container">
@@ -77,9 +77,9 @@ export default function Home() {
                                                         <div className="cart-wrapper">
                                                             <ul className="clearfix">
                                                                 <li className="item-quantity p_relative d_block float_left mr_10">
-                                                                <div className="qity">
-                                                                    <QuantityInput />
-                                                                </div>
+                                                                    <div className="qity">
+                                                                        <QuantityInput />
+                                                                    </div>
                                                                 </li>
                                                                 <li className="p_relative d_block float_left mr_10">
                                                                     <button type="button" className="theme-btn-one">
@@ -115,10 +115,10 @@ export default function Home() {
                                                     <div className="tabs-content">
                                                         <div id="desc" className={activeIndex === 1 ? "tab active-tab" : "tab"}>
                                                             <div className="product-details-content">
-                                                            <div className="content-box">
-                                                                <h3>Description</h3>
-                                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit duis enim justo in mauris posuere dolor dolor sapien sit egestas. Ut venenatis faucibus non sed faucibus mauris ultricies Cras varius proin amet vehicula magna maecenas gravida vel volutpat sed.</p>
-                                                            </div>
+                                                                <div className="content-box">
+                                                                    <h3>Description</h3>
+                                                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit duis enim justo in mauris posuere dolor dolor sapien sit egestas. Ut venenatis faucibus non sed faucibus mauris ultricies Cras varius proin amet vehicula magna maecenas gravida vel volutpat sed.</p>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                         <div className={activeIndex === 2 ? "tab active-tab" : "tab"} id="review">

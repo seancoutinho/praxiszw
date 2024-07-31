@@ -29,50 +29,50 @@ export default function Home() {
     }
     return (
         <>
-            <Layout headerStyle={2} footerStyle={1} breadcrumbTitle="About Us">
+            <Layout headerStyle={1} footerStyle={1} breadcrumbTitle="About Us">
                 {/* about-section */}
                 <section className="about-section p_relative">
                     <div className="auto-container">
                         <div className="row clearfix">
-                        <div className="col-lg-6 col-md-12 col-sm-12 image-column">
-                            <div className="image_block_one">
-                            <div className="image-box p_relative pr_50 mr_30">
-                                <figure className="image image-1"><img src="assets/images/resource/about-1.jpg" alt="" /></figure>
-                                <figure className="image image-2"><img src="assets/images/resource/about-2.jpg" alt="" /></figure>
-                                <div className="video-inner">
-                                    <div className="video-btn">
-                                        <VideoPopup />
+                            <div className="col-lg-6 col-md-12 col-sm-12 image-column">
+                                <div className="image_block_one">
+                                    <div className="image-box p_relative pr_50 mr_30">
+                                        <figure className="image image-1"><img src="assets/images/resource/about-1.jpg" alt="" /></figure>
+                                        <figure className="image image-2"><img src="assets/images/resource/about-2.jpg" alt="" /></figure>
+                                        <div className="video-inner">
+                                            <div className="video-btn">
+                                                <VideoPopup />
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+                            <div className="col-lg-6 col-md-12 col-sm-12 content-column">
+                                <div className="content_block_one">
+                                    <div className="content-box p_relative ml_30">
+                                        <div className="sec-title mb_25">
+                                            <span className="sub-title">About BizTech</span>
+                                            <h2>Dedicated And <br />Professional Consulting Services</h2>
+                                        </div>
+                                        <div className="text mb_35">
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Adipiscing integer ultrices suspendisse varius etiam est. Est, felis, tempus nec vitae orci sodales Metus, velit nec at diam in sed. Massa dui ipsum ornare sagittis dolor sagittis amet odio est. Sit semper et velit fusce.</p>
+                                        </div>
+                                        <div className="inner-box mb_35">
+                                            <div className="single-item">
+                                                <div className="icon-box"><i className="icon-11"></i></div>
+                                                <h3>Solution Focused</h3>
+                                                <p>Lorem ipsum dolor sit amet tempus consectetur adipiscing.</p>
+                                            </div>
+                                            <div className="single-item">
+                                                <div className="icon-box"><i className="icon-11"></i></div>
+                                                <h3>99.99% Success</h3>
+                                                <p>Lorem ipsum dolor sit amet tempus consectetur adipiscing.</p>
+                                            </div>
+                                        </div>
+                                        <figure className="signature"><img src="assets/images/icons/signature-1.png" alt="" /></figure>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <div className="col-lg-6 col-md-12 col-sm-12 content-column">
-                            <div className="content_block_one">
-                            <div className="content-box p_relative ml_30">
-                                <div className="sec-title mb_25">
-                                <span className="sub-title">About BizTech</span>
-                                <h2>Dedicated And <br/>Professional Consulting Services</h2>
-                                </div>
-                                <div className="text mb_35">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Adipiscing integer ultrices suspendisse varius etiam est. Est, felis, tempus nec vitae orci sodales Metus, velit nec at diam in sed. Massa dui ipsum ornare sagittis dolor sagittis amet odio est. Sit semper et velit fusce.</p>
-                                </div>
-                                <div className="inner-box mb_35">
-                                <div className="single-item">
-                                    <div className="icon-box"><i className="icon-11"></i></div>
-                                    <h3>Solution Focused</h3>
-                                    <p>Lorem ipsum dolor sit amet tempus consectetur adipiscing.</p>
-                                </div>
-                                <div className="single-item">
-                                    <div className="icon-box"><i className="icon-11"></i></div>
-                                    <h3>99.99% Success</h3>
-                                    <p>Lorem ipsum dolor sit amet tempus consectetur adipiscing.</p>
-                                </div>
-                                </div>
-                                <figure className="signature"><img src="assets/images/icons/signature-1.png" alt="" /></figure>
-                            </div>
-                            </div>
-                        </div>
                         </div>
                     </div>
                 </section>
@@ -111,10 +111,10 @@ export default function Home() {
                                         <div className="lower-content">
                                             <div className="inner">
                                                 <div className="icon-box"><i className="icon-7"></i></div>
-                                                <h3><Link href="/program-manager">Program Manager</Link></h3>
+                                                <h3><Link href="/bookkeeping">Program Manager</Link></h3>
                                                 <p>Amet minim mollit no duis sit enim aliqua dolor do amet officia.</p>
                                                 <div className="btn-box">
-                                                    <Link href="/program-manager" className="theme-btn-one">Read More</Link>
+                                                    <Link href="/bookkeeping" className="theme-btn-one">Read More</Link>
                                                 </div>
                                             </div>
                                         </div>
@@ -145,10 +145,10 @@ export default function Home() {
                                         <div className="lower-content">
                                             <div className="inner">
                                                 <div className="icon-box"><i className="icon-7"></i></div>
-                                                <h3><Link href="/investment-policy">Investment Policy</Link></h3>
+                                                <h3><Link href="/forensic-audit">Forensic Audit</Link></h3>
                                                 <p>Amet minim mollit no duis sit enim aliqua dolor do amet officia.</p>
                                                 <div className="btn-box">
-                                                    <Link href="/investment-policy" className="theme-btn-one">Read More</Link>
+                                                    <Link href="/forensic-audit" className="theme-btn-one">Read More</Link>
                                                 </div>
                                             </div>
                                         </div>
@@ -162,7 +162,7 @@ export default function Home() {
                                         <div className="lower-content">
                                             <div className="inner">
                                                 <div className="icon-box"><i className="icon-7"></i></div>
-                                                <h3><Link href="/financial-advices">Financial Advices</Link></h3>
+                                                <h3><Link href="/financial-advices">Financial Advice</Link></h3>
                                                 <p>Amet minim mollit no duis sit enim aliqua dolor do amet officia.</p>
                                                 <div className="btn-box">
                                                     <Link href="/financial-advices" className="theme-btn-one">Read More</Link>
@@ -362,7 +362,7 @@ export default function Home() {
                         <div className="col-lg-12 col-md-12 col-sm-12 content-column">
                             <div className="content-box">
                                 {/*Theme Carousel*/}
-                                <TestimonialSlider0 />                        
+                                <TestimonialSlider0 />
                             </div>
                         </div>
                     </div>

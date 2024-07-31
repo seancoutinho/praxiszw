@@ -43,9 +43,9 @@ export default function MobileMenu({ isSidebar, handleMobileMenu, handleSidebar 
                                         <li><Link href="/services2">Our Services 2</Link></li>
                                         <li><Link href="/tax-management">Tax Management</Link></li>
                                         <li><Link href="/strategy-planning">Strategy & Planning</Link></li>
-                                        <li><Link href="/program-manager">Program Manager</Link></li>
-                                        <li><Link href="/investment-policy">Investment Policy</Link></li>
-                                        <li><Link href="/financial-advices">Financial Advices</Link></li>
+                                        <li><Link href="/bookkeeping">Program Manager</Link></li>
+                                        <li><Link href="/forensic-audit">Forensic Audit</Link></li>
+                                        <li><Link href="/financial-advices">Financial Advice</Link></li>
                                         <li><Link href="/insurance-strategy">Insurance Strategy</Link></li>
                                     </ul>
                                     <div className={isActive.key == 2 ? "dropdown-btn open" : "dropdown-btn"} onClick={() => handleToggle(2)}><span className="fa fa-angle-right" /></div>
@@ -105,7 +105,7 @@ export default function MobileMenu({ isSidebar, handleMobileMenu, handleSidebar 
             </div>{/* End Mobile Menu */}
             <div className="nav-overlay" style={{ display: `${isSidebar ? "block" : "none"}` }} onClick={handleSidebar} />
 
-          
+
 
         </>
     )

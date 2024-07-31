@@ -5,7 +5,7 @@ export default function Home() {
 
     return (
         <>
-            <Layout headerStyle={2} footerStyle={1} breadcrumbTitle="Products">
+            <Layout headerStyle={1} footerStyle={1} breadcrumbTitle="Products">
                 <div>
 
                     <section className="shop-section p_relative">
@@ -335,7 +335,7 @@ export default function Home() {
                                                     </div>
                                                 </div>
                                             </div>
-                                            
+
                                             {/* Map the shop items here */}
                                         </div>
                                         <div className="pagination-wrapper centred pt_20">

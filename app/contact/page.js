@@ -5,7 +5,7 @@ export default function Home() {
 
     return (
         <>
-            <Layout headerStyle={2} footerStyle={1} breadcrumbTitle="Get in touch">
+            <Layout headerStyle={1} footerStyle={1} breadcrumbTitle="Get in touch">
                 <div>
                     {/* Feature Section */}
                     <section className="feature-style-three p_relative centred">
@@ -22,7 +22,7 @@ export default function Home() {
                                             <div className="block-shape" style={{ backgroundImage: 'url(assets/images/shape/shape-32.png)' }}></div>
                                             <div className="icon-box"><i className="icon-48"></i></div>
                                             <h3>Our Location</h3>
-                                            <p>1901 Thornridge Cir. Shiloh, <br />Hawaii 81063</p>
+                                            <p>6626 Zimre Way, Zimre Park, <br />Ruwa</p>
                                         </div>
                                     </div>
                                 </div>
@@ -31,7 +31,7 @@ export default function Home() {
                                         <div className="inner-box">
                                             <div className="icon-box"><i className="icon-49"></i></div>
                                             <h3>Email Address</h3>
-                                            <p><Link href="mailto:contact@example.com">contact@example.com</Link><br /><Link href="mailto:support@example.com">support@example.com</Link></p>
+                                            <p><Link href="mailto:contact@praxisaccountants.com">contact@praxisaccountants.com</Link><br /><Link href="mailto:support@praxisaccountants.com">support@praxisaccountants.com</Link></p>
                                         </div>
                                     </div>
                                 </div>
@@ -41,7 +41,7 @@ export default function Home() {
                                             <div className="block-shape" style={{ backgroundImage: 'url(assets/images/shape/shape-33.png)' }}></div>
                                             <div className="icon-box"><i className="icon-50"></i></div>
                                             <h3>Phone Number</h3>
-                                            <p>Emergency Cases <br /><Link href="tel:2085550112">+(208) 555-0112</Link> (24/7)</p>
+                                            <p>Emergency Cases <br /><Link href="tel:263772243934">+(263) 772-2439 34</Link> (24/7)</p>
                                         </div>
                                     </div>
                                 </div>
@@ -59,7 +59,7 @@ export default function Home() {
                                         <div className="sec-title mb_35">
                                             <span className="sub-title">Message</span>
                                             <h2>Feel Free to Contact with us</h2>
-                                            <p className="mt_20">Lorem ipsum dolor sit amet, consectetur adipiscing elit et aenean orci egestas arcu interdum nisl magna.</p>
+                                            <p className="mt_20">Have questions or need assistance? Our team is here to help. Reach out to us through the contact form below, or connect with us directly by phone or email. We look forward to hearing from you!</p>
                                         </div>
                                         <ul className="social-links clearfix">
                                             <li><Link href="/contact"><i className="fab fa-facebook-f"></i></Link></li>
@@ -104,7 +104,7 @@ export default function Home() {
                     <section className="map-section-two">
                         {/*Map Outer*/}
                         <div className="map-outer">
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2643.6895046810805!2d-122.52642526124438!3d38.00014098339506!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8085976736097a2f%3A0xbe014d20e6e22654!2sSan Rafael%2C California%2C Hoa Kỳ!5e0!3m2!1svi!2s!4v1678975266976!5m2!1svi!2s" height={570} style={{ border: 0, width: "100%" }} allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade" />
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d144248.96130868216!2d31.144463951376537!3d-17.864416152674032!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1931beef8f385033%3A0xcc9445a1bbe9c59a!2s6626%20Zimre%20Way%2C%20Ruwa!5e1!3m2!1sen!2szw!4v1722436471935!5m2!1sen!2szw" height={570} style={{ border: 0, width: "100%" }} allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade" />
                         </div>
                     </section>
                     {/* Google Map Section End */}

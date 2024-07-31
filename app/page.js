@@ -4,11 +4,11 @@ import Banner from "@/components/sections/home3/Banner"
 import Services from "@/components/sections/home3/Services"
 import Projects from "@/components/sections/home3/Projects"
 import Features from "@/components/sections/home3/Features"
-import Video from "@/components/sections/home3/Video"
+// import Video from "@/components/sections/home3/Video"
 import Team from "@/components/sections/home3/Team"
-import Clients from "@/components/sections/home3/Clients"
+// import Clients from "@/components/sections/home3/Clients"
 import Expertise from "@/components/sections/home3/Expertise"
-import Testimonial from "@/components/sections/home3/Testimonial"
+// import Testimonial from "@/components/sections/home3/Testimonial"
 export default function Home() {
 
     return (

@@ -25,7 +25,7 @@ export default function Services() {
               <div className="service-block-three wow fadeInUp animated" data-wow-delay="0ms" data-wow-duration="1500ms">
                 <div className="inner-box">
                   <div className="icon-box"><i className="icon-12"></i></div>
-                  <h3><Link href="/program-manager">External Audit</Link></h3>
+                  <h3><Link href="/bookkeeping">External Audit</Link></h3>
                   <p>Providing independent evaluations to ensure financial accuracy and regulatory compliance.</p>
                 </div>
               </div>
@@ -43,7 +43,7 @@ export default function Services() {
               <div className="service-block-three wow fadeInLeft animated" data-wow-delay="300ms" data-wow-duration="1500ms">
                 <div className="inner-box">
                   <div className="icon-box"><i className="icon-13"></i></div>
-                  <h3><Link href="/investment-policy">Investment Policy</Link></h3>
+                  <h3><Link href="/forensic-audit">Forensic Audit</Link></h3>
                   <p>Formulating policies to guide and maximize your investment decisions.</p>
                 </div>
               </div>
@@ -52,7 +52,7 @@ export default function Services() {
               <div className="service-block-three wow fadeInUp animated" data-wow-delay="300ms" data-wow-duration="1500ms">
                 <div className="inner-box">
                   <div className="icon-box"><i className="icon-14"></i></div>
-                  <h3><Link href="/financial-advices">Financial Advices</Link></h3>
+                  <h3><Link href="/financial-advices">Financial Advice</Link></h3>
                   <p>Offering expert guidance to help you make informed financial decisions.</p>
                 </div>
               </div>

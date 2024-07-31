@@ -6,7 +6,7 @@ export default function Home() {
 
     return (
         <>
-            <Layout headerStyle={2} footerStyle={1} breadcrumbTitle="Shopping Cart">
+            <Layout headerStyle={1} footerStyle={1} breadcrumbTitle="Shopping Cart">
                 <div>
                     <section className="cart-section p_relative">
                         <div className="auto-container">
@@ -26,72 +26,72 @@ export default function Home() {
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                            <tr>
-                                                <td colSpan="4" className="prod-column">
-                                                    <div className="column-box">
-                                                        <div className="remove-btn">
-                                                            <i className="icon-40"></i>
+                                                <tr>
+                                                    <td colSpan="4" className="prod-column">
+                                                        <div className="column-box">
+                                                            <div className="remove-btn">
+                                                                <i className="icon-40"></i>
+                                                            </div>
+                                                            <div className="prod-thumb">
+                                                                <img src="assets/images/shop/cart-1.png" alt="" />
+                                                            </div>
+                                                            <div className="prod-title">
+                                                                <h4>Wooden Tea Table</h4>
+                                                            </div>
                                                         </div>
-                                                        <div className="prod-thumb">
-                                                            <img src="assets/images/shop/cart-1.png" alt="" />
+                                                    </td>
+                                                    <td className="price">$19:20</td>
+                                                    <td className="qty">
+                                                        <div className="item-quantity">
+                                                            <QuantityInput />
                                                         </div>
-                                                        <div className="prod-title">
-                                                            <h4>Wooden Tea Table</h4>
+                                                    </td>
+                                                    <td className="sub-total">$19:20</td>
+                                                </tr>
+                                                <tr>
+                                                    <td colSpan="4" className="prod-column">
+                                                        <div className="column-box">
+                                                            <div className="remove-btn">
+                                                                <i className="icon-40"></i>
+                                                            </div>
+                                                            <div className="prod-thumb">
+                                                                <img src="assets/images/shop/cart-2.png" alt="" />
+                                                            </div>
+                                                            <div className="prod-title">
+                                                                <h4>Armchair Black Leather</h4>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                </td>
-                                                <td className="price">$19:20</td>
-                                                <td className="qty">
-                                                    <div className="item-quantity">
-                                                        <QuantityInput />
-                                                    </div>
-                                                </td>
-                                                <td className="sub-total">$19:20</td>
-                                            </tr>
-                                            <tr>
-                                                <td colSpan="4" className="prod-column">
-                                                      <div className="column-box">
-                                                        <div className="remove-btn">
-                                                            <i className="icon-40"></i>
+                                                    </td>
+                                                    <td className="price">$19:20</td>
+                                                    <td className="qty">
+                                                        <div className="item-quantity">
+                                                            <QuantityInput />
                                                         </div>
-                                                        <div className="prod-thumb">
-                                                            <img src="assets/images/shop/cart-2.png" alt="" />
+                                                    </td>
+                                                    <td className="sub-total">$19:20</td>
+                                                </tr>
+                                                <tr>
+                                                    <td colSpan="4" className="prod-column">
+                                                        <div className="column-box">
+                                                            <div className="remove-btn">
+                                                                <i className="icon-40"></i>
+                                                            </div>
+                                                            <div className="prod-thumb">
+                                                                <img src="assets/images/shop/cart-3.png" alt="" />
+                                                            </div>
+                                                            <div className="prod-title">
+                                                                <h4>Nordic Kitchen Teapot</h4>
+                                                            </div>
                                                         </div>
-                                                        <div className="prod-title">
-                                                            <h4>Armchair Black Leather</h4>
+                                                    </td>
+                                                    <td className="price">$19:20</td>
+                                                    <td className="qty">
+                                                        <div className="item-quantity">
+                                                            <QuantityInput />
                                                         </div>
-                                                    </div>
-                                                </td>
-                                                <td className="price">$19:20</td>
-                                                <td className="qty">
-                                                <div className="item-quantity">
-                                                        <QuantityInput />
-                                                    </div>
-                                                </td>
-                                                <td className="sub-total">$19:20</td>
-                                            </tr>
-                                            <tr>
-                                                <td colSpan="4" className="prod-column">
-                                                    <div className="column-box">
-                                                        <div className="remove-btn">
-                                                            <i className="icon-40"></i>
-                                                        </div>
-                                                        <div className="prod-thumb">
-                                                            <img src="assets/images/shop/cart-3.png" alt="" />
-                                                        </div>
-                                                        <div className="prod-title">
-                                                            <h4>Nordic Kitchen Teapot</h4>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td className="price">$19:20</td>
-                                                <td className="qty">
-                                                <div className="item-quantity">
-                                                        <QuantityInput />
-                                                    </div>
-                                                </td>
-                                                <td className="sub-total">$19:20</td>
-                                            </tr>
+                                                    </td>
+                                                    <td className="sub-total">$19:20</td>
+                                                </tr>
                                             </tbody>
                                         </table>
                                     </div>
@@ -100,26 +100,26 @@ export default function Home() {
                                     <div className="coupon-box">
                                         <input type="text" placeholder="Coupon code..." />
                                         <button type="button" className="theme-btn-one">
-                                        Apply Coupon
+                                            Apply Coupon
                                         </button>
                                     </div>
                                     <div className="update-btn">
                                         <button type="button" className="theme-btn-two">
-                                        Update Cart
+                                            Update Cart
                                         </button>
                                     </div>
                                 </div>
                                 <div className="cart-total">
                                     <div className="row">
                                         <div className="col-xl-5 col-lg-12 col-md-12 offset-xl-7 cart-column">
-                                        <div className="total-cart-box clearfix">
-                                            <h3 className="fs_20 fw_medium lh_30 d_block pb_20">Cart Totals</h3>
-                                            <ul className="list clearfix mb_30">
-                                            <li>Subtotal:<span>$57:60</span></li>
-                                            <li>Total:<span>$57:60</span></li>
-                                            </ul>
-                                            <Link href="/shopping-cart" className="theme-btn-one">Proceed to Checkout</Link>
-                                        </div>
+                                            <div className="total-cart-box clearfix">
+                                                <h3 className="fs_20 fw_medium lh_30 d_block pb_20">Cart Totals</h3>
+                                                <ul className="list clearfix mb_30">
+                                                    <li>Subtotal:<span>$57:60</span></li>
+                                                    <li>Total:<span>$57:60</span></li>
+                                                </ul>
+                                                <Link href="/shopping-cart" className="theme-btn-one">Proceed to Checkout</Link>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

@@ -2,8 +2,8 @@ import Link from "next/link"
 
 export default function Footer2() {
     return (
-        <>           
-            
+        <>
+
             <footer className="main-footer alternat-2">
                 <div className="widget-section">
                     <div className="pattern-layer">
@@ -22,20 +22,20 @@ export default function Footer2() {
                                 </div>
                             </div>
                             <div className="col-lg-3 col-md-6 col-sm-12 footer-column">
-                            <div className="links-widget footer-widget ml_50">
-                                <div className="widget-title">
-                                    <h3>Quick Link</h3>
+                                <div className="links-widget footer-widget ml_50">
+                                    <div className="widget-title">
+                                        <h3>Quick Link</h3>
+                                    </div>
+                                    <div className="widget-content">
+                                        <ul className="links-list clearfix">
+                                            <li><Link href="/about-us">About Us</Link></li>
+                                            <li><Link href="/services1">Services</Link></li>
+                                            <li><Link href="/career">Career</Link></li>
+                                            <li><Link href="/pricing-table">Pricing</Link></li>
+                                            <li><Link href="/contact">Contact Us</Link></li>
+                                        </ul>
+                                    </div>
                                 </div>
-                                <div className="widget-content">
-                                    <ul className="links-list clearfix">
-                                        <li><Link href="/about-us">About Us</Link></li>
-                                        <li><Link href="/services1">Services</Link></li>
-                                        <li><Link href="/career">Career</Link></li>
-                                        <li><Link href="/pricing-table">Pricing</Link></li>
-                                        <li><Link href="/contact">Contact Us</Link></li>
-                                    </ul>
-                                </div>
-                            </div>
                             </div>
                             <div className="col-lg-3 col-md-6 col-sm-12 footer-column">
                                 <div className="links-widget footer-widget ml_30">
@@ -53,7 +53,7 @@ export default function Footer2() {
                                     </div>
                                 </div>
                             </div>
-                            
+
 
                             <div className="col-lg-3 col-md-6 col-sm-12 footer-column">
                                 <div className="contact-widget footer-widget">
@@ -64,7 +64,7 @@ export default function Footer2() {
                                         <p>Tincidunt neque pretium lectus donec risus.</p>
                                         <ul className="info-list clearfix">
                                             <li><i className="icon-23"></i>New Hyde Park, NY 11040</li>
-                                            <li><i className="icon-3"></i><Link href="mailto:example@info.com">example@info.com</Link></li>
+                                            <li><i className="icon-3"></i><Link href="mailto:info@praxisaccountants.com">info@praxisaccountants.com</Link></li>
                                             <li><i className="icon-2"></i><Link href="tel:912136660027">333 666 0000</Link></li>
                                         </ul>
                                     </div>

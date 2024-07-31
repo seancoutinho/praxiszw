@@ -34,7 +34,7 @@ export default function Expertise() {
                                                             <option value={1}>Tax Management</option>
                                                             <option value={2}>Strategy & Planning</option>
                                                             <option value={3}>Program Manager</option>
-                                                            <option value={4}>Investment Policy</option>
+                                                            <option value={4}>Forensic Audit</option>
                                                         </select>
                                                     </div>
                                                 </div>

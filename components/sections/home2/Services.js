@@ -10,7 +10,7 @@ export default function Services() {
     }
     return (
         <>
-            
+
             <section className="service-style-two p_relative bg-color-1">
                 <div className="auto-container">
                     <div className="sec-title centred mb_50">
@@ -42,10 +42,10 @@ export default function Services() {
                                     <div className="lower-content">
                                         <div className="inner">
                                             <div className="icon-box"><i className="icon-12"></i></div>
-                                            <h3><Link href="/program-manager">Program Manager</Link></h3>
+                                            <h3><Link href="/bookkeeping">Program Manager</Link></h3>
                                             <p>Amet minim mollit no duis sit enim aliqua dolor do amet officia.</p>
                                             <div className="btn-box">
-                                                <Link href="/program-manager" className="theme-btn-one">Read More</Link>
+                                                <Link href="/bookkeeping" className="theme-btn-one">Read More</Link>
                                             </div>
                                         </div>
                                     </div>
@@ -76,10 +76,10 @@ export default function Services() {
                                     <div className="lower-content">
                                         <div className="inner">
                                             <div className="icon-box"><i className="icon-13"></i></div>
-                                            <h3><Link href="/investment-policy">Investment Policy</Link></h3>
+                                            <h3><Link href="/forensic-audit">Forensic Audit</Link></h3>
                                             <p>Amet minim mollit no duis sit enim aliqua dolor do amet officia.</p>
                                             <div className="btn-box">
-                                                <Link href="/investment-policy" className="theme-btn-one">Read More</Link>
+                                                <Link href="/forensic-audit" className="theme-btn-one">Read More</Link>
                                             </div>
                                         </div>
                                     </div>
@@ -93,7 +93,7 @@ export default function Services() {
                                     <div className="lower-content">
                                         <div className="inner">
                                             <div className="icon-box"><i className="icon-14"></i></div>
-                                            <h3><Link href="/financial-advices">Financial Advices</Link></h3>
+                                            <h3><Link href="/financial-advices">Financial Advice</Link></h3>
                                             <p>Amet minim mollit no duis sit enim aliqua dolor do amet officia.</p>
                                             <div className="btn-box">
                                                 <Link href="/financial-advices" className="theme-btn-one">Read More</Link>

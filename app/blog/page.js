@@ -5,7 +5,7 @@ export default function Home() {
 
     return (
         <>
-            <Layout headerStyle={2} footerStyle={1} breadcrumbTitle="Blog Grid">
+            <Layout headerStyle={1} footerStyle={1} breadcrumbTitle="Blog Grid">
                 <div>
                     {/* news-style-two */}
                     <section className="news-style-two blog-grid pt_150 pb_150">
@@ -19,7 +19,7 @@ export default function Home() {
                                                 <div className="inner">
                                                     <span className="post-date">15 APRIL</span>
                                                     <h3><Link href="/blog-details">How to Manage Business’s Online Reputation</Link></h3>
-                                                    <ul className="post-info clearfix"> 
+                                                    <ul className="post-info clearfix">
                                                         <li><i className="icon-21"></i><Link href="/blog-details">Admin</Link></li>
                                                         <li><i className="icon-22"></i><Link href="/blog-details">7 Comnt</Link></li>
                                                     </ul>
@@ -40,7 +40,7 @@ export default function Home() {
                                                 <div className="inner">
                                                     <span className="post-date">14 APRIL</span>
                                                     <h3><Link href="/blog-details">Is Your Business Ready For Integration?</Link></h3>
-                                                    <ul className="post-info clearfix"> 
+                                                    <ul className="post-info clearfix">
                                                         <li><i className="icon-21"></i><Link href="/blog-details">Admin</Link></li>
                                                         <li><i className="icon-22"></i><Link href="/blog-details">0 Comnt</Link></li>
                                                     </ul>
@@ -61,7 +61,7 @@ export default function Home() {
                                                 <div className="inner">
                                                     <span className="post-date">13 APRIL</span>
                                                     <h3><Link href="/blog-details">Does My Business Need a Director of Training?</Link></h3>
-                                                    <ul className="post-info clearfix"> 
+                                                    <ul className="post-info clearfix">
                                                         <li><i className="icon-21"></i><Link href="/blog-details">Admin</Link></li>
                                                         <li><i className="icon-22"></i><Link href="/blog-details">3 Comnt</Link></li>
                                                     </ul>
@@ -82,7 +82,7 @@ export default function Home() {
                                                 <div className="inner">
                                                     <span className="post-date">12 APRIL</span>
                                                     <h3><Link href="/blog-details">Email Marketing Tips That will Increase Your Sales</Link></h3>
-                                                    <ul className="post-info clearfix"> 
+                                                    <ul className="post-info clearfix">
                                                         <li><i className="icon-21"></i><Link href="/blog-details">Admin</Link></li>
                                                         <li><i className="icon-22"></i><Link href="/blog-details">8 Comnt</Link></li>
                                                     </ul>
@@ -103,7 +103,7 @@ export default function Home() {
                                                 <div className="inner">
                                                     <span className="post-date">12 APRIL</span>
                                                     <h3><Link href="/blog-details">How Investing Increasing to Business</Link></h3>
-                                                    <ul className="post-info clearfix"> 
+                                                    <ul className="post-info clearfix">
                                                         <li><i className="icon-21"></i><Link href="/blog-details">Admin</Link></li>
                                                         <li><i className="icon-22"></i><Link href="/blog-details">0 Comnt</Link></li>
                                                     </ul>
@@ -124,7 +124,7 @@ export default function Home() {
                                                 <div className="inner">
                                                     <span className="post-date">11 APRIL</span>
                                                     <h3><Link href="/blog-details">Does My Business Need a Director of Training?</Link></h3>
-                                                    <ul className="post-info clearfix"> 
+                                                    <ul className="post-info clearfix">
                                                         <li><i className="icon-21"></i><Link href="/blog-details">Admin</Link></li>
                                                         <li><i className="icon-22"></i><Link href="/blog-details">2 Comnt</Link></li>
                                                     </ul>
@@ -145,7 +145,7 @@ export default function Home() {
                                                 <div className="inner">
                                                     <span className="post-date">10 APRIL</span>
                                                     <h3><Link href="/blog-details">Is Your Business Ready For Integration?</Link></h3>
-                                                    <ul className="post-info clearfix"> 
+                                                    <ul className="post-info clearfix">
                                                         <li><i className="icon-21"></i><Link href="/blog-details">Admin</Link></li>
                                                         <li><i className="icon-22"></i><Link href="/blog-details">7 Comnt</Link></li>
                                                     </ul>
@@ -166,7 +166,7 @@ export default function Home() {
                                                 <div className="inner">
                                                     <span className="post-date">10 APRIL</span>
                                                     <h3><Link href="/blog-details">Is Your Business Ready For Integration?</Link></h3>
-                                                    <ul className="post-info clearfix"> 
+                                                    <ul className="post-info clearfix">
                                                         <li><i className="icon-21"></i><Link href="/blog-details">Admin</Link></li>
                                                         <li><i className="icon-22"></i><Link href="/blog-details">0 Comnt</Link></li>
                                                     </ul>
@@ -187,7 +187,7 @@ export default function Home() {
                                                 <div className="inner">
                                                     <span className="post-date">10 APRIL</span>
                                                     <h3><Link href="/blog-details">Does My Business Need a Director of Training?</Link></h3>
-                                                    <ul className="post-info clearfix"> 
+                                                    <ul className="post-info clearfix">
                                                         <li><i className="icon-21"></i><Link href="/blog-details">Admin</Link></li>
                                                         <li><i className="icon-22"></i><Link href="/blog-details">6 Comnt</Link></li>
                                                     </ul>

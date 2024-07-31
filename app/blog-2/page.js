@@ -5,7 +5,7 @@ export default function Home() {
 
     return (
         <>
-            <Layout headerStyle={2} footerStyle={1} breadcrumbTitle="Blog Standard">
+            <Layout headerStyle={1} footerStyle={1} breadcrumbTitle="Blog Standard">
                 <div>
                     {/* sidebar-page-container */}
                     <section className="sidebar-page-container pt_150 pb_150">
@@ -20,7 +20,7 @@ export default function Home() {
                                                     <h2>18<span>APRIL</span></h2>
                                                 </div>
                                                 <div className="lower-content">
-                                                    <ul className="post-info clearfix"> 
+                                                    <ul className="post-info clearfix">
                                                         <li><i className="icon-21"></i><Link href="/blog-details">Admin</Link></li>
                                                         <li><i className="icon-22"></i><Link href="/blog-details">0 Comnt</Link></li>
                                                     </ul>
@@ -36,7 +36,7 @@ export default function Home() {
                                                     <h2>17<span>APRIL</span></h2>
                                                 </div>
                                                 <div className="lower-content">
-                                                    <ul className="post-info clearfix"> 
+                                                    <ul className="post-info clearfix">
                                                         <li><i className="icon-21"></i><Link href="/blog-details">Admin</Link></li>
                                                         <li><i className="icon-22"></i><Link href="/blog-details">7 Comnt</Link></li>
                                                     </ul>
@@ -52,7 +52,7 @@ export default function Home() {
                                                     <h2>17<span>APRIL</span></h2>
                                                 </div>
                                                 <div className="lower-content">
-                                                    <ul className="post-info clearfix"> 
+                                                    <ul className="post-info clearfix">
                                                         <li><i className="icon-21"></i><Link href="/blog-details">Admin</Link></li>
                                                         <li><i className="icon-22"></i><Link href="/blog-details">4 Comnt</Link></li>
                                                     </ul>
@@ -68,7 +68,7 @@ export default function Home() {
                                                     <h2>16<span>APRIL</span></h2>
                                                 </div>
                                                 <div className="lower-content">
-                                                    <ul className="post-info clearfix"> 
+                                                    <ul className="post-info clearfix">
                                                         <li><i className="icon-21"></i><Link href="/blog-details">Admin</Link></li>
                                                         <li><i className="icon-22"></i><Link href="/blog-details">5 Comnt</Link></li>
                                                     </ul>
@@ -84,7 +84,7 @@ export default function Home() {
                                                     <h2>15<span>APRIL</span></h2>
                                                 </div>
                                                 <div className="lower-content">
-                                                    <ul className="post-info clearfix"> 
+                                                    <ul className="post-info clearfix">
                                                         <li><i className="icon-21"></i><Link href="/blog-details">Admin</Link></li>
                                                         <li><i className="icon-22"></i><Link href="/blog-details">1 Comnt</Link></li>
                                                     </ul>

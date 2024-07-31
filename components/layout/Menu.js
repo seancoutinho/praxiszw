@@ -8,17 +8,14 @@ export default function Menu() {
         <>
             <ul className="navigation clearfix">
                 <li><Link href="/">Home</Link>
-                    <ul>
-                        <li><Link href="/">Home Page 01</Link></li>
-                    </ul>
                 </li>
                 <li className="dropdown"><Link href="/services1">Services</Link>
                     <ul>
                         <li><Link href="/tax-management">Tax Management</Link></li>
                         <li><Link href="/strategy-planning">Strategy & Planning</Link></li>
-                        <li><Link href="/program-manager">Program Manager</Link></li>
-                        <li><Link href="/investment-policy">Investment Policy</Link></li>
-                        <li><Link href="/financial-advices">Financial Advices</Link></li>
+                        <li><Link href="/bookkeeping">Bookkeeping & Accounting</Link></li>
+                        <li><Link href="/forensic-audit">Forensic Audit</Link></li>
+                        <li><Link href="/financial-advices">Financial Advice</Link></li>
                         <li><Link href="/insurance-strategy">Insurance Strategy</Link></li>
                     </ul>
                 </li>

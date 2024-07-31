@@ -22,13 +22,13 @@ export default function Home() {
     }
     return (
         <>
-            <Layout headerStyle={2} footerStyle={1} breadcrumbTitle="FAQ’S">
+            <Layout headerStyle={1} footerStyle={1} breadcrumbTitle="FAQ’S">
                 <div>
                     <section className="faq-page-section p_relative sec-pad">
                         <div className="auto-container">
                             <div className="sec-title mb_50 centred">
-                            <span className="sub-title">Frequently Asked Questions</span>
-                            <h2>How Can We Help You?</h2>
+                                <span className="sub-title">Frequently Asked Questions</span>
+                                <h2>How Can We Help You?</h2>
                             </div>
                             <div className="row clearfix">
                                 <div className="col-lg-6 col-md-12 col-sm-12 content-column">
@@ -138,7 +138,7 @@ export default function Home() {
                                         </div>
                                         <div className="col-lg-12 col-md-12 col-sm-12 form-group">
                                             <div className="message-btn">
-                                            <button type="submit" className="theme-btn-one">Send Request</button>
+                                                <button type="submit" className="theme-btn-one">Send Request</button>
                                             </div>
                                         </div>
                                     </div>
@@ -146,7 +146,7 @@ export default function Home() {
                             </div>
                         </div>
                     </section>
-                    
+
                 </div>
 
             </Layout>
