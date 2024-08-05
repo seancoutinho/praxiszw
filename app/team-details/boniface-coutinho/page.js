@@ -1,6 +1,7 @@
 import React from 'react';
 import Layout from "@/components/layout/Layout"
 import Link from "next/link"
+import Image from 'next/image';
 export default function Home() {
 
     return (
@@ -12,7 +13,7 @@ export default function Home() {
                             <div className="row align-items-center">
                                 <div className="col-lg-6 col-md-12 col-sm-12 image-column">
                                     <figure className="image-box mr_30">
-                                        <img src="assets/images/team/team-1.jpg" alt="" />
+                                        <Image height={400} width={400} src="/assets/images/team/team-1.jpg" alt="" />
                                     </figure>
                                 </div>
                                 <div className="col-lg-6 col-md-12 col-sm-12 content-column">
