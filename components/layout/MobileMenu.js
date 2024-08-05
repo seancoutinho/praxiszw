@@ -30,17 +30,11 @@ export default function MobileMenu({ isSidebar, handleMobileMenu, handleSidebar 
                         <div className="collapse navbar-collapse show clearfix" id="navbarSupportedContent">
                             <ul className="navigation clearfix">
                                 <li className={isActive.key == 1 ? "dropdown current" : "dropdown"}><Link href="/">Home</Link>
-                                    <ul style={{ display: `${isActive.key == 1 ? "block" : "none"}` }}>
-                                        <li><Link href="/">Home Page 01</Link></li>
-                                        <li className="current"><Link href="/index-2">Home Page 02</Link></li>
-                                        <li><Link href="/index-3">Home Page 03</Link></li>
-                                    </ul>
+                                    <li><Link href="/">Home</Link></li>
                                     <div className={isActive.key == 1 ? "dropdown-btn open" : "dropdown-btn"} onClick={() => handleToggle(1)}><span className="fa fa-angle-right" /></div>
                                 </li>
                                 <li className={isActive.key == 2 ? "dropdown current" : "dropdown"}><Link href="/#">Services</Link>
                                     <ul style={{ display: `${isActive.key == 2 ? "block" : "none"}` }}>
-                                        <li><Link href="/service">Our Services 1</Link></li>
-                                        <li><Link href="/services2">Our Services 2</Link></li>
                                         <li><Link href="/tax-management">Tax Management</Link></li>
                                         <li><Link href="/strategy-planning">Strategy & Planning</Link></li>
                                         <li><Link href="/bookkeeping">Program Manager</Link></li>
@@ -59,32 +53,11 @@ export default function MobileMenu({ isSidebar, handleMobileMenu, handleSidebar 
                                             </ul>
                                             <div className={isActive.key == 4 ? "dropdown-btn open" : "dropdown-btn"} onClick={() => handleToggle(4)}><span className="fa fa-angle-right" /></div>
                                         </li>
-                                        <li><Link href="/portfolio">Portfolio</Link></li>
                                         <li><Link href="/about-us">About Us</Link></li>
-                                        <li><Link href="/pricing-table">Pricing Table</Link></li>
                                         <li><Link href="/career">Career</Link></li>
-                                        <li><Link href="/faq">Faq’s</Link></li>
-                                        <li><Link href="/testimonials">Testimonials</Link></li>
-                                        <li><Link href="/404">404</Link></li>
+                                        <li><Link href="/faq">FAQ’s</Link></li>
                                     </ul>
                                     <div className={isActive.key == 3 ? "dropdown-btn open" : "dropdown-btn"} onClick={() => handleToggle(3)}><span className="fa fa-angle-right" /></div>
-                                </li>
-                                <li className={isActive.key == 5 ? "dropdown current" : "dropdown"}><Link href="/#">Shop</Link>
-                                    <ul style={{ display: `${isActive.key == 5 ? "block" : "none"}` }}>
-                                        <li><Link href="/shop">Products</Link></li>
-                                        <li><Link href="/product-details">Product Details</Link></li>
-                                        <li><Link href="/shopping-cart">Shopping Cart</Link></li>
-                                        <li><Link href="/checkout">Checkout</Link></li>
-                                    </ul>
-                                    <div className={isActive.key == 5 ? "dropdown-btn open" : "dropdown-btn"} onClick={() => handleToggle(5)}><span className="fa fa-angle-right" /></div>
-                                </li>
-                                <li className={isActive.key == 6 ? "dropdown current" : "dropdown"}><Link href="/#">Blog</Link>
-                                    <ul style={{ display: `${isActive.key == 6 ? "block" : "none"}` }}>
-                                        <li><Link href="/blog">Blog Grid</Link></li>
-                                        <li><Link href="/blog-2">Blog Standard</Link></li>
-                                        <li><Link href="/blog-details">Blog Details</Link></li>
-                                    </ul>
-                                    <div className={isActive.key == 6 ? "dropdown-btn open" : "dropdown-btn"} onClick={() => handleToggle(6)}><span className="fa fa-angle-right" /></div>
                                 </li>
                                 <li><Link href="/contact">Contact</Link></li>
                             </ul>
