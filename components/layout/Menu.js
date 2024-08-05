@@ -9,7 +9,7 @@ export default function Menu() {
             <ul className="navigation clearfix">
                 <li><Link href="/">Home</Link>
                 </li>
-                <li className="dropdown"><Link href="/services1">Services</Link>
+                <li className="dropdown"><Link href="/service">Services</Link>
                     <ul>
                         <li><Link href="/tax-management">Tax Management</Link></li>
                         <li><Link href="/strategy-planning">Strategy & Planning</Link></li>
@@ -19,23 +19,16 @@ export default function Menu() {
                         <li><Link href="/insurance-strategy">Insurance Strategy</Link></li>
                     </ul>
                 </li>
-                {/* <li className="dropdown"><Link href="#">Pages</Link>
+                <li className="dropdown"><Link href="about-us">Learn More</Link>
                     <ul>
-                        <li className="dropdown"><Link href="#">Team</Link>
-                            <ul>
-                                <li><Link href="/team">Team Member</Link></li>
-                                <li><Link href="/team-details">Team Details</Link></li>
-                            </ul>
+                        <li><Link href="/team">Team</Link>
                         </li>
-                        <li><Link href="/portfolio">Portfolio</Link></li>
                         <li><Link href="/about-us">About Us</Link></li>
-                        <li><Link href="/pricing-table">Pricing Table</Link></li>
                         <li><Link href="/career">Career</Link></li>
                         <li><Link href="/faq">Faq’s</Link></li>
                         <li><Link href="/testimonials">Testimonials</Link></li>
-                        <li><Link href="/404">404</Link></li>
                     </ul>
-                </li> */}
+                </li>
                 {/* <li className="dropdown"><Link href="#">Shop</Link>
                     <ul>
                         <li><Link href="/shop">Products</Link></li>

@@ -39,7 +39,7 @@ export default function MobileMenu({ isSidebar, handleMobileMenu, handleSidebar 
                                 </li>
                                 <li className={isActive.key == 2 ? "dropdown current" : "dropdown"}><Link href="/#">Services</Link>
                                     <ul style={{ display: `${isActive.key == 2 ? "block" : "none"}` }}>
-                                        <li><Link href="/services1">Our Services 1</Link></li>
+                                        <li><Link href="/service">Our Services 1</Link></li>
                                         <li><Link href="/services2">Our Services 2</Link></li>
                                         <li><Link href="/tax-management">Tax Management</Link></li>
                                         <li><Link href="/strategy-planning">Strategy & Planning</Link></li>

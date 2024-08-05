@@ -68,7 +68,7 @@ export default function Services() {
             </div>
           </div>
           <div className="more-btn centred">
-            <Link href="/services1" className="theme-btn-one">More Services</Link>
+            <Link href="/service" className="theme-btn-one">More Services</Link>
           </div>
         </div>
       </section>

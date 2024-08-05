@@ -34,7 +34,7 @@ export default function Footer1() {
                                     <div className="widget-content">
                                         <ul className="links-list clearfix">
                                             <li><Link href="/about-us">About Us</Link></li>
-                                            <li><Link href="/services1">Services</Link></li>
+                                            <li><Link href="/service">Services</Link></li>
                                             <li><Link href="/career">Career</Link></li>
                                             <li><Link href="/pricing-table">Pricing</Link></li>
                                             <li><Link href="/contact">Contact Us</Link></li>
@@ -70,7 +70,7 @@ export default function Footer1() {
                                         <ul className="info-list clearfix">
                                             <li><i className="icon-23"></i>6626 Zimre Way, Zimre Park, Ruwa</li>
                                             <li><i className="icon-3"></i><Link href="mailto:info@praxisaccountants.com">info@praxisaccountants.com</Link></li>
-                                            <li><i className="icon-2"></i><Link href="tel:912136660027">263 772 795 190</Link></li>
+                                            <li><i className="icon-2"></i><Link href="tel:263772243934">263 242 00 5227</Link></li>
                                         </ul>
                                     </div>
                                 </div>
