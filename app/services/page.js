@@ -43,7 +43,7 @@ export default function Home() {
                                                 <div className="inner">
                                                     <div className="icon-box"><i className="icon-7"></i></div>
                                                     <h3><Link href="/strategy-planning">Strategy & Planning</Link></h3>
-                                                    <p>Amet minim mollit no duis sit enim aliqua dolor do amet officia.</p>
+                                                    
                                                     <div className="btn-box">
                                                         <Link href="/strategy-planning" className="theme-btn-one">Read More</Link>
                                                     </div>
@@ -62,7 +62,7 @@ export default function Home() {
                                                 <div className="inner">
                                                     <div className="icon-box"><i className="icon-12"></i></div>
                                                     <h3><Link href="/bookkeeping">Book-Keeping & Accounting</Link></h3>
-                                                    <p>Amet minim mollit no duis sit enim aliqua dolor do amet officia.</p>
+                                                    
                                                     <div className="btn-box">
                                                         <Link href="/bookkeeping" className="theme-btn-one">Read More</Link>
                                                     </div>
@@ -81,7 +81,7 @@ export default function Home() {
                                                 <div className="inner">
                                                     <div className="icon-box"><i className="icon-8"></i></div>
                                                     <h3><Link href="/tax-management">Tax Management</Link></h3>
-                                                    <p>Amet minim mollit no duis sit enim aliqua dolor do amet officia.</p>
+                                                    
                                                     <div className="btn-box">
                                                         <Link href="/tax-management" className="theme-btn-one">Read More</Link>
                                                     </div>
@@ -100,7 +100,7 @@ export default function Home() {
                                                 <div className="inner">
                                                     <div className="icon-box"><i className="icon-13"></i></div>
                                                     <h3><Link href="/forensic-audit">Forensic Audit</Link></h3>
-                                                    <p>Amet minim mollit no duis sit enim aliqua dolor do amet officia.</p>
+                                                    
                                                     <div className="btn-box">
                                                         <Link href="/forensic-audit" className="theme-btn-one">Read More</Link>
                                                     </div>
@@ -113,14 +113,12 @@ export default function Home() {
                                     <div className="service-block-two wow fadeInUp animated" data-wow-delay="300ms" data-wow-duration="1500ms">
                                         <div className="inner-box">
                                             <figure className="image-box">
-                                                <img src="assets/images/service/service-5.jpg" alt="" />
+                                                <img src="assets/images/service/surprised-black-businessman-looking-at-smartphone-2024-05-21-18-32-28-utc.jpg" alt="" />
                                             </figure>
                                             <div className="lower-content">
                                                 <div className="inner">
                                                     <div className="icon-box"><i className="icon-14"></i></div>
                                                     <h3><Link href="/financial-advices">Financial Advice</Link></h3>
-                                                    <p>Amet minim mollit no duis sit enim aliqua dolor do
-                                                    </p>
                                                     <div className="btn-box">
                                                         <Link href="/financial-advices" className="theme-btn-one">Read More</Link>
                                                     </div>
@@ -133,13 +131,13 @@ export default function Home() {
                                     <div className="service-block-two wow fadeInUp animated" data-wow-delay="600ms" data-wow-duration="1500ms">
                                         <div className="inner-box">
                                             <figure className="image-box">
-                                                <img src="assets/images/service/service-6.jpg" alt="" />
+                                                <img src="assets/images/service/insurance-strategy.jpg" alt="" />
                                             </figure>
                                             <div className="lower-content">
                                                 <div className="inner">
                                                     <div className="icon-box"><i className="icon-15"></i></div>
                                                     <h3><Link href="/insurance-strategy">Insurance Strategy</Link></h3>
-                                                    <p>Amet minim mollit no duis sit enim aliqua dolor do amet officia.</p>
+                                                    
                                                     <div className="btn-box">
                                                         <Link href="/insurance-strategy" className="theme-btn-one">Read More</Link>
                                                     </div>
