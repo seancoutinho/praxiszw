@@ -46,7 +46,7 @@ export default function Home() {
                                             </div>
                                             <div className="lower-content">
                                                 <h3>
-                                                    <Link href="/team-details">Boniface Coutinho</Link>
+                                                    <Link href="/team-details/boniface-coutinho">Boniface Coutinho</Link>
                                                 </h3>
                                                 <span className="designation">Executive Consultant- Audit & Financial Services</span>
                                             </div>
@@ -84,7 +84,7 @@ export default function Home() {
                                             </div>
                                             <div className="lower-content">
                                                 <h3>
-                                                    <Link href="/team-details">Raymond Mpeti</Link>
+                                                    <Link href="/team-details/raymond-mpeti">Raymond Mpeti</Link>
                                                 </h3>
                                                 <span className="designation">Marketing & Administration Executive</span>
                                             </div>
