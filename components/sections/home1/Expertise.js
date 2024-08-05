@@ -61,7 +61,7 @@ export default function Feature() {
                                                         <select className="selectpicker">
                                                             <option value={1}>Tax Management</option>
                                                             <option value={1}>Strategy & Planning</option>
-                                                            <option value={1}>Program Manager</option>
+                                                            <option value={1}>Bookkeeping</option>
                                                             <option value={1}>Forensic Audit</option>
                                                         </select>
                                                     </div>

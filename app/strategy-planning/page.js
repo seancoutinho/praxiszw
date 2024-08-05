@@ -23,7 +23,7 @@ export default function Home() {
                                                     </Link>
                                                 </li>
                                                 <li>
-                                                    <Link href="/bookkeeping">Program Manager</Link>
+                                                    <Link href="/bookkeeping">Bookkeeping</Link>
                                                 </li>
                                                 <li>
                                                     <Link href="/forensic-audit">Forensic Audit</Link>

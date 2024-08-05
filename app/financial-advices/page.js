@@ -21,7 +21,7 @@ export default function Home() {
                                                     <Link href="/strategy-planning">Strategy & Planning</Link>
                                                 </li>
                                                 <li>
-                                                    <Link href="/bookkeeping">Program Manager</Link>
+                                                    <Link href="/bookkeeping">Bookkeeping</Link>
                                                 </li>
                                                 <li>
                                                     <Link href="/forensic-audit">Forensic Audit</Link>

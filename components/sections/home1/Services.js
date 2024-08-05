@@ -43,11 +43,11 @@ export default function Pricing() {
                                 <div className="inner-box">
                                     <div className="static-content">
                                         <div className="icon-box"><i className="icon-7"></i></div>
-                                        <h3><Link href="/bookkeeping">Program Manager</Link></h3>
+                                        <h3><Link href="/bookkeeping">Bookkeeping</Link></h3>
                                         <p>Amet minim mollit no duis sit enim aliqua dolor do amet officia.</p>
                                     </div>
                                     <div className="overlay-content">
-                                        <h3><Link href="/bookkeeping">Program Manager</Link></h3>
+                                        <h3><Link href="/bookkeeping">Bookkeeping</Link></h3>
                                         <p>Amet minim mollit no duis sit enim aliqua dolor do amet officia.</p>
                                         <div className="btn-box">
                                             <Link href="/bookkeeping" className="theme-btn-one">Read More</Link>

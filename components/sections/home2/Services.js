@@ -42,7 +42,7 @@ export default function Services() {
                                     <div className="lower-content">
                                         <div className="inner">
                                             <div className="icon-box"><i className="icon-12"></i></div>
-                                            <h3><Link href="/bookkeeping">Program Manager</Link></h3>
+                                            <h3><Link href="/bookkeeping">Bookkeeping</Link></h3>
                                             <p>Amet minim mollit no duis sit enim aliqua dolor do amet officia.</p>
                                             <div className="btn-box">
                                                 <Link href="/bookkeeping" className="theme-btn-one">Read More</Link>

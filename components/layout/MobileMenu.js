@@ -30,12 +30,12 @@ export default function MobileMenu({ isSidebar, handleMobileMenu, handleSidebar 
                         <div className="collapse navbar-collapse show clearfix" id="navbarSupportedContent">
                             <ul className="navigation clearfix">
                                 <li className={isActive.key == 1 ? "dropdown current" : "dropdown"}><Link href="/">Home</Link>
-                                    </li>
+                                </li>
                                 <li className={isActive.key == 2 ? "dropdown current" : "dropdown"}><Link href="/#">Services</Link>
                                     <ul style={{ display: `${isActive.key == 2 ? "block" : "none"}` }}>
                                         <li><Link href="/tax-management">Tax Management</Link></li>
                                         <li><Link href="/strategy-planning">Strategy & Planning</Link></li>
-                                        <li><Link href="/bookkeeping">Program Manager</Link></li>
+                                        <li><Link href="/bookkeeping">Bookkeeping</Link></li>
                                         <li><Link href="/forensic-audit">Forensic Audit</Link></li>
                                         <li><Link href="/financial-advices">Financial Advice</Link></li>
                                         <li><Link href="/insurance-strategy">Insurance Strategy</Link></li>

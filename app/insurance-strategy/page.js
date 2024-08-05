@@ -16,7 +16,7 @@ export default function Home() {
                                             <ul className="category-list clearfix">
                                                 <li><Link href="/tax-management">Tax Management</Link></li>
                                                 <li><Link href="/strategy-planning">Strategy & Planning</Link></li>
-                                                <li><Link href="/bookkeeping">Program Manager</Link></li>
+                                                <li><Link href="/bookkeeping">Bookkeeping</Link></li>
                                                 <li><Link href="/forensic-audit">Forensic Audit</Link></li>
                                                 <li><Link href="/financial-advices">Financial Advice</Link></li>
                                                 <li><Link href="/insurance-strategy" className="current">Insurance Strategy</Link></li>
