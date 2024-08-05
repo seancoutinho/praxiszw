@@ -28,18 +28,18 @@ export default function Home() {
                                                 </figure>
                                                 <ul className="social-links clearfix">
                                                     <li>
-                                                        <Link href="/team">
+                                                        <Link href="https://www.facebook.com/boniface.coutinho">
                                                             <i className="fab fa-facebook-f"></i>
                                                         </Link>
                                                     </li>
                                                     <li>
-                                                        <Link href="/team">
+                                                        <Link href="https://x.com/BonifaceCoutinh">
                                                             <i className="fab fa-twitter"></i>
                                                         </Link>
                                                     </li>
                                                     <li>
-                                                        <Link href="/team">
-                                                            <i className="fab fa-instagram"></i>
+                                                        <Link href="https://www.linkedin.com/in/boniface-coutinho-68065896/">
+                                                            <i className="fab fa-linkedin"></i>
                                                         </Link>
                                                     </li>
                                                 </ul>
@@ -66,18 +66,18 @@ export default function Home() {
                                                 </figure>
                                                 <ul className="social-links clearfix">
                                                     <li>
-                                                        <Link href="/team">
+                                                        <Link href="https://www.facebook.com/boniface.coutinho">
                                                             <i className="fab fa-facebook-f"></i>
                                                         </Link>
                                                     </li>
                                                     <li>
-                                                        <Link href="/team">
+                                                        <Link href="https://x.com/BonifaceCoutinh">
                                                             <i className="fab fa-twitter"></i>
                                                         </Link>
                                                     </li>
                                                     <li>
-                                                        <Link href="/team">
-                                                            <i className="fab fa-instagram"></i>
+                                                        <Link href="https://www.linkedin.com/in/boniface-coutinho-68065896/">
+                                                            <i className="fab fa-linkedin"></i>
                                                         </Link>
                                                     </li>
                                                 </ul>
