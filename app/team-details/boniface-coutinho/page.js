@@ -22,7 +22,7 @@ export default function Home() {
                                         <span className="designation">Executive Consultant - Audit & Financial Services</span>
                                         <p>
                                             <p>
-                                                Boniface Coutinho is an experienced Executive Consultant specializing in Audit & Financial Services. With a strong background in strategy and audit, Boniface brings over 20 years of expertise to the table. He is dedicated to providing top-notch financial advice and business consulting services.
+                                                Boniface is a member of the Institute of Chartered Accountants of Zimbabwe. He trained with Deloitte and Touché in Harare. He is also a member of the Institute of Certified Public Accountants Zimbabwe). He has more than fifteen years’ experience as an auditor in the Public sector having been the head of the auditing wing of the Urban Development Corporation from 1995 until December 2010.
                                             </p>
                                         </p>
                                         <ul className="info-list clearfix">

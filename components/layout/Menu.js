@@ -9,7 +9,7 @@ export default function Menu() {
             <ul className="navigation clearfix">
                 <li><Link href="/">Home</Link>
                 </li>
-                <li className="dropdown"><Link href="/service">Services</Link>
+                <li className="dropdown"><Link href="/services">Services</Link>
                     <ul>
                         <li><Link href="/tax-management">Tax Management</Link></li>
                         <li><Link href="/strategy-planning">Strategy & Planning</Link></li>
@@ -24,8 +24,8 @@ export default function Menu() {
                         <li><Link href="/team">Team</Link>
                         </li>
                         <li><Link href="/about-us">About Us</Link></li>
-                        <li><Link href="/career">Career</Link></li>
-                        <li><Link href="/faq">Faq’s</Link></li>
+                        {/* <li><Link href="/career">Career</Link></li> */}
+                        <li><Link href="/faq">FAQ’s</Link></li>
                         <li><Link href="/testimonials">Testimonials</Link></li>
                     </ul>
                 </li>

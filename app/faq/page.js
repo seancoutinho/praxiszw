@@ -37,32 +37,35 @@ export default function Home() {
                                         <li className="accordion block">
                                             <div className={isActive.key == 1 ? "acc-btn active" : "acc-btn"} onClick={() => handleToggle(1)}>
                                                 <div className="icon-box"></div>
-                                                <h3>What does you do?</h3>
+                                                <h3>What services do you offer?</h3>
                                             </div>
                                             <div className={isActive.key == 1 ? "acc-content current" : "acc-content"}>
                                                 <div className="content">
-                                                    <div className="text">Sodales posuere facilisi metus elementum ipsum egestas amet amet mattis commodo Nunc tempor amet massa diam mauris Risus sodales interdum.
-                                                    </div>
+                                                    <div className="text">We offer a comprehensive range of services including auditing, tax consultancy, financial advisory, and business consultancy.</div>
                                                 </div>
                                             </div>
                                         </li>
                                         {/*Accordion Block*/}
                                         <li className="accordion block">
-                                            <div className={isActive.key == 2 ? "acc-btn active" : "acc-btn"} onClick={() => handleToggle(2)}><div className="icon-box"></div><h3>How Can I Safely Use My Business?</h3></div>
+                                            <div className={isActive.key == 2 ? "acc-btn active" : "acc-btn"} onClick={() => handleToggle(2)}>
+                                                <div className="icon-box"></div>
+                                                <h3>How can you help my business grow?</h3>
+                                            </div>
                                             <div className={isActive.key == 2 ? "acc-content current" : "acc-content"}>
                                                 <div className="content">
-                                                    <div className="text">Sodales posuere facilisi metus elementum ipsum egestas amet amet mattis commodo Nunc tempor amet massa diam mauris Risus sodales interdum.
-                                                    </div>
+                                                    <div className="text">Our expert consultants provide tailored financial strategies and advice to help your business achieve sustainable growth.</div>
                                                 </div>
                                             </div>
                                         </li>
                                         {/*Accordion Block*/}
                                         <li className="accordion block">
-                                            <div className={isActive.key == 3 ? "acc-btn active" : "acc-btn"} onClick={() => handleToggle(3)}><div className="icon-box"></div><h3>What industries covered?</h3></div>
+                                            <div className={isActive.key == 3 ? "acc-btn active" : "acc-btn"} onClick={() => handleToggle(3)}>
+                                                <div className="icon-box"></div>
+                                                <h3>What industries do you serve?</h3>
+                                            </div>
                                             <div className={isActive.key == 3 ? "acc-content current" : "acc-content"}>
                                                 <div className="content">
-                                                    <div className="text">Sodales posuere facilisi metus elementum ipsum egestas amet amet mattis commodo Nunc tempor amet massa diam mauris Risus sodales interdum.
-                                                    </div>
+                                                    <div className="text">We serve a wide range of industries including manufacturing, retail, healthcare, and technology.</div>
                                                 </div>
                                             </div>
                                         </li>
@@ -74,36 +77,35 @@ export default function Home() {
                                         <li className="accordion block">
                                             <div className={isActive.key == 4 ? "acc-btn active" : "acc-btn"} onClick={() => handleToggle(4)}>
                                                 <div className="icon-box"></div>
-                                                <h3>What type of company is measured?</h3>
+                                                <h3>How do you ensure compliance?</h3>
                                             </div>
                                             <div className={isActive.key == 4 ? "acc-content current" : "acc-content"}>
                                                 <div className="content">
-                                                    <div className="text">Sodales posuere facilisi metus elementum ipsum egestas amet amet mattis commodo Nunc tempor amet massa diam mauris Risus sodales interdum.
-                                                    </div>
+                                                    <div className="text">Our team stays updated with the latest regulations and standards, ensuring your business remains compliant through rigorous audits and reviews.</div>
                                                 </div>
                                             </div>
                                         </li>
                                         {/*Accordion Block*/}
                                         <li className="accordion block">
-                                            <div className={isActive.key == 5 ? "acc-btn active" : "acc-btn"} onClick={() => handleToggle(5)}><div className="icon-box"></div>
-                                                <h3>What is the future plan for BizTech?</h3>
+                                            <div className={isActive.key == 5 ? "acc-btn active" : "acc-btn"} onClick={() => handleToggle(5)}>
+                                                <div className="icon-box"></div>
+                                                <h3>What are your payment options?</h3>
                                             </div>
                                             <div className={isActive.key == 5 ? "acc-content current" : "acc-content"}>
                                                 <div className="content">
-                                                    <div className="text">Sodales posuere facilisi metus elementum ipsum egestas amet amet mattis commodo Nunc tempor amet massa diam mauris Risus sodales interdum.
-                                                    </div>
+                                                    <div className="text">We offer flexible payment plans to accommodate the financial needs of our clients.</div>
                                                 </div>
                                             </div>
                                         </li>
                                         {/*Accordion Block*/}
                                         <li className="accordion block">
-                                            <div className={isActive.key == 6 ? "acc-btn active" : "acc-btn"} onClick={() => handleToggle(6)}><div className="icon-box"></div>
-                                                <h3>How do you price?</h3>
+                                            <div className={isActive.key == 6 ? "acc-btn active" : "acc-btn"} onClick={() => handleToggle(6)}>
+                                                <div className="icon-box"></div>
+                                                <h3>How do you price your services?</h3>
                                             </div>
                                             <div className={isActive.key == 6 ? "acc-content current" : "acc-content"}>
                                                 <div className="content">
-                                                    <div className="text">Sodales posuere facilisi metus elementum ipsum egestas amet amet mattis commodo Nunc tempor amet massa diam mauris Risus sodales interdum.
-                                                    </div>
+                                                    <div className="text">Our pricing is competitive and transparent, tailored to the specific services you require.</div>
                                                 </div>
                                             </div>
                                         </li>
@@ -112,7 +114,6 @@ export default function Home() {
                             </div>
                         </div>
                     </section>
-
 
                     <section className="contact-section sec-pad p_relative centred bg-color-1">
                         <div className="pattern-layer" style={{ backgroundImage: "url(assets/images/shape/shape-40.png)" }}></div>
@@ -146,7 +147,6 @@ export default function Home() {
                             </div>
                         </div>
                     </section>
-
                 </div>
 
             </Layout>

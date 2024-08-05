@@ -84,7 +84,7 @@ export default function Home() {
                                             </div>
                                             <div className="lower-content">
                                                 <h3>
-                                                    <Link href="/team-details/raymond-mpeti">Raymond Mpeti</Link>
+                                                    <Link href="/team-details/raymond-mupeti">Raymond Mupeti</Link>
                                                 </h3>
                                                 <span className="designation">Marketing & Administration Executive</span>
                                             </div>
