@@ -16,14 +16,14 @@ export default function Home() {
                                 <div className="items-container row clearfix">
                                     <div className="col-lg-4 col-md-6 col-sm-12 testimonial-block masonry-item small-column">
                                         <div className="testimonial-block-two">
-                                            <figure className="thumb-box">
+                                            {/* <figure className="thumb-box">
                                                 <img src="assets/images/resource/testimonial-3.jpg" alt="" />
-                                            </figure>
+                                            </figure> */}
                                             <div className="inner-box">
-                                                <h3>Bessie Cooper</h3>
-                                                <span className="designation">Manager</span>
+                                                <h3>D. Maupa</h3>
+                                                <span className="designation">Managing Director ~ Desma Consulting Engineers</span>
                                                 <p>
-                                                    “Dictum mauris facilisis tortor dictumst. Cursus mattis viera lobortis posuere molestie imperdiet diam scelerisque posuere magnis risus purus eu tempor. Odio iaculis tincidunt cras cursus id nunc nibh gravida.”
+                                                    “Navigating the complexities of tax regulations can be overwhelming, but Praxis Accountants made the process seamless. Their tax advisory services are exceptional; they took the time to understand my business and provided tailored solutions that maximized my tax benefits. The peace of mind I gained knowing my taxes were in expert hands was invaluable. I can't thank them enough for their support!”
                                                 </p>
                                                 <ul className="rating clearfix">
                                                     <li><i className="fas fa-star"></i></li>
@@ -37,14 +37,14 @@ export default function Home() {
                                     </div>
                                     <div className="col-lg-4 col-md-6 col-sm-12 testimonial-block masonry-item small-column">
                                         <div className="testimonial-block-two">
-                                            <figure className="thumb-box">
+                                            {/* <figure className="thumb-box">
                                                 <img src="assets/images/resource/testimonial-4.jpg" alt="" />
-                                            </figure>
+                                            </figure> */}
                                             <div className="inner-box">
-                                                <h3>Brooklyn Simmons</h3>
-                                                <span className="designation">Manager</span>
+                                                <h3>D. Tasaranahwo</h3>
+                                                <span className="designation">Managing Director ~ Tazmac Micro Finance Company</span>
                                                 <p>
-                                                    “Dictum mauris facilisis tortor dictumst. Cursus mattis viera lobortis posuere molestie imperdiet diam scelerisque posuere magnis risus purus eu tempor. Odio iaculis tincidunt cras cursus id nunc nibh gravida vel consectetur aliquam vitae pulvinar gravida at faucibus. Ridiculus mauris porttitor sit nulla.”
+                                                    “Working with Praxis has transformed our approach to financial reporting. Their meticulous analysis and insightful recommendations have not only improved our financial clarity but have also empowered us to make informed strategic decisions. The team's professionalism and dedication to our success are truly commendable. I highly recommend their services to any business looking to enhance their financial management.”
                                                 </p>
                                                 <ul className="rating clearfix">
                                                     <li><i className="fas fa-star"></i></li>
@@ -58,77 +58,14 @@ export default function Home() {
                                     </div>
                                     <div className="col-lg-4 col-md-6 col-sm-12 testimonial-block masonry-item small-column">
                                         <div className="testimonial-block-two">
-                                            <figure className="thumb-box">
+                                            {/* <figure className="thumb-box">
                                                 <img src="assets/images/resource/testimonial-5.jpg" alt="" />
-                                            </figure>
+                                            </figure> */}
                                             <div className="inner-box">
-                                                <h3>Haris Gulati</h3>
-                                                <span className="designation">Manager</span>
+                                                <h3>G. Mutobaya</h3>
+                                                <span className="designation">Founder & CEO ~ Danville Consultancy P/L</span>
                                                 <p>
-                                                    “Dictum mauris facilisis tortor dictumst. Cursus mattis viera lobortis posuere molestie imperdiet diam scelerisque posuere magnis risus purus eu tempor. Odio iaculis tincidunt cras cursus id nunc nibh gravida vel consectetur aliquam vitae pulvina.”
-                                                </p>
-                                                <ul className="rating clearfix">
-                                                    <li><i className="fas fa-star"></i></li>
-                                                    <li><i className="fas fa-star"></i></li>
-                                                    <li><i className="fas fa-star"></i></li>
-                                                    <li><i className="fas fa-star"></i></li>
-                                                    <li><i className="far fa-star"></i></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="col-lg-4 col-md-6 col-sm-12 testimonial-block masonry-item small-column">
-                                        <div className="testimonial-block-two">
-                                            <figure className="thumb-box">
-                                                <img src="assets/images/resource/testimonial-7.jpg" alt="" />
-                                            </figure>
-                                            <div className="inner-box">
-                                                <h3>Jenny Wilson</h3>
-                                                <span className="designation">Manager</span>
-                                                <p>
-                                                    “Dictum mauris facilisis tortor dictumst. Cursus mattis viera lobortis posuere molestie imperdiet diam scelerisque posuere magnis risus purus eu tempor. Odio iaculis tincidunt cras cursus id nunc nibh gravida vel consectetur aliquam vitae pulvinar gravida at faucibus. Ridiculus mauris porttitor sit nulla.”
-                                                </p>
-                                                <ul className="rating clearfix">
-                                                    <li><i className="fas fa-star"></i></li>
-                                                    <li><i className="fas fa-star"></i></li>
-                                                    <li><i className="fas fa-star"></i></li>
-                                                    <li><i className="fas fa-star"></i></li>
-                                                    <li><i className="far fa-star"></i></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="col-lg-4 col-md-6 col-sm-12 testimonial-block masonry-item small-column">
-                                        <div className="testimonial-block-two">
-                                            <figure className="thumb-box">
-                                                <img src="assets/images/resource/testimonial-9.jpg" alt="" />
-                                            </figure>
-                                            <div className="inner-box">
-                                                <h3>Dianne Russell</h3>
-                                                <span className="designation">Manager</span>
-                                                <p>
-                                                    “Dictum mauris facilisis tortor dictumst. Cursus mattis viera lobortis posuere molestie imperdiet diam scelerisque posuere magnis risus purus eu tempor. Odio iaculis tincidunt cras cursus id nunc nibh gravida.”
-                                                </p>
-                                                <ul className="rating clearfix">
-                                                    <li><i className="fas fa-star"></i></li>
-                                                    <li><i className="fas fa-star"></i></li>
-                                                    <li><i className="fas fa-star"></i></li>
-                                                    <li><i className="fas fa-star"></i></li>
-                                                    <li><i className="far fa-star"></i></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="col-lg-4 col-md-6 col-sm-12 testimonial-block masonry-item small-column">
-                                        <div className="testimonial-block-two">
-                                            <figure className="thumb-box">
-                                                <img src="assets/images/resource/testimonial-8.jpg" alt="" />
-                                            </figure>
-                                            <div className="inner-box">
-                                                <h3>Robert Fox</h3>
-                                                <span className="designation">Manager</span>
-                                                <p>
-                                                    “Dictum mauris facilisis tortor dictumst. Cursus mattis viera lobortis posuere molestie imperdiet diam scelerisque posuere magnis risus purus eu tempor. Odio iaculis tincidunt cras cursus id nunc nibh gravida vel consectetur aliquam vitae pulvina.”
+                                                    “The management consultancy services provided by Praxis have been a game-changer for our organization. They conducted a thorough assessment of our operations and provided actionable insights that have significantly improved our efficiency and impact. Their team is knowledgeable, approachable, and genuinely invested in our mission. I wholeheartedly recommend them to any nonprofit seeking to enhance their operational effectiveness.”
                                                 </p>
                                                 <ul className="rating clearfix">
                                                     <li><i className="fas fa-star"></i></li>

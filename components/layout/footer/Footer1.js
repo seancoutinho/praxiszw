@@ -83,7 +83,7 @@ export default function Footer1() {
                     <div className="auto-container">
                         <div className="copyright">
                             <p>
-                                Copyright {new Date().getFullYear()} by <Link href="#">Kevtech Solutions </Link>All Right Reserved.
+                                Copyright {new Date().getFullYear()} by <Link href="#">bytestream </Link>All Right Reserved.
                             </p>
                         </div>
                     </div>
