@@ -17,7 +17,7 @@ export default function Home() {
                                 <div className="col-lg-4 col-md-6 col-sm-12 news-block">
                                     <div className="news-block-two wow fadeInUp animated" data-wow-delay="00ms" data-wow-duration="1500ms">
                                         <div className="inner-box">
-                                            <figure className="image-box"><Link href="/blog-details"><img src="assets/images/news/news-4.jpg" alt="" /></Link></figure>
+                                            <figure className="image-box"><Link href="/blog-details"><img src={blog.image} alt="" /></Link></figure>
                                             <div className="lower-content">
                                                 <div className="inner">
                                                     <span className="post-date">{blog.date}</span>

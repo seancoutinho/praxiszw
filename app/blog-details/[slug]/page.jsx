@@ -46,7 +46,7 @@ export default function Home() {
                                     <div className="news-block-one">
                                         <div className="inner-box">
                                             <div className="image-box">
-                                                <figure className="image"><img src="assets/images/news/news-13.jpg" alt="" /></figure>
+                                                <figure className="image"><img src={blog.image} alt="" /></figure>
                                                 <h2>{blog.date.slice(0, 2)}<span>{blog.date.slice(2, 6)}</span></h2>
                                             </div>
                                             <div className="lower-content">
