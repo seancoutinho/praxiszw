@@ -66,9 +66,9 @@ export default function Footer1() {
                                     <div className="widget-content">
                                         <p>Reach out to us today!</p>
                                         <ul className="info-list clearfix">
-                                            <li><i className="icon-23"></i>6626 Zimre Way, Zimre Park, Ruwa</li>
+                                            <li><i className="icon-23"></i>Suite 226, Stanley House, Cnr Jason Moyo, First St, Harare</li>
                                             <li><i className="icon-3"></i><Link href="mailto:info@praxisaccountants.com">info@praxisaccountants.com</Link></li>
-                                            <li><i className="icon-2"></i><Link href="tel:263772243934">263 242 00 5227</Link></li>
+                                            <li><i className="icon-2"></i><Link href="tel:263772243934">263 772 243</Link></li>
                                         </ul>
                                     </div>
                                 </div>
