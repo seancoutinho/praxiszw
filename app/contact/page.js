@@ -22,7 +22,7 @@ export default function Home() {
                                             <div className="block-shape" style={{ backgroundImage: 'url(assets/images/shape/shape-32.png)' }}></div>
                                             <div className="icon-box"><i className="icon-48"></i></div>
                                             <h3>Our Location</h3>
-                                            <p>6626 Zimre Way, Zimre Park, <br />Ruwa</p>
+                                            <p>Suite 226, Stanley House, Cnr Jason Moyo, First St,  <br />Harare</p>
                                         </div>
                                     </div>
                                 </div>
