@@ -1,7 +1,51 @@
+'use client'
 
 import Layout from "@/components/layout/Layout"
 import Link from "next/link"
+import { useState } from "react";
+import emailjs from "emailjs-com";
+
 export default function Home() {
+    const [formData, setFormData] = useState({
+        username: "",
+        email: "",
+        phone: "",
+        subject: "",
+        message: "",
+    });
+    const [status, setStatus] = useState("idle");
+
+    const handleChange = (e) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setStatus("sending");
+
+        try {
+            await emailjs.send(
+                "service_5b2kdcp",
+                "template_gi615z7",
+                {
+                    ...formData,
+                    to_email: "bonifacecoutinho@gmail.com",
+                },
+                "_9cuYkV2p6GKYAmFR"
+            );
+            setStatus("sent");
+            setFormData({
+                username: "",
+                email: "",
+                phone: "",
+                subject: "",
+                message: "",
+            });
+        } catch (error) {
+            console.error("Error sending email:", error);
+            setStatus("error");
+        }
+    };
 
     return (
         <>
@@ -54,42 +98,80 @@ export default function Home() {
                     <section className="contact-style-two sec-pad">
                         <div className="auto-container">
                             <div className="row clearfix">
-                                <div className="col-lg-4 col-md-12 col-sm-12 content-column">
-                                    <div className="content-box mr_70">
-                                        <div className="sec-title mb_35">
-                                            <span className="sub-title">Message</span>
-                                            <h2>Feel Free to Contact with us</h2>
-                                            <p className="mt_20">Have questions or need assistance? Our team is here to help. Reach out to us through the contact form below, or connect with us directly by phone or email. We look forward to hearing from you!</p>
-                                        </div>
-                                        <ul className="social-links clearfix">
-                                            <li><Link href="/contact"><i className="fab fa-facebook-f"></i></Link></li>
-                                            <li><Link href="/contact"><i className="fab fa-twitter"></i></Link></li>
-                                            <li><Link href="/contact"><i className="fab fa-pinterest-p"></i></Link></li>
-                                            <li><Link href="/contact"><i className="fab fa-instagram"></i></Link></li>
-                                        </ul>
-                                    </div>
-                                </div>
+                                {/* ... existing content ... */}
                                 <div className="col-lg-8 col-md-12 col-sm-12 form-column">
                                     <div className="form-inner">
-                                        <form method="post" action="sendemail.php" id="contact-form" className="default-form">
+                                        <form onSubmit={handleSubmit} className="default-form">
                                             <div className="row clearfix">
                                                 <div className="col-lg-6 col-md-6 col-sm-12 form-group">
-                                                    <input type="text" name="username" placeholder="Your Name" required />
+                                                    <input
+                                                        type="text"
+                                                        name="username"
+                                                        placeholder="Your Name"
+                                                        required
+                                                        value={formData.username}
+                                                        onChange={handleChange}
+                                                        className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                                    />
                                                 </div>
                                                 <div className="col-lg-6 col-md-6 col-sm-12 form-group">
-                                                    <input type="email" name="email" placeholder="Your email" required />
+                                                    <input
+                                                        type="email"
+                                                        name="email"
+                                                        placeholder="Your email"
+                                                        required
+                                                        value={formData.email}
+                                                        onChange={handleChange}
+                                                        className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                                    />
                                                 </div>
                                                 <div className="col-lg-6 col-md-6 col-sm-12 form-group">
-                                                    <input type="text" name="phone" required placeholder="Phone" />
+                                                    <input
+                                                        type="text"
+                                                        name="phone"
+                                                        required
+                                                        placeholder="Phone"
+                                                        value={formData.phone}
+                                                        onChange={handleChange}
+                                                        className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                                    />
                                                 </div>
                                                 <div className="col-lg-6 col-md-6 col-sm-12 form-group">
-                                                    <input type="text" name="subject" required placeholder="Subject" />
+                                                    <input
+                                                        type="text"
+                                                        name="subject"
+                                                        required
+                                                        placeholder="Subject"
+                                                        value={formData.subject}
+                                                        onChange={handleChange}
+                                                        className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                                    />
                                                 </div>
                                                 <div className="col-lg-12 col-md-12 col-sm-12 form-group">
-                                                    <textarea name="message" placeholder="Type message"></textarea>
+                                                    <textarea
+                                                        name="message"
+                                                        placeholder="Type message"
+                                                        value={formData.message}
+                                                        onChange={handleChange}
+                                                        className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
+                                                    ></textarea>
                                                 </div>
                                                 <div className="col-lg-12 col-md-12 col-sm-12 form-group message-btn">
-                                                    <button className="theme-btn theme-btn-one" type="submit" name="submit-form">Send Message</button>
+                                                    <button
+                                                        className={`theme-btn theme-btn-one ${status === "sending" ? "opacity-50 cursor-not-allowed" : ""
+                                                            }`}
+                                                        type="submit"
+                                                        disabled={status === "sending"}
+                                                    >
+                                                        {status === "idle" && "Send Message"}
+                                                        {status === "sending" && (
+                                                            <span className="flex items-center">
+                                                                Sending...
+                                                            </span>
+                                                        )}
+                                                        {status === "sent" && "Sent!"}
+                                                        {status === "error" && "Error. Try again."}
+                                                    </button>
                                                 </div>
                                             </div>
                                         </form>
