@@ -372,12 +372,21 @@ adjacent frames mid-loop.
 H.264 MP4 covers older Safari; a 27 KB poster paints instantly. A desktop
 visitor downloads roughly 200 KB extra, on the homepage only.
 
+**Two cuts, because the hero is a different shape on each.** On desktop it is
+roughly 16:9 with the copy on the left, so that cut keeps its left third clear.
+On a phone the hero measures around **1:3.5** — taller than it is wide, three
+times over — with copy running the full width. Serving the landscape cut there
+would crop it to a narrow vertical slice of the deliberately empty left side, so
+a portrait cut (600×1800, 172 KB WebM / 222 KB MP4) spreads the composition
+vertically, draws its broad marks harder to survive a lighter wash, and masks
+top-to-bottom instead of left-to-right. The browser picks a cut at 768px and
+remounts if the viewport crosses it.
+
 **It is decoration, so it is conditional.** The video is not mounted at all when
-the visitor prefers reduced motion, when the viewport is under 768px (a 16:9
-loop crops to almost nothing on a phone, and it is not worth mobile data), or
-when the browser reports Save-Data. It mounts after first paint so it never
-competes with LCP, and fades in only once it is genuinely playing — a blocked
-autoplay leaves the original gradient showing rather than a frozen frame.
+the visitor prefers reduced motion or when the browser reports Save-Data. It
+mounts after first paint so it never competes with LCP, and fades in only once
+it is genuinely playing — a blocked autoplay leaves the original gradient
+showing rather than a frozen frame.
 
 **Readability was the constraint, and it needed fixing.** The footage carries its
 own left-hand darkening, but that was not enough: measured against the source
@@ -388,6 +397,18 @@ was moved into CSS as a scrim that tracks the real hero box, and the lead's
 opacity went from 0.78 to 0.88. Re-measured on the *rendered page* across three
 viewport widths and five points in the loop, sampling the actual composited
 pixels behind the text: headline **14.46:1**, lead **11.40:1**. Both pass.
+
+The portrait cut needed the same treatment and took three passes to settle. The
+first was legible but so dark the graphics barely read. Boosting everything
+uniformly then failed hard — small text fell to **2.64:1** — and the cause was
+specific: a handful of near-white node cores landing inside a text box decide
+the measurement, while buying almost no visible texture. So the broad marks
+(grid, links, bars) are boosted 1.75× and the point highlights only 1.15×. The
+remaining shortfall was then solved rather than guessed: measuring the worst
+background pixel showed it needed ~0.20 more navy over it, which set the scrim
+stops directly. Final worst case on a phone, across three widths and four points
+in the loop: headline **5.41:1**, lead **6.91:1**, credibility labels
+**4.77:1**.
 
 ### Bug found and fixed during this pass
 
@@ -414,9 +435,10 @@ ahead of the breakpoint so it can reset them. Verified at 414px.
   DevTools protocol, since hover cannot be captured with a plain screenshot).
 - Every `tel:` link to the firm's number confirmed replaced by a `wa.me` link
   across all 26 pages; Raymond Mupeti's separate direct line confirmed unchanged.
-- Hero video confirmed to mount at 1440px and 768px, and **not** to mount under
-  `prefers-reduced-motion` or at 414px.
-- Hero text contrast re-measured on the rendered page over the moving video.
+- Hero video cut confirmed per width: portrait at 360/414/430/767px, landscape at
+  768/1440px, and **not** mounted at all under `prefers-reduced-motion`.
+- Hero text contrast re-measured on the rendered page over the moving video, on
+  both desktop and phone widths.
 - Decorative `alt=""` images (the three logos, inside links that already carry
   their own `aria-label`) verified through the browser's accessibility tree
   rather than by markup inspection — the links compute the correct name, and

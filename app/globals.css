@@ -466,7 +466,7 @@ a.card:hover, .card--link:hover { border-color: var(--navy-300); box-shadow: var
 .page-header .fact-value { color: #fff; }
 .section--navy .fact-label,
 .hero .fact-label,
-.page-header .fact-label { color: rgba(255, 255, 255, 0.7); }
+.page-header .fact-label { color: rgba(255, 255, 255, 0.9); }
 
 /* --- 9. Prose (articles, long-form service copy) ----------------------- */
 
@@ -931,13 +931,28 @@ a.card:hover, .card--link:hover { border-color: var(--navy-300); box-shadow: var
   pointer-events: none;
   opacity: 0;
   transition: opacity 1.1s var(--ease);
-  background:
-    linear-gradient(90deg,
-      rgba(4, 16, 42, 0.90) 0%,
-      rgba(4, 16, 42, 0.82) 26%,
-      rgba(4, 16, 42, 0.46) 52%,
-      rgba(4, 16, 42, 0) 74%),
-    linear-gradient(to top, rgba(4, 16, 42, 0.55) 0%, rgba(4, 16, 42, 0) 38%);
+  /* Phone first: copy runs the full width, so the wash is vertical. */
+  background: linear-gradient(
+    to bottom,
+    rgba(4, 16, 42, 0.66) 0%,
+    rgba(4, 16, 42, 0.52) 25%,
+    rgba(4, 16, 42, 0.50) 55%,
+    rgba(4, 16, 42, 0.50) 80%,
+    rgba(4, 16, 42, 0.58) 100%);
+}
+
+/* From the landscape cut's breakpoint the copy sits left, so the wash turns
+   horizontal and clears the right-hand side where the animation lives. */
+@media (min-width: 768px) {
+  .hero-scrim {
+    background:
+      linear-gradient(90deg,
+        rgba(4, 16, 42, 0.90) 0%,
+        rgba(4, 16, 42, 0.82) 26%,
+        rgba(4, 16, 42, 0.46) 52%,
+        rgba(4, 16, 42, 0) 74%),
+      linear-gradient(to top, rgba(4, 16, 42, 0.55) 0%, rgba(4, 16, 42, 0) 38%);
+  }
 }
 .hero-scrim[data-ready='true'] { opacity: 1; }
 .hero::after {
