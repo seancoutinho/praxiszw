@@ -1,89 +1,55 @@
-import Layout from "@/components/layout/Layout"
-import Link from "next/link"
-export default function Home() {
+import Layout from '@/components/layout/Layout'
+import CtaBand from '@/components/ui/CtaBand'
+import PageHeader from '@/components/ui/PageHeader'
+import testimonials from '@/lib/testimonials'
 
-    return (
-        <>
-            <Layout headerStyle={1} footerStyle={1} breadcrumbTitle="Testimonials">
-                <div>
-                    <section className="testimonial-page-section p_relative">
-                        <div className="auto-container">
-                            <div className="sec-title mb_50 centred">
-                                <span className="sub-title">Testimonials</span>
-                                <h2>What They’re Saying <br />About Us?</h2>
-                            </div>
-                            <div className="sortable-masonry">
-                                <div className="items-container row clearfix">
-                                    <div className="col-lg-4 col-md-6 col-sm-12 testimonial-block masonry-item small-column">
-                                        <div className="testimonial-block-two">
-                                            {/* <figure className="thumb-box">
-                                                <img src="assets/images/resource/testimonial-3.jpg" alt="" />
-                                            </figure> */}
-                                            <div className="inner-box">
-                                                <h3>D. Maupa</h3>
-                                                <span className="designation">Managing Director ~ Desma Consulting Engineers</span>
-                                                <p>
-                                                    “Navigating the complexities of tax regulations can be overwhelming, but Praxis Accountants made the process seamless. Their tax advisory services are exceptional; they took the time to understand my business and provided tailored solutions that maximized my tax benefits. The peace of mind I gained knowing my taxes were in expert hands was invaluable. I can't thank them enough for their support!”
-                                                </p>
-                                                <ul className="rating clearfix">
-                                                    <li><i className="fas fa-star"></i></li>
-                                                    <li><i className="fas fa-star"></i></li>
-                                                    <li><i className="fas fa-star"></i></li>
-                                                    <li><i className="fas fa-star"></i></li>
-                                                    <li><i className="far fa-star"></i></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="col-lg-4 col-md-6 col-sm-12 testimonial-block masonry-item small-column">
-                                        <div className="testimonial-block-two">
-                                            {/* <figure className="thumb-box">
-                                                <img src="assets/images/resource/testimonial-4.jpg" alt="" />
-                                            </figure> */}
-                                            <div className="inner-box">
-                                                <h3>D. Tasaranahwo</h3>
-                                                <span className="designation">Managing Director ~ Tazmac Micro Finance Company</span>
-                                                <p>
-                                                    “Working with Praxis has transformed our approach to financial reporting. Their meticulous analysis and insightful recommendations have not only improved our financial clarity but have also empowered us to make informed strategic decisions. The team's professionalism and dedication to our success are truly commendable. I highly recommend their services to any business looking to enhance their financial management.”
-                                                </p>
-                                                <ul className="rating clearfix">
-                                                    <li><i className="fas fa-star"></i></li>
-                                                    <li><i className="fas fa-star"></i></li>
-                                                    <li><i className="fas fa-star"></i></li>
-                                                    <li><i className="fas fa-star"></i></li>
-                                                    <li><i className="far fa-star"></i></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="col-lg-4 col-md-6 col-sm-12 testimonial-block masonry-item small-column">
-                                        <div className="testimonial-block-two">
-                                            {/* <figure className="thumb-box">
-                                                <img src="assets/images/resource/testimonial-5.jpg" alt="" />
-                                            </figure> */}
-                                            <div className="inner-box">
-                                                <h3>G. Mutobaya</h3>
-                                                <span className="designation">Founder & CEO ~ Danville Consultancy P/L</span>
-                                                <p>
-                                                    “The management consultancy services provided by Praxis have been a game-changer for our organization. They conducted a thorough assessment of our operations and provided actionable insights that have significantly improved our efficiency and impact. Their team is knowledgeable, approachable, and genuinely invested in our mission. I wholeheartedly recommend them to any nonprofit seeking to enhance their operational effectiveness.”
-                                                </p>
-                                                <ul className="rating clearfix">
-                                                    <li><i className="fas fa-star"></i></li>
-                                                    <li><i className="fas fa-star"></i></li>
-                                                    <li><i className="fas fa-star"></i></li>
-                                                    <li><i className="fas fa-star"></i></li>
-                                                    <li><i className="far fa-star"></i></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-                </div>
+export const metadata = {
+  title: 'Client Feedback',
+  description:
+    'What clients say about working with Praxis Chartered Accountants — feedback from businesses across Zimbabwe on tax advisory, financial reporting and consultancy engagements.',
+  alternates: { canonical: '/testimonials' },
+}
 
-            </Layout>
-        </>
-    )
+export default function TestimonialsPage() {
+  return (
+    <Layout>
+      <PageHeader
+        breadcrumbs={[{ label: 'Firm', href: '/about' }, { label: 'Client Feedback' }]}
+        eyebrow="Client feedback"
+        title="In our clients’ words"
+        lead="Every quote below comes from a business we have worked with directly. We have not written any of them, and we do not publish anonymous or composite testimonials."
+      />
+
+      <section className="section">
+        <div className="container">
+          <div className="grid grid-3">
+            {testimonials.map((t) => (
+              <figure className="quote-card reveal" key={t.name}>
+                <span className="quote-mark" aria-hidden="true">&ldquo;</span>
+                <blockquote>{t.quote}</blockquote>
+                <figcaption className="quote-attrib">
+                  <div className="name">{t.name}</div>
+                  <div className="org">{t.role}, {t.org}</div>
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+
+          <div className="callout mt-16" style={{ maxWidth: '52rem' }}>
+            <p className="callout-title">On testimonials</p>
+            <p>
+              We publish client feedback only with permission and only attributed. Where a client
+              prefers not to be named we do not publish an anonymised version instead — an
+              unattributable quote tells you nothing you can check.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <CtaBand
+        title="Are you a client with something to add?"
+        body="If we have worked together and you are willing to be quoted, we would be glad to hear from you."
+      />
+    </Layout>
+  )
 }
