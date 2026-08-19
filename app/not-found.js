@@ -1,27 +1,57 @@
+import Link from 'next/link'
+import Layout from '@/components/layout/Layout'
+import Icon from '@/components/ui/Icon'
+import { getRecentInsights } from '@/lib/insights'
+import { services } from '@/lib/site'
 
+export const metadata = { title: 'Page not found' }
 
-import Layout from "@/components/layout/Layout"
-import Link from "next/link"
-export default function Error404() {
+export default function NotFound() {
+  const posts = getRecentInsights(2)
 
-    return (
-        <>
-            <Layout headerStyle={1} footerStyle={1} breadcrumbTitle="404 Error">
-                <section className="error-section p_relative centred">
-                    <div className="auto-container">
-                        <div className="inner-box">
-                            <figure className="error-image">
-                                <img src="assets/images/icons/error-1.png" alt="" />
-                            </figure>
-                            <h2>Oops! That Page Can Not <br />be Found.</h2>
-                            <Link href="/" className="theme-btn-one">
-                                <i className="icon-5"></i>Back to Homepage
-                            </Link>
-                        </div>
-                    </div>
-                </section>
+  return (
+    <Layout>
+      <section className="section">
+        <div className="container container--narrow">
+          <p className="eyebrow">Error 404</p>
+          <h1 className="mt-6">We could not find that page</h1>
+          <p className="lead mt-6">
+            The link may be out of date. This site was rebuilt in 2026 and a number of pages
+            moved — most old addresses redirect automatically, but not all of them.
+          </p>
 
-            </Layout>
-        </>
-    )
+          <div className="hero-cta" style={{ marginTop: '2rem' }}>
+            <Link href="/" className="btn btn--primary">Go to the homepage</Link>
+            <Link href="/contact" className="btn btn--ghost">Contact us</Link>
+          </div>
+
+          <hr className="rule mt-16" />
+
+          <div className="mt-10">
+            <h2 style={{ fontSize: 'var(--t-xl)' }}>Looking for a service?</h2>
+            <ul className="list-dash mt-4">
+              {services.map((s) => (
+                <li key={s.slug}>
+                  <Link className="link-underline" href={`/services/${s.slug}`}>{s.title}</Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="mt-12">
+            <h2 style={{ fontSize: 'var(--t-xl)' }}>Recent insights</h2>
+            <div className="grid grid-2 mt-6">
+              {posts.map((p) => (
+                <Link href={`/insights/${p.slug}`} className="card" key={p.slug}>
+                  <p className="article-meta">{p.dateLabel}</p>
+                  <h3>{p.title}</h3>
+                  <span className="link-arrow">Read <Icon name="arrowRight" size={16} /></span>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+    </Layout>
+  )
 }

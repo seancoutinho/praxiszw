@@ -1,198 +1,107 @@
-'use client'
+import Layout from '@/components/layout/Layout'
+import ContactForm from '@/components/forms/ContactForm'
+import Icon from '@/components/ui/Icon'
+import PageHeader from '@/components/ui/PageHeader'
+import { contact } from '@/lib/site'
 
-import Layout from "@/components/layout/Layout"
-import Link from "next/link"
-import { useState } from "react";
-import emailjs from "emailjs-com";
+export const metadata = {
+  title: 'Contact',
+  description:
+    'Contact Praxis Chartered Accountants in Harare — Suite 226, Stanley House, Cnr Jason Moyo Avenue & First Street. Book a free introductory consultation on audit, tax, accounting or advisory work.',
+  alternates: { canonical: '/contact' },
+}
 
-export default function Home() {
-    const [formData, setFormData] = useState({
-        username: "",
-        email: "",
-        phone: "",
-        subject: "",
-        message: "",
-    });
-    const [status, setStatus] = useState("idle");
+export default function ContactPage() {
+  return (
+    <Layout>
+      <PageHeader
+        breadcrumbs={[{ label: 'Contact' }]}
+        eyebrow="Contact"
+        title="Start with a conversation"
+        lead="The first call is free and carries no obligation. Tell us what you need and we will come back within one business day with an honest view of the work involved."
+      />
 
-    const handleChange = (e) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
-    };
+      <section className="section">
+        <div className="container">
+          <div className="split split--top" style={{ gridTemplateColumns: 'minmax(0,0.85fr) minmax(0,1.15fr)' }}>
+            <div>
+              <h2>Details</h2>
+              <ul className="footer-contact mt-6" style={{ color: 'var(--ink-2)' }}>
+                <li>
+                  <Icon name="pin" size={18} />
+                  <span>
+                    <strong style={{ color: 'var(--navy-800)' }}>Office</strong><br />
+                    {contact.address.line1}<br />
+                    {contact.address.line2}<br />
+                    {contact.address.city}, {contact.address.country}
+                  </span>
+                </li>
+                <li>
+                  <Icon name="mail" size={18} />
+                  <span>
+                    <strong style={{ color: 'var(--navy-800)' }}>Email</strong><br />
+                    <a className="link-underline" href={`mailto:${contact.email}`}>{contact.emailLabel}</a>
+                  </span>
+                </li>
+                <li>
+                  <Icon name="phone" size={18} />
+                  <span>
+                    <strong style={{ color: 'var(--navy-800)' }}>Telephone</strong><br />
+                    <a className="link-underline" href={`tel:${contact.phoneHref}`}>{contact.phone}</a>
+                  </span>
+                </li>
+                <li>
+                  <Icon name="clock" size={18} />
+                  <span>
+                    <strong style={{ color: 'var(--navy-800)' }}>Office hours</strong><br />
+                    {contact.hours.map((h) => (
+                      <span key={h.days} style={{ display: 'block' }}>{h.days}: {h.time}</span>
+                    ))}
+                  </span>
+                </li>
+              </ul>
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        setStatus("sending");
+              <div className="card mt-10">
+                <span className="card-icon"><Icon name="lock" size={20} /></span>
+                <h3>Sending us documents</h3>
+                <p>
+                  Please do not attach financial records, identity documents or ZIMRA credentials
+                  to a first enquiry. Once we have replied we will confirm how to send them
+                  securely, and who at the firm will hold them.
+                </p>
+              </div>
+            </div>
 
-        try {
-            await emailjs.send(
-                "service_5b2kdcp",
-                "template_gi615z7",
-                {
-                    ...formData,
-                    to_email: "bonifacecoutinho@gmail.com",
-                },
-                "_9cuYkV2p6GKYAmFR"
-            );
-            setStatus("sent");
-            setFormData({
-                username: "",
-                email: "",
-                phone: "",
-                subject: "",
-                message: "",
-            });
-        } catch (error) {
-            console.error("Error sending email:", error);
-            setStatus("error");
-        }
-    };
+            <div className="card" style={{ padding: 'clamp(1.75rem, 3vw, 2.5rem)' }}>
+              <h2 style={{ fontSize: 'var(--t-xl)' }}>Send us a message</h2>
+              <p className="muted mt-4" style={{ fontSize: 'var(--t-base)' }}>
+                Fields marked as required must be completed so we can respond.
+              </p>
+              <div className="mt-8">
+                <ContactForm />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-    return (
-        <>
-            <Layout headerStyle={1} footerStyle={1} breadcrumbTitle="Get in touch">
-                <div>
-                    {/* Feature Section */}
-                    <section className="feature-style-three p_relative centred">
-                        <div className="pattern-layer" style={{ backgroundImage: 'url(assets/images/shape/shape-31.png)' }}></div>
-                        <div className="auto-container">
-                            <div className="sec-title mb_100">
-                                <span className="sub-title">Contact Info</span>
-                                <h2>We’d Love To Help You</h2>
-                            </div>
-                            <div className="row clearfix">
-                                <div className="col-lg-4 col-md-6 col-sm-12 feature-block">
-                                    <div className="feature-block-three wow fadeInUp animated" data-wow-delay="00ms" data-wow-duration="1500ms">
-                                        <div className="inner-box">
-                                            <div className="block-shape" style={{ backgroundImage: 'url(assets/images/shape/shape-32.png)' }}></div>
-                                            <div className="icon-box"><i className="icon-48"></i></div>
-                                            <h3>Our Location</h3>
-                                            <p>Suite 226, Stanley House, Cnr Jason Moyo, First St,  <br />Harare</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="col-lg-4 col-md-6 col-sm-12 feature-block">
-                                    <div className="feature-block-three wow fadeInUp animated" data-wow-delay="300ms" data-wow-duration="1500ms">
-                                        <div className="inner-box">
-                                            <div className="icon-box"><i className="icon-49"></i></div>
-                                            <h3>Email Address</h3>
-                                            <p><Link href="mailto:contact@praxisaccountants.com">contact@praxisaccountants.com</Link><br /><Link href="mailto:support@praxisaccountants.com">support@praxisaccountants.com</Link></p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="col-lg-4 col-md-6 col-sm-12 feature-block">
-                                    <div className="feature-block-three wow fadeInUp animated" data-wow-delay="600ms" data-wow-duration="1500ms">
-                                        <div className="inner-box">
-                                            <div className="block-shape" style={{ backgroundImage: 'url(assets/images/shape/shape-33.png)' }}></div>
-                                            <div className="icon-box"><i className="icon-50"></i></div>
-                                            <h3>Phone Number</h3>
-                                            <p>Emergency Cases <br /><Link href="tel:263772243934">+(263) 772-2439 34</Link> (24/7)</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-                    {/* Feature Section End */}
-
-                    {/* Contact Form Section */}
-                    <section className="contact-style-two sec-pad">
-                        <div className="auto-container">
-                            <div className="row clearfix">
-                                {/* ... existing content ... */}
-                                <div className="col-lg-8 col-md-12 col-sm-12 form-column">
-                                    <div className="form-inner">
-                                        <form onSubmit={handleSubmit} className="default-form">
-                                            <div className="row clearfix">
-                                                <div className="col-lg-6 col-md-6 col-sm-12 form-group">
-                                                    <input
-                                                        type="text"
-                                                        name="username"
-                                                        placeholder="Your Name"
-                                                        required
-                                                        value={formData.username}
-                                                        onChange={handleChange}
-                                                        className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                                    />
-                                                </div>
-                                                <div className="col-lg-6 col-md-6 col-sm-12 form-group">
-                                                    <input
-                                                        type="email"
-                                                        name="email"
-                                                        placeholder="Your email"
-                                                        required
-                                                        value={formData.email}
-                                                        onChange={handleChange}
-                                                        className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                                    />
-                                                </div>
-                                                <div className="col-lg-6 col-md-6 col-sm-12 form-group">
-                                                    <input
-                                                        type="text"
-                                                        name="phone"
-                                                        required
-                                                        placeholder="Phone"
-                                                        value={formData.phone}
-                                                        onChange={handleChange}
-                                                        className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                                    />
-                                                </div>
-                                                <div className="col-lg-6 col-md-6 col-sm-12 form-group">
-                                                    <input
-                                                        type="text"
-                                                        name="subject"
-                                                        required
-                                                        placeholder="Subject"
-                                                        value={formData.subject}
-                                                        onChange={handleChange}
-                                                        className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                                    />
-                                                </div>
-                                                <div className="col-lg-12 col-md-12 col-sm-12 form-group">
-                                                    <textarea
-                                                        name="message"
-                                                        placeholder="Type message"
-                                                        value={formData.message}
-                                                        onChange={handleChange}
-                                                        className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
-                                                    ></textarea>
-                                                </div>
-                                                <div className="col-lg-12 col-md-12 col-sm-12 form-group message-btn">
-                                                    <button
-                                                        className={`theme-btn theme-btn-one ${status === "sending" ? "opacity-50 cursor-not-allowed" : ""
-                                                            }`}
-                                                        type="submit"
-                                                        disabled={status === "sending"}
-                                                    >
-                                                        {status === "idle" && "Send Message"}
-                                                        {status === "sending" && (
-                                                            <span className="flex items-center">
-                                                                Sending...
-                                                            </span>
-                                                        )}
-                                                        {status === "sent" && "Sent!"}
-                                                        {status === "error" && "Error. Try again."}
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-                    {/* Contact Form Section End */}
-
-                    {/* Google Map Section */}
-                    <section className="map-section-two">
-                        {/*Map Outer*/}
-                        <div className="map-outer">
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d144248.96130868216!2d31.144463951376537!3d-17.864416152674032!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1931beef8f385033%3A0xcc9445a1bbe9c59a!2s6626%20Zimre%20Way%2C%20Ruwa!5e1!3m2!1sen!2szw!4v1722436471935!5m2!1sen!2szw" height={570} style={{ border: 0, width: "100%" }} allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade" />
-                        </div>
-                    </section>
-                    {/* Google Map Section End */}
-                </div>
-
-            </Layout>
-        </>
-    )
+      <section className="section section--sm" style={{ paddingTop: 0 }}>
+        <div className="container">
+          <h2 className="visually-hidden">Office location map</h2>
+          <div className="map-frame">
+            <iframe
+              src={contact.mapEmbed}
+              title={`Map showing ${contact.addressOneLine}`}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              allowFullScreen
+            />
+          </div>
+          <p className="small muted mt-4">
+            {contact.addressOneLine}
+          </p>
+        </div>
+      </section>
+    </Layout>
+  )
 }

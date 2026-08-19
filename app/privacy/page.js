@@ -1,0 +1,134 @@
+import Layout from '@/components/layout/Layout'
+import PageHeader from '@/components/ui/PageHeader'
+import { contact, site } from '@/lib/site'
+
+export const metadata = {
+  title: 'Privacy Policy',
+  description:
+    'How Praxis Chartered Accountants collects, uses, stores and protects personal information submitted through this website and in the course of professional engagements.',
+  alternates: { canonical: '/privacy' },
+  robots: { index: true, follow: true },
+}
+
+export default function PrivacyPage() {
+  return (
+    <Layout>
+      <PageHeader
+        breadcrumbs={[{ label: 'Privacy Policy' }]}
+        eyebrow="Legal"
+        title="Privacy Policy"
+        lead="How we handle personal information collected through this website and in the course of our professional work."
+      />
+
+      <section className="section">
+        <div className="container container--narrow">
+          <div className="callout">
+            <p className="callout-title">Draft pending legal review</p>
+            <p>
+              This policy is drafted to cover how the website actually behaves and how a
+              professional practice ordinarily handles client information. It has not been
+              reviewed by a legal practitioner and does not yet reference the specific
+              obligations arising under the Data Protection Act [Chapter 11:12] or name a Data
+              Protection Officer. Praxis should have it reviewed and completed before launch.
+            </p>
+          </div>
+
+          <div className="prose mt-12">
+            <h2>Who we are</h2>
+            <p>
+              {site.legalName}, of {contact.addressOneLine}, is responsible for the personal
+              information described in this policy. You can reach us
+              at <a href={`mailto:${contact.email}`}>{contact.emailLabel}</a> or on{' '}
+              <a href={`tel:${contact.phoneHref}`}>{contact.phone}</a>.
+            </p>
+
+            <h2>What we collect</h2>
+            <h3>Information you give us</h3>
+            <p>
+              When you submit the enquiry or consultation form on this website we collect the
+              name, email address, telephone number, organisation and message you enter. We ask
+              you not to send financial records, identity documents or tax credentials through
+              those forms.
+            </p>
+            <h3>Information collected in the course of an engagement</h3>
+            <p>
+              Where you engage us professionally we will hold the information necessary to
+              perform that engagement — which may include financial records, payroll data,
+              identity and registration documents, and correspondence with third parties such as
+              ZIMRA, your bank or your other advisers.
+            </p>
+            <h3>Information collected automatically</h3>
+            <p>
+              This website does not run third-party analytics or advertising trackers. Standard
+              server logs may record request information such as IP address and user agent for
+              security and operational purposes. Enquiry forms are delivered through a
+              third-party email delivery service, which processes the contents of the form in
+              order to send it to us.
+            </p>
+
+            <h2>Why we use it</h2>
+            <ul>
+              <li>To respond to your enquiry and arrange an introductory consultation</li>
+              <li>To provide the professional services you engage us to perform</li>
+              <li>To meet our own legal, regulatory and professional obligations, including record-retention requirements</li>
+              <li>To maintain the security and integrity of our systems and records</li>
+            </ul>
+            <p>
+              We do not sell personal information, and we do not use enquiry details for
+              marketing unrelated to the enquiry you made.
+            </p>
+
+            <h2>Who we share it with</h2>
+            <p>We disclose personal information only where one of the following applies:</p>
+            <ul>
+              <li>You have asked or authorised us to — for example, dealing with ZIMRA, a bank or another adviser on your behalf</li>
+              <li>It is necessary to perform the engagement you have instructed</li>
+              <li>We are required to disclose it by law, by a court, or by a regulator</li>
+              <li>It is provided to a service provider that supports our operations, under obligations of confidentiality</li>
+            </ul>
+            <p>
+              Professional confidentiality applies to client information independently of this
+              policy, and continues after an engagement ends.
+            </p>
+
+            <h2>How long we keep it</h2>
+            <p>
+              Client records are retained for the periods required by the tax and company
+              legislation applicable to the engagement, and by our professional obligations,
+              which in some cases require retention for several years after the engagement ends.
+              Enquiries that do not lead to an engagement are retained only as long as needed to
+              deal with the enquiry.
+            </p>
+
+            <h2>Security</h2>
+            <p>
+              We apply administrative and technical measures appropriate to the sensitivity of
+              the information we hold, including restricting access to those who need it for the
+              engagement. No system is perfectly secure, and we ask you not to send sensitive
+              records through unencrypted email or through the forms on this site.
+            </p>
+
+            <h2>Your rights</h2>
+            <p>
+              You may ask us what personal information we hold about you, ask us to correct
+              inaccurate information, and ask us to delete information we no longer have a
+              lawful or professional reason to retain. Write to us at the address above.
+            </p>
+            <p>
+              Where a request conflicts with a retention obligation imposed on us by law or by
+              our professional body, we will explain which obligation applies rather than simply
+              declining.
+            </p>
+
+            <h2>Changes</h2>
+            <p>
+              We will update this page if our practices change. Material changes will be
+              reflected in the date below.
+            </p>
+            <p className="small muted">Last reviewed: [date — Praxis to insert on publication]</p>
+          </div>
+        </div>
+      </section>
+    </Layout>
+  )
+}
