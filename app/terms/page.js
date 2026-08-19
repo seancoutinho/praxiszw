@@ -24,13 +24,6 @@ export default function TermsPage() {
 
       <section className="section">
         <div className="container container--narrow">
-          <div className="callout">
-            <p className="callout-title">Draft pending legal review</p>
-            <p>
-              These terms cover the ordinary position for a professional practice website. They
-              have not been reviewed by a legal practitioner and should be before launch.
-            </p>
-          </div>
 
           <div className="prose mt-12">
             <h2>These terms</h2>

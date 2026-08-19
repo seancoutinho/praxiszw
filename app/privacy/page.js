@@ -23,16 +23,6 @@ export default function PrivacyPage() {
 
       <section className="section">
         <div className="container container--narrow">
-          <div className="callout">
-            <p className="callout-title">Draft pending legal review</p>
-            <p>
-              This policy is drafted to cover how the website actually behaves and how a
-              professional practice ordinarily handles client information. It has not been
-              reviewed by a legal practitioner and does not yet reference the specific
-              obligations arising under the Data Protection Act [Chapter 11:12] or name a Data
-              Protection Officer. Praxis should have it reviewed and completed before launch.
-            </p>
-          </div>
 
           <div className="prose mt-12">
             <h2>Who we are</h2>
