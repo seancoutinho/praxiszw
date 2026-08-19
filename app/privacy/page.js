@@ -127,7 +127,7 @@ export default function PrivacyPage() {
               We will update this page if our practices change. Material changes will be
               reflected in the date below.
             </p>
-            <p className="small muted">Last reviewed: [date — Praxis to insert on publication]</p>
+            <p className="small muted">Last reviewed: 24 December 2023</p>
           </div>
         </div>
       </section>

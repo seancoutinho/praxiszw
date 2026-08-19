@@ -93,7 +93,7 @@ export default function TermsPage() {
               to <a href={`mailto:${contact.email}`}>{contact.emailLabel}</a>, or to{' '}
               {contact.addressOneLine}.
             </p>
-            <p className="small muted">Last reviewed: [date — Praxis to insert on publication]</p>
+            <p className="small muted">Last reviewed: 24 December 2023</p>
           </div>
         </div>
       </section>
