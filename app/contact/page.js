@@ -9,7 +9,7 @@ import { ORG_ID, absoluteUrl, buildMetadata } from '@/lib/seo'
 export const metadata = buildMetadata({
   title: 'Contact Our Harare Accountants',
   description:
-    'Reach Praxis at Suite 226, Stanley House, Cnr Jason Moyo Avenue & First Street, Harare, or book a free introductory consultation online.',
+    'Reach Praxis at 6626 Zimre Way, Zimre Park, Ruwa, Harare, or book a free introductory consultation online.',
   path: '/contact',
 })
 

@@ -272,7 +272,7 @@ Consolidated into one source of truth (`lib/site.js`):
 
 | Metric | Before | After |
 |---|---|---|
-| `public/` payload | **302 MB** | **4.4 MB** (of which 4.0 MB is the hero video set and the favicon pack) |
+| `public/` payload | **302 MB** | **3.6 MB** (2.6 MB of it lossless headshot masters, which `next/image` never serves as-is) |
 | CSS lines loaded per page | 31,433 | 1,216 (one file) |
 | Runtime dependencies | 12 | 4 |
 | Font payload | 14 static files | 8 self-hosted Lato files — 91 KB latin, 22 KB latin-ext |
@@ -684,12 +684,11 @@ invented.** Each item needs real data from Praxis before launch.
     have been copy-pasted. The published bio now covers only the roles that were
     specific to him (Creekshaw Marketing, Clinique Talent Consultants). Please
     supply the correct biography.
-14. **Team photographs.** Both existing photos are informal phone snapshots — one
-    full-length in a living room, one low-resolution (820×820) with the top of the
-    head cropped. They have been cropped to a consistent 4:5 portrait framing,
-    which helps considerably, but **professional headshots would make more
-    difference to how the site reads than any other single change.** Same
-    background, same framing, both people.
+14. ~~**Team photographs.**~~ **Resolved by the client** — both informal phone
+    snapshots were replaced with proper studio headshots on a neutral grey
+    background, consistently framed. Held as lossless PNG masters (1149×1405);
+    `next/image` re-encodes them per request, so visitors receive 6–14 KB AVIF
+    or 8–25 KB WebP and the PNG itself is never sent to a browser.
 15. ~~**Rest of the team.**~~ **Closed by the client** — the placeholder card was
     removed and `/team` now presents the two named people in a two-column layout.
 16. ~~**Team direct contacts.**~~ **Resolved** — see item 1.
@@ -708,12 +707,15 @@ invented.** Each item needs real data from Praxis before launch.
     the figure or keep the "confirm this" framing. **Our recommendation is to keep
     the framing** — it ages far better and it demonstrates the professional
     caution clients are paying for.
-20. **Privacy Policy and Terms of Use.** Both are substantive drafts covering how
-    the site actually behaves, but neither has been reviewed by a legal
-    practitioner, and the privacy policy does not yet address obligations under
-    the Data Protection Act [Chapter 11:12] or name a Data Protection Officer.
-    Both carry a visible "draft pending legal review" notice, and both have a
-    `[date — Praxis to insert on publication]` field.
+20. **Privacy Policy and Terms of Use — one thing to correct.** The client removed
+    the "draft pending legal review" notices and set a review date, so both pages
+    now read as reviewed and published. However the date reads **24 December
+    2023**, which predates the rebuild that created these pages — they did not
+    exist then. Whatever the true review date is, that one is not it, and a
+    legal page asserting a review that could not have happened undermines the
+    rest of it. Also worth confirming the privacy policy now covers obligations
+    under the Data Protection Act [Chapter 11:12] and names a Data Protection
+    Officer, neither of which the draft addressed.
 21. **Social media accounts.** The footer links to Boniface's personal LinkedIn,
     Facebook and X profiles, because the old site had no firm accounts. If the
     firm has its own pages, send the URLs; if not, consider whether personal
