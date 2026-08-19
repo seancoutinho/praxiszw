@@ -1,11 +1,18 @@
 import Link from 'next/link'
+import JsonLd from '@/components/ui/JsonLd'
+import { breadcrumbSchema } from '@/lib/seo'
 
 /**
  * Inner-page masthead. The old template had a Breadcrumb component that was
  * commented out of the layout, so every inner page began abruptly under the
  * nav with no H1 at all.
+ *
+ * The visible trail and the BreadcrumbList structured data are both generated
+ * from the same `breadcrumbs` array, so they cannot drift apart. `path` is the
+ * page's own canonical path — supplying it lets the final list item carry a
+ * URL, which is what Google prefers even though schema.org allows omitting it.
  */
-export default function PageHeader({ eyebrow, title, lead, breadcrumbs = [], children }) {
+export default function PageHeader({ eyebrow, title, lead, breadcrumbs = [], path, children }) {
   return (
     <header className="page-header">
       <div className="container">
@@ -30,6 +37,7 @@ export default function PageHeader({ eyebrow, title, lead, breadcrumbs = [], chi
           {children}
         </div>
       </div>
+      {breadcrumbs.length > 0 && <JsonLd data={breadcrumbSchema(breadcrumbs, path)} />}
     </header>
   )
 }

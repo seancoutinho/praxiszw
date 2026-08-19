@@ -7,13 +7,14 @@ import PageHeader from '@/components/ui/PageHeader'
 import SectionHead from '@/components/ui/SectionHead'
 import { site } from '@/lib/site'
 import team from '@/lib/team'
+import { buildMetadata } from '@/lib/seo'
 
-export const metadata = {
-  title: 'About the Firm',
+export const metadata = buildMetadata({
+  title: 'About Our Harare Accounting Firm',
   description:
-    'Praxis Chartered Accountants is a Harare-based multidisciplinary practice founded in 2012, providing audit, tax, accounting and advisory services to clients in Zimbabwe and the SADC region.',
-  alternates: { canonical: '/about' },
-}
+    'Praxis is a Harare multidisciplinary practice bringing audit, tax, accounting and advisory under one roof for clients across Zimbabwe and SADC.',
+  path: '/about',
+})
 
 const principles = [
   {
@@ -47,6 +48,7 @@ export default function AboutPage() {
     <Layout>
       <PageHeader
         breadcrumbs={[{ label: 'About' }]}
+        path="/about"
         eyebrow="The firm"
         title="A multidisciplinary practice, built to be a growth partner"
         lead={`Founded in ${site.founded} and based in Harare, Praxis provides audit, tax, accounting and advisory services to owner-managed businesses, NGOs and public-sector entities across Zimbabwe and the SADC region.`}

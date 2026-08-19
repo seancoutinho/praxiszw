@@ -6,19 +6,21 @@ import Icon from '@/components/ui/Icon'
 import PageHeader from '@/components/ui/PageHeader'
 import SectionHead from '@/components/ui/SectionHead'
 import { services } from '@/lib/site'
+import { buildMetadata } from '@/lib/seo'
 
-export const metadata = {
-  title: 'Services',
+export const metadata = buildMetadata({
+  title: 'Accounting & Tax Services in Zimbabwe',
   description:
-    'Audit and assurance, ZIMRA tax compliance, multi-currency bookkeeping, forensic investigation, financial advisory and risk review for businesses, NGOs and public-sector entities in Zimbabwe.',
-  alternates: { canonical: '/services' },
-}
+    'Audit, ZIMRA tax compliance, multi-currency bookkeeping, forensic investigation, financial advisory and risk review — six practice areas, one team.',
+  path: '/services',
+})
 
 export default function ServicesIndex() {
   return (
     <Layout>
       <PageHeader
         breadcrumbs={[{ label: 'Services' }]}
+        path="/services"
         eyebrow="Services"
         title="Six practice areas, one accountable team"
         lead="You can engage us for a single filing season, a one-off investigation, or the whole finance function. Whichever it is, the scope and the fee basis are agreed in writing before we start."

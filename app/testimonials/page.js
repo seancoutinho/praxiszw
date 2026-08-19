@@ -2,19 +2,21 @@ import Layout from '@/components/layout/Layout'
 import CtaBand from '@/components/ui/CtaBand'
 import PageHeader from '@/components/ui/PageHeader'
 import testimonials from '@/lib/testimonials'
+import { buildMetadata } from '@/lib/seo'
 
-export const metadata = {
-  title: 'Client Feedback',
+export const metadata = buildMetadata({
+  title: 'Client Feedback & Testimonials',
   description:
-    'What clients say about working with Praxis Chartered Accountants — feedback from businesses across Zimbabwe on tax advisory, financial reporting and consultancy engagements.',
-  alternates: { canonical: '/testimonials' },
-}
+    'What Zimbabwean businesses say about working with Praxis on tax advisory, financial reporting and consultancy engagements. Named quotes only.',
+  path: '/testimonials',
+})
 
 export default function TestimonialsPage() {
   return (
     <Layout>
       <PageHeader
         breadcrumbs={[{ label: 'Firm', href: '/about' }, { label: 'Client Feedback' }]}
+        path="/testimonials"
         eyebrow="Client feedback"
         title="In our clients’ words"
         lead="Every quote below comes from a business we have worked with directly. We have not written any of them, and we do not publish anonymous or composite testimonials."

@@ -6,19 +6,21 @@ import Icon from '@/components/ui/Icon'
 import PageHeader from '@/components/ui/PageHeader'
 import SectionHead from '@/components/ui/SectionHead'
 import team from '@/lib/team'
+import { buildMetadata } from '@/lib/seo'
 
-export const metadata = {
-  title: 'Our People',
+export const metadata = buildMetadata({
+  title: 'Our Chartered Accountants in Harare',
   description:
-    'The chartered accountants and staff at Praxis Chartered Accountants in Harare — who they are, what they are qualified in, and what they work on.',
-  alternates: { canonical: '/team' },
-}
+    'Meet the people at Praxis — who they are, what they are qualified in, and what they work on. You deal with them directly, not an account manager.',
+  path: '/team',
+})
 
 export default function TeamPage() {
   return (
     <Layout>
       <PageHeader
         breadcrumbs={[{ label: 'Firm', href: '/about' }, { label: 'Our People' }]}
+        path="/team"
         eyebrow="Our people"
         title="You will work with these people, not an account manager"
         lead="Praxis is a small practice by design. The person who scopes your engagement is the person who does the work and signs it off."
@@ -35,7 +37,7 @@ export default function TeamPage() {
                     alt={`${person.name}, ${person.role} at Praxis Chartered Accountants`}
                     width={640}
                     height={800}
-                    sizes="(max-width: 640px) 100vw, (max-width: 960px) 50vw, 33vw"
+                    sizes="(max-width: 640px) 92vw, (max-width: 1248px) 46vw, 570px"
                   />
                 </Link>
                 <h2 className="person-name">

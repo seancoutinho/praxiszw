@@ -90,11 +90,16 @@ export default function Header() {
         <div className="container">
           <div className="header-bar">
             <Link href="/" className="brand" aria-label={`${'Praxis Chartered Accountants'} — home`}>
+              {/* Decorative — see the aria-label on the link above. */}
+              {/* CSS renders the mark at 52px tall (40px on small screens),
+                  i.e. ~117px wide. Without `sizes` next/image would offer the
+                  browser a 740px candidate for that slot on a retina display. */}
               <Image
                 src="/assets/images/logo.png"
-                alt="Praxis Chartered Accountants"
+                alt=""
                 width={370}
                 height={165}
+                sizes="(max-width: 520px) 90px, 117px"
                 priority
               />
             </Link>
@@ -207,8 +212,8 @@ export default function Header() {
         {...(drawerOpen ? {} : { inert: '' })}
       >
         <div className="drawer-head">
-          <Link href="/" className="brand">
-            <Image src="/assets/images/logo.png" alt="Praxis Chartered Accountants" width={370} height={165} />
+          <Link href="/" className="brand" aria-label={`${'Praxis Chartered Accountants'} — home`}>
+            <Image src="/assets/images/logo.png" alt="" width={370} height={165} sizes="117px" />
           </Link>
           <button type="button" className="drawer-close" onClick={() => setDrawerOpen(false)} aria-label="Close menu">
             <Icon name="close" size={18} />

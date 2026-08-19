@@ -2,13 +2,28 @@ import Layout from '@/components/layout/Layout'
 import ContactForm from '@/components/forms/ContactForm'
 import Icon from '@/components/ui/Icon'
 import PageHeader from '@/components/ui/PageHeader'
+import JsonLd from '@/components/ui/JsonLd'
 import { contact, whatsappLink } from '@/lib/site'
+import { ORG_ID, absoluteUrl, buildMetadata } from '@/lib/seo'
 
-export const metadata = {
-  title: 'Contact',
+export const metadata = buildMetadata({
+  title: 'Contact Our Harare Accountants',
   description:
-    'Contact Praxis Chartered Accountants in Harare — Suite 226, Stanley House, Cnr Jason Moyo Avenue & First Street. Book a free introductory consultation on audit, tax, accounting or advisory work.',
-  alternates: { canonical: '/contact' },
+    'Reach Praxis at Suite 226, Stanley House, Cnr Jason Moyo Avenue & First Street, Harare, or book a free introductory consultation online.',
+  path: '/contact',
+})
+
+// Points the contact page at the single Organization node rather than
+// restating the address, so there is one authoritative set of NAP details.
+const contactSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ContactPage',
+  '@id': `${absoluteUrl('/contact')}#contactpage`,
+  url: absoluteUrl('/contact'),
+  name: 'Contact Praxis Chartered Accountants',
+  inLanguage: 'en-ZW',
+  about: { '@id': ORG_ID },
+  mainEntity: { '@id': ORG_ID },
 }
 
 export default function ContactPage() {
@@ -16,6 +31,7 @@ export default function ContactPage() {
     <Layout>
       <PageHeader
         breadcrumbs={[{ label: 'Contact' }]}
+        path="/contact"
         eyebrow="Contact"
         title="Start with a conversation"
         lead="The first call is free and carries no obligation. Tell us what you need and we will come back within one business day with an honest view of the work involved."
@@ -104,6 +120,7 @@ export default function ContactPage() {
           </p>
         </div>
       </section>
+      <JsonLd data={contactSchema} />
     </Layout>
   )
 }

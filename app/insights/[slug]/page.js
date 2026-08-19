@@ -5,8 +5,10 @@ import ArticleBody from '@/components/ui/ArticleBody'
 import CtaBand from '@/components/ui/CtaBand'
 import Icon from '@/components/ui/Icon'
 import PageHeader from '@/components/ui/PageHeader'
+import JsonLd from '@/components/ui/JsonLd'
 import { allInsights, getInsight, getRelatedInsights } from '@/lib/insights'
 import { site } from '@/lib/site'
+import { ORG_ID, absoluteUrl, buildMetadata, ogImage } from '@/lib/seo'
 
 export function generateStaticParams() {
   return allInsights.map((p) => ({ slug: p.slug }))
@@ -14,19 +16,25 @@ export function generateStaticParams() {
 
 export function generateMetadata({ params }) {
   const post = getInsight(params.slug)
-  if (!post) return { title: 'Article not found' }
-  return {
-    title: post.title,
-    description: post.excerpt,
-    alternates: { canonical: `/insights/${post.slug}` },
+  if (!post) return { title: 'Article not found', robots: { index: false, follow: true } }
+
+  // `seoTitle` is a shortened form of the headline that keeps the composed
+  // document title inside the ~60-character SERP limit; `title` still runs in
+  // full as the H1 and in og:title, where length is not penalised.
+  return buildMetadata({
+    title: post.seoTitle,
+    description: post.metaDescription,
+    path: `/insights/${post.slug}`,
+    type: 'article',
     openGraph: {
-      type: 'article',
       title: post.title,
-      description: post.excerpt,
       publishedTime: post.date,
+      modifiedTime: post.updated ?? post.date,
+      authors: [site.name],
+      section: post.category,
       tags: post.tags,
     },
-  }
+  })
 }
 
 export default function InsightPage({ params }) {
@@ -35,21 +43,34 @@ export default function InsightPage({ params }) {
 
   const related = getRelatedInsights(post.slug, 3)
 
+  const url = absoluteUrl(`/insights/${post.slug}`)
+
+  // Articles are written by the practice rather than by a named individual, so
+  // the author is the Organization. No person is credited who did not write it.
   const schema = {
     '@context': 'https://schema.org',
     '@type': 'Article',
+    '@id': `${url}#article`,
     headline: post.title,
     description: post.excerpt,
     datePublished: post.date,
-    author: { '@type': 'Organization', name: site.name },
-    publisher: { '@type': 'Organization', name: site.name },
-    mainEntityOfPage: `${site.url}/insights/${post.slug}`,
+    dateModified: post.updated ?? post.date,
+    author: { '@id': ORG_ID },
+    publisher: { '@id': ORG_ID },
+    mainEntityOfPage: { '@type': 'WebPage', '@id': url },
+    url,
+    image: absoluteUrl(ogImage.url),
+    articleSection: post.category,
+    keywords: post.tags,
+    inLanguage: 'en-ZW',
+    isAccessibleForFree: true,
   }
 
   return (
     <Layout>
       <PageHeader
         breadcrumbs={[{ label: 'Insights', href: '/insights' }, { label: post.title }]}
+        path={`/insights/${post.slug}`}
         eyebrow={post.category}
         title={post.title}
       >
@@ -107,7 +128,7 @@ export default function InsightPage({ params }) {
       )}
 
       <CtaBand />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+      <JsonLd data={schema} />
     </Layout>
   )
 }

@@ -2,19 +2,21 @@ import Link from 'next/link'
 import Layout from '@/components/layout/Layout'
 import PageHeader from '@/components/ui/PageHeader'
 import { contact, site } from '@/lib/site'
+import { buildMetadata } from '@/lib/seo'
 
-export const metadata = {
+export const metadata = buildMetadata({
   title: 'Terms of Use',
   description:
-    'Terms governing use of the Praxis Chartered Accountants website, including the basis on which information published here is provided.',
-  alternates: { canonical: '/terms' },
-}
+    'The terms governing use of the Praxis Chartered Accountants website and the basis on which the information published here is provided.',
+  path: '/terms',
+})
 
 export default function TermsPage() {
   return (
     <Layout>
       <PageHeader
         breadcrumbs={[{ label: 'Terms of Use' }]}
+        path="/terms"
         eyebrow="Legal"
         title="Terms of Use"
         lead="The basis on which this website and the information published on it are provided."

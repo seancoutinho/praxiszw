@@ -5,8 +5,10 @@ import Layout from '@/components/layout/Layout'
 import CtaBand from '@/components/ui/CtaBand'
 import Icon from '@/components/ui/Icon'
 import PageHeader from '@/components/ui/PageHeader'
+import JsonLd from '@/components/ui/JsonLd'
 import team, { getTeamMember } from '@/lib/team'
 import { contact, contactHref } from '@/lib/site'
+import { ORG_ID, absoluteUrl, buildMetadata } from '@/lib/seo'
 
 export function generateStaticParams() {
   return team.map((t) => ({ slug: t.slug }))
@@ -14,12 +16,22 @@ export function generateStaticParams() {
 
 export function generateMetadata({ params }) {
   const person = getTeamMember(params.slug)
-  if (!person) return { title: 'Profile not found' }
-  return {
-    title: `${person.name} — ${person.role}`,
-    description: person.summary,
-    alternates: { canonical: `/team/${person.slug}` },
-  }
+  if (!person) return { title: 'Profile not found', robots: { index: false, follow: true } }
+
+  return buildMetadata({
+    // `seoTitle` shortens the full role, which runs to 42 characters on its own
+    // and would push the composed document title well past the SERP limit.
+    title: person.seoTitle,
+    description: person.metaDescription,
+    path: `/team/${person.slug}`,
+    type: 'profile',
+    image: {
+      url: person.photo,
+      width: 1149,
+      height: 1405,
+      alt: `${person.name}, ${person.role} at Praxis Chartered Accountants`,
+    },
+  })
 }
 
 export default function TeamMemberPage({ params }) {
@@ -30,10 +42,32 @@ export default function TeamMemberPage({ params }) {
   // The firm's main line is reachable on WhatsApp; other direct lines are not.
   const isWhatsApp = person.phoneHref.replace(/[^\d]/g, '') === contact.whatsapp
 
+  const url = absoluteUrl(`/team/${person.slug}`)
+
+  // Only fields the profile actually carries. No qualification, award or
+  // affiliation is asserted here that is not already stated in lib/team.js.
+  const schema = {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    '@id': `${url}#person`,
+    name: person.name,
+    jobTitle: person.role,
+    description: person.summary,
+    url,
+    image: absoluteUrl(person.photo),
+    email: person.email,
+    telephone: person.phone,
+    worksFor: { '@id': ORG_ID },
+    ...(person.credentials.length > 0 && { hasCredential: person.credentials }),
+    ...(person.social.length > 0 && { sameAs: person.social.map((sc) => sc.href) }),
+    knowsAbout: person.focus,
+  }
+
   return (
     <Layout>
       <PageHeader
         breadcrumbs={[{ label: 'Our People', href: '/team' }, { label: person.name }]}
+        path={`/team/${person.slug}`}
         eyebrow={person.role}
         title={person.name}
       />
@@ -48,7 +82,7 @@ export default function TeamMemberPage({ params }) {
                   alt={`${person.name}, ${person.role} at Praxis Chartered Accountants`}
                   width={640}
                   height={800}
-                  sizes="(max-width: 900px) 100vw, 30vw"
+                  sizes="(max-width: 900px) 92vw, (max-width: 1248px) 34vw, 430px"
                   priority
                 />
               </div>
@@ -130,6 +164,7 @@ export default function TeamMemberPage({ params }) {
       </section>
 
       <CtaBand />
+      <JsonLd data={schema} />
     </Layout>
   )
 }

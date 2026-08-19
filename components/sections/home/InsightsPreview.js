@@ -23,10 +23,10 @@ export default function InsightsPreview() {
                     <p className="article-meta">{post.dateLabel}</p>
                     <p className="article-meta">{post.readTime} min read</p>
                   </div>
-                  <div>
+                  <article>
                     <h3>{post.title}</h3>
                     <p>{post.excerpt}</p>
-                  </div>
+                  </article>
                   <span className="article-arrow"><Icon name="arrowUpRight" size={20} /></span>
                 </Link>
               ))}

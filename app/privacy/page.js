@@ -1,20 +1,21 @@
 import Layout from '@/components/layout/Layout'
 import PageHeader from '@/components/ui/PageHeader'
 import { contact, site, whatsappLink } from '@/lib/site'
+import { buildMetadata } from '@/lib/seo'
 
-export const metadata = {
+export const metadata = buildMetadata({
   title: 'Privacy Policy',
   description:
-    'How Praxis Chartered Accountants collects, uses, stores and protects personal information submitted through this website and in the course of professional engagements.',
-  alternates: { canonical: '/privacy' },
-  robots: { index: true, follow: true },
-}
+    'How Praxis collects, uses, stores and protects personal information submitted through this website and during professional engagements.',
+  path: '/privacy',
+})
 
 export default function PrivacyPage() {
   return (
     <Layout>
       <PageHeader
         breadcrumbs={[{ label: 'Privacy Policy' }]}
+        path="/privacy"
         eyebrow="Legal"
         title="Privacy Policy"
         lead="How we handle personal information collected through this website and in the course of our professional work."

@@ -1,15 +1,26 @@
 import './globals.css'
+import JsonLd from '@/components/ui/JsonLd'
 import { lato } from '@/lib/font'
-import { contact, site } from '@/lib/site'
+import { site } from '@/lib/site'
+import { BRAND, ogImage, organisationSchema, websiteSchema } from '@/lib/seo'
 
+/**
+ * Site-wide defaults. Individual pages override title, description, canonical
+ * and social tags through `buildMetadata` in lib/seo.js.
+ *
+ * `metadataBase` fixes the host every relative canonical and og:url resolves
+ * against, which is what keeps the site on one indexable domain — see
+ * next.config.js for the 301 that sends the apex domain here.
+ */
 export const metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: 'Praxis Chartered Accountants | Audit, Tax & Advisory in Harare',
-    template: '%s | Praxis Chartered Accountants',
+    default: `Chartered Accountants in Harare | ${BRAND}`,
+    template: `%s | ${BRAND}`,
   },
   description:
-    'Praxis Chartered Accountants is a Harare-based practice providing audit, ZIMRA tax compliance, bookkeeping, forensic investigation and financial advisory services to businesses across Zimbabwe and the SADC region.',
+    'Audit, ZIMRA tax compliance, bookkeeping and financial advisory for businesses, NGOs and public-sector entities across Zimbabwe.',
+  applicationName: site.name,
   keywords: [
     'chartered accountants Zimbabwe',
     'ZIMRA tax compliance',
@@ -18,46 +29,44 @@ export const metadata = {
     'forensic audit Zimbabwe',
     'financial advisory SADC',
   ],
-  authors: [{ name: site.name }],
+  authors: [{ name: site.legalName, url: site.url }],
+  creator: site.legalName,
+  publisher: site.legalName,
   openGraph: {
     type: 'website',
     locale: site.locale,
     url: site.url,
     siteName: site.name,
-    title: 'Praxis Chartered Accountants | Audit, Tax & Advisory in Harare',
+    title: `Chartered Accountants in Harare | ${BRAND}`,
     description:
-      'Audit, ZIMRA tax compliance, bookkeeping and advisory for businesses in Zimbabwe and the SADC region. Practising since 2012.',
+      'Audit, ZIMRA tax compliance, bookkeeping and advisory for businesses in Zimbabwe and the SADC region.',
+    images: [ogImage],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Praxis Chartered Accountants',
+    title: `Chartered Accountants in Harare | ${BRAND}`,
     description: 'Audit, tax and advisory for businesses in Zimbabwe and the SADC region.',
+    images: [ogImage.url],
   },
-  robots: { index: true, follow: true },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+      'max-video-preview': -1,
+    },
+  },
   alternates: { canonical: '/' },
+  formatDetection: { telephone: false },
 }
 
 export const viewport = {
   themeColor: '#0b2559',
   width: 'device-width',
   initialScale: 1,
-}
-
-const organisationSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'AccountingService',
-  name: site.name,
-  url: site.url,
-  foundingDate: String(site.founded),
-  email: contact.email,
-  telephone: contact.phone,
-  address: {
-    '@type': 'PostalAddress',
-    streetAddress: `${contact.address.line1}, ${contact.address.line2}`,
-    addressLocality: contact.address.city,
-    addressCountry: 'ZW',
-  },
-  areaServed: ['Zimbabwe', 'Southern African Development Community'],
 }
 
 export default function RootLayout({ children }) {
@@ -77,10 +86,9 @@ export default function RootLayout({ children }) {
       </head>
       <body>
         {children}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(organisationSchema) }}
-        />
+        {/* Organisation and WebSite nodes carry stable @ids that every page-level
+            graph references, so crawlers resolve one firm rather than nineteen. */}
+        <JsonLd data={[organisationSchema, websiteSchema]} />
       </body>
     </html>
   )

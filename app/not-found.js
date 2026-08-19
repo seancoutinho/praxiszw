@@ -4,7 +4,15 @@ import Icon from '@/components/ui/Icon'
 import { getRecentInsights } from '@/lib/insights'
 import { services } from '@/lib/site'
 
-export const metadata = { title: 'Page not found' }
+// A 404 must never be indexed, and it has no canonical of its own to claim.
+export const metadata = {
+  title: 'Page Not Found',
+  description: 'The page you were looking for is not at this address.',
+  robots: { index: false, follow: true },
+  // Explicitly cleared: without this the 404 inherits the layout's canonical
+  // and every bad URL claims to be the homepage.
+  alternates: { canonical: null },
+}
 
 export default function NotFound() {
   const posts = getRecentInsights(2)

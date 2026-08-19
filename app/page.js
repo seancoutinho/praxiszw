@@ -6,13 +6,14 @@ import Positioning from '@/components/sections/home/Positioning'
 import Process from '@/components/sections/home/Process'
 import ServicesGrid from '@/components/sections/home/ServicesGrid'
 import Testimonials from '@/components/sections/home/Testimonials'
+import { buildMetadata } from '@/lib/seo'
 
-export const metadata = {
-  title: 'Chartered Accountants in Harare | Audit, Tax & Advisory',
+export const metadata = buildMetadata({
+  title: 'Chartered Accountants in Harare',
   description:
-    'Praxis Chartered Accountants provides audit, ZIMRA tax compliance, bookkeeping and financial advisory services to businesses, NGOs and public-sector entities in Zimbabwe. Practising in Harare since 2012.',
-  alternates: { canonical: '/' },
-}
+    'Audit, ZIMRA tax compliance, bookkeeping and advisory from a Harare practice serving businesses, NGOs and public-sector entities across Zimbabwe.',
+  path: '',
+})
 
 export default function HomePage() {
   return (

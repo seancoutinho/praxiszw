@@ -388,6 +388,184 @@ recoverable from git history at commit `9bca5da`.** Nothing is permanently lost.
 
 ---
 
+## Technical SEO
+
+A metadata-and-markup pass over every one of the 25 indexable routes. **No copy
+and no visual design was changed** — this is a technical layer laid on top of
+the existing content. Two content observations noticed along the way are logged
+under "Needs client input" rather than fixed here.
+
+Verified against the build output: all 26 rendered pages (25 routes + the 404)
+carry a unique title under 60 characters, a unique description under 155, a
+canonical, a full Open Graph and Twitter Card set, exactly one `<h1>`, and
+structurally valid JSON-LD. HTML tag nesting validates on every page.
+
+### Phase 1 — What the audit found
+
+The site came into this pass in good shape: per-page metadata already existed on
+every route, `sitemap.xml` and `robots.txt` were already generated from content,
+and four schema types were already in place. Five real gaps were found.
+
+| Area | State before | Gap |
+|---|---|---|
+| Titles | Unique on every route | Suffix `\| Praxis Chartered Accountants` is 30 chars — most titles ran past the ~60-char SERP limit; the ZIMRA article rendered at 85. Topic came second, brand first. |
+| Descriptions | Unique on every route | All 190–230 characters, so every one truncated in results. |
+| Open Graph | Root layout only | 17 of 19 routes had no page-level OG tags, and **no `og:image` existed anywhere** — every social share rendered blank. |
+| Structured data | Organization, Service, Article, FAQPage | No `BreadcrumbList` anywhere, no `WebSite`, no `Person`; the org node had no logo and no stable `@id`, so each page's graph described a separate firm. |
+| Canonical domain | Canonicals correct and consistently `www` | Nothing redirected the apex `praxisaccountants.co.zw` to it, leaving two indexable copies of the site. |
+
+Clean on arrival, and left alone: heading hierarchy (exactly one `<h1>` per page
+already), `next/image` usage, alt-text coverage, semantic landmarks, bundle size,
+and the 22 legacy redirects.
+
+### Phase 2 — Per-page metadata
+
+- **New `lib/seo.js`** — one `buildMetadata()` helper composing title, description,
+  canonical, Open Graph and Twitter Card from a single call, so a new page cannot
+  ship with half a metadata set. Every page now goes through it.
+- **Title suffix shortened to `| Praxis Accountants`** (21 chars including the
+  separator), which buys 9 characters back for the actual search term. The full
+  legal name is unchanged everywhere it matters — schema, footer, copyright line.
+  Titles now lead with the topic: *"Tax Management Services in Zimbabwe |
+  Praxis Accountants"*, not *"Praxis Accountants | Tax Management"*.
+- **All 25 descriptions rewritten** to under 155 characters, each describing what
+  that specific page offers. No two are the same, and none is boilerplate.
+- **`seoTitle` / `metaDescription` fields added to the content data** —
+  `lib/site.js` (services), `lib/insights.js` (articles), `lib/team.js` (profiles).
+  Metadata lives beside the content it describes rather than in the page component.
+- **Blog articles** carry a per-article short title and a genuine one-sentence
+  summary of that article's content. The long editorial headline still runs in
+  full as the `<h1>` and in `og:title`, where length carries no penalty.
+
+### Phase 3 — Structured data
+
+All JSON-LD is generated from the same arrays that render the visible content, so
+markup and page can never disagree. Every graph now references the firm by stable
+`@id` (`…/#organization`) instead of restating it, so crawlers resolve one
+business rather than twenty-six.
+
+| Schema | Where | Notes |
+|---|---|---|
+| `AccountingService` | Site-wide (layout) | Legal name, logo, real address, phone, email, `areaServed` Zimbabwe + SADC, `knowsAbout`. |
+| `WebSite` | Site-wide | No `SearchAction` — the site has no search. |
+| `BreadcrumbList` | 24 interior pages | Emitted by `PageHeader` from the same array as the visible trail. |
+| `Service` + `OfferCatalog` | 6 service pages | Catalogue built from each page's "what this includes" list. |
+| `FAQPage` | FAQ page + 6 service pages | Mapped from the real accordion Q&A. |
+| `Article` | 7 insight articles | Headline, `datePublished`, `dateModified`, `articleSection`, keywords, image. |
+| `Person` | 2 team profiles | Only fields the profile already carries. |
+| `ContactPage` | Contact page | References the org rather than restating the address. |
+
+**Deliberately omitted, because no verified value exists:** `sameAs` on the
+organisation (the only social profiles belong to a person, not the firm — they
+are on his `Person` node instead, which is where they are accurate),
+`openingHoursSpecification` (hours are still an unconfirmed default),
+`aggregateRating` / `review`, `numberOfEmployees`, `vatID`, `priceRange`. Nothing
+was invented to fill a field. `foundingDate` carries the existing "since 2012"
+claim already published site-wide, which remains open as item 8 below.
+
+### Phase 4 — Sitemap and robots
+
+- **Canonical domain: `https://www.praxisaccountants.co.zw`.** Chosen because
+  every internal link, canonical tag and sitemap entry on the site already uses
+  it, and it is what the previous build shipped — so no existing search equity
+  moves. `next.config.js` now 301s `praxisaccountants.co.zw/:path*` onto it via a
+  host condition, placed first so it resolves before the 22 path-level redirects.
+- **`app/sitemap.js`** — 25 URLs, all generated from `lib/` (10 static routes,
+  6 services, 7 articles, 2 profiles). Service pages raised from 0.8 to 0.9 to sit
+  alongside `/services`; articles use their own publication date as `lastModified`
+  rather than the build timestamp. The homepage entry gained the trailing slash
+  its canonical tag uses, so the two describe one URL.
+- **`app/robots.js`** — allows everything public, disallows `/_next/` and `/api/`,
+  points at the sitemap. There are no admin, preview or draft routes to exclude.
+
+### Phase 5 — Canonicals and Open Graph
+
+- **Self-referencing canonical on all 25 indexable routes.** The 404 explicitly
+  clears its canonical (`canonical: null`) — otherwise it inherited the layout's
+  and every bad URL on the site claimed to be the homepage. It is also `noindex`.
+- **Open Graph and Twitter Card on every page** via `buildMetadata`: `og:title`,
+  `og:description`, `og:image`, `og:url`, `og:type`, `og:site_name`, `og:locale`,
+  plus `summary_large_image`. Articles add `article:published_time`,
+  `modified_time`, `section` and `tags`; team profiles use `profile` type and
+  their own portrait as the share image.
+- **`og:image` created** at `/assets/images/og-default.png` — 1200×630, the firm's
+  own `logo-light.png` on the brand navy `#0b2559`. 26 KB. This is the real brand
+  asset, not a stretched unrelated image, but a properly designed social card is
+  still worth commissioning — see "Needs client input" item 25.
+- Added `max-image-preview: large` and unrestricted snippet length for Googlebot.
+
+### Phase 6 — Images, headings, semantics
+
+- **Headings needed no work.** Every page already had exactly one `<h1>` and
+  logical `h2`/`h3` nesting, verified against the rendered HTML of all 26 pages.
+- **Every `<img>` on the site is `next/image`.** The only raw SVG markup is
+  `components/ui/Icon.js`, an inline icon sprite — correct to leave as-is, since
+  `next/image` would turn each icon into a network request and lose `currentColor`.
+- **Logo `alt` corrected to `alt=""` in the header, drawer and footer.** Each logo
+  sits inside a link that already carries `aria-label="… — home"`, so the previous
+  alt text made screen readers announce the firm name twice per landmark. The
+  logo's description now lives in the `Organization` schema, which is where search
+  engines actually read it. The mobile drawer logo gained the `aria-label` its
+  desktop counterpart already had.
+- Content image alt text was already specific and contextual
+  (`"Boniface Coutinho, Audit Partner — Audit & Financial Services at Praxis
+  Chartered Accountants"`) and is unchanged.
+- **Semantic elements**, none of which changes rendering — the stylesheet contains
+  no bare element selectors, and `section`/`article` are `display: block` exactly
+  as the `div`s they replace:
+  - The four `<div className="mt-16">` content blocks on each service page, each
+    already headed by its own `<h2>`, are now `<section>`.
+  - Each article row's title-and-excerpt block on `/insights` and in the homepage
+    preview is now `<article>`.
+- HTML nesting validated on all 26 rendered pages: zero errors.
+
+### Phase 7 — Performance
+
+- **Team photo regression fixed.** Commit `595b8c0` replaced the optimised
+  portraits with PNGs at **1.6 MB each** — 3.2 MB where 172 KB had been. PNG is
+  the wrong container for a photograph, and both files were fully opaque, so the
+  format bought nothing. Re-encoded to JPEG at quality 88 with no change to crop,
+  dimensions (1149×1405) or visible quality: **1.6 MB → 142 KB and 1.6 MB →
+  155 KB, a 91% reduction.** `lib/team.js` now points at the JPEGs.
+- **`sizes` hints corrected.** The team index declared `33vw` for a photo that
+  occupies a two-column grid — roughly `46vw`, capping at 570 px once the 1200 px
+  container maxes out — so the browser was fetching an under-sized source and
+  scaling it up. Both team routes now describe their real layout.
+- **Logo `sizes` added.** The header mark renders at 117 px wide but declared
+  `width={370}`, so `next/image` offered the browser a 740 px candidate on retina
+  displays for the site's most render-critical image. Now `sizes="…117px"`, which
+  lets it pick a ~128–256 px candidate instead. Same for the drawer and footer.
+- **No render-blocking resources found.** No third-party scripts, no synchronous
+  external CSS, fonts self-hosted with `display: swap`, one stylesheet.
+- **No unused dependencies.** All four runtime deps (`next`, `react`, `react-dom`,
+  `emailjs-com`) are used. `emailjs-com` is the only non-framework one and it
+  backs both contact forms.
+
+### Bundle: before and after
+
+| | Before | After |
+|---|---|---|
+| First Load JS (shared) | 78.5 kB | 78.5 kB |
+| First Load JS (per page) | 95.5 – 97.5 kB | 95.6 – 97.6 kB |
+| Team photos served | 3.23 MB | 297 KB |
+| Routes pre-rendered | 30, all static | 30, all static |
+| Pages with `og:image` | 0 | 26 |
+| Pages with breadcrumb schema | 0 | 24 |
+
+The SEO layer costs roughly **0.1 kB per page**. `lib/seo.js`, `JsonLd` and every
+schema graph are server-only and never enter the client bundle; the JSON-LD adds
+1–3 kB to each page's HTML, which is gzipped static markup, not JavaScript.
+
+### Files added
+
+- `lib/seo.js` — metadata builder, canonical URL helper, organisation / website /
+  breadcrumb schema.
+- `components/ui/JsonLd.js` — renders one or more graphs, escaping `<` so content
+  copy cannot close the script tag early.
+- `public/assets/images/og-default.png` — 1200×630 social share card.
+
+---
+
 ## Needs client input
 
 Everything below is a placeholder or an unverified claim. **None of it has been
@@ -495,6 +673,69 @@ invented.** Each item needs real data from Praxis before launch.
     Facebook and X profiles, because the old site had no firm accounts. If the
     firm has its own pages, send the URLs; if not, consider whether personal
     profiles belong in the site footer.
+
+### Technical SEO — decisions and open items
+
+25. **Social share image — a designed card would be better.** Every page now has
+    an `og:image` at `/assets/images/og-default.png`: the firm's own logo on the
+    brand navy at the correct 1200×630, with an "Audit · Tax · Advisory —
+    Harare, Zimbabwe" strapline. It is a real brand asset and it works, but it is
+    a composite we assembled, not a designed card. If Praxis wants LinkedIn and
+    WhatsApp previews to look considered, commission a proper 1200×630 graphic —
+    dropping it in at the same path is a one-file change with no code edits.
+    Worth considering alongside it: per-service and per-article share images,
+    which currently all fall back to this one.
+
+26. **Canonical domain — `https://www.praxisaccountants.co.zw` was chosen.** Not
+    an arbitrary pick: every internal link, canonical tag and sitemap entry on the
+    existing site already used the `www` form, so choosing it means no existing
+    search equity moves and no URLs change. The apex `praxisaccountants.co.zw` is
+    now 301'd onto it in `next.config.js`. **This needs one thing confirmed at the
+    DNS/hosting layer:** the apex domain must actually resolve to this
+    application, otherwise the redirect never runs and the bare domain either
+    fails or is served by something else. Please confirm both hosts point here.
+
+27. **Schema fields left empty for want of real data.** Each of these is a single
+    line to add in `lib/seo.js` once the answer exists:
+    - `sameAs` on the organisation — the three social profiles the footer links to
+      are Boniface's personal LinkedIn, Facebook and X accounts, not the firm's.
+      Claiming them as the *organisation's* profiles would be inaccurate, so they
+      sit on his `Person` schema instead, where they are correct. **If Praxis has
+      its own company pages, send the URLs** and they go straight onto the firm.
+      (Same underlying question as item 21.)
+    - `openingHoursSpecification` — the hours in the footer are still the
+      unconfirmed default from item 5. Confirm them and they can be published as
+      structured data, which is what surfaces "Open now" in local results.
+    - `aggregateRating` / `review` — the firm publishes no ratings and none were
+      invented. Note that Google requires ratings to be genuinely collected and
+      publicly visible on the page; testimonials alone do not qualify.
+    - `numberOfEmployees`, `vatID`, `priceRange`, `foundingDate` accuracy — the
+      last of these currently carries the existing "since 2012" claim, which is
+      still open as item 8. If the founding year changes, it changes here too.
+    - `hasCredential` on Boniface's profile lists his ICAZ and ICPAZ membership as
+      plain text. It can be upgraded to a full `EducationalOccupationalCredential`
+      with a recognising body if item 6 is ever reopened.
+
+28. **3.2 MB of superseded PNG originals are still in `public/`.** The team
+    portraits added in commit `595b8c0` have been re-encoded to JPEG and the site
+    now references the JPEGs, but `boniface-coutinho.png` and `raymond-mupeti.png`
+    are still on disk, unreferenced. They are your source files so we have not
+    deleted them, but they are deployed and served with everything else, and they
+    push `public/` from 476 KB back up to 3.9 MB. **Recommend deleting both**
+    (they remain in git history either way) — or, if you want to keep originals in
+    the repo, moving them out of `public/`.
+
+29. **Two content issues noticed during this pass, not fixed here.** Flagged
+    rather than changed, because this was a technical pass:
+    - `logo-light.png` has a faint halo and two small green artefacts around the
+      mark, visible when it is placed on a solid background — they show up in the
+      new share card. A clean transparent-background export of the logo would fix
+      it everywhere at once.
+    - The `/insights` articles are dated February 2026 back to August 2025. The
+      newest is over six months old, and an insights feed that has not moved in
+      six months reads worse than one with fewer, more recent posts. The
+      `changeFrequency` in the sitemap says `weekly` for the index, which is a
+      promise worth either keeping or lowering.
 
 ### Optional
 

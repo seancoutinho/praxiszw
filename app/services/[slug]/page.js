@@ -6,8 +6,10 @@ import CtaBand from '@/components/ui/CtaBand'
 import Icon from '@/components/ui/Icon'
 import PageHeader from '@/components/ui/PageHeader'
 import ServiceNav from '@/components/ui/ServiceNav'
+import JsonLd from '@/components/ui/JsonLd'
 import { getServiceContent } from '@/lib/serviceContent'
-import { getService, services, site } from '@/lib/site'
+import { getService, services } from '@/lib/site'
+import { ORG_ID, absoluteUrl, buildMetadata } from '@/lib/seo'
 
 export function generateStaticParams() {
   return services.map((s) => ({ slug: s.slug }))
@@ -15,12 +17,13 @@ export function generateStaticParams() {
 
 export function generateMetadata({ params }) {
   const service = getService(params.slug)
-  if (!service) return { title: 'Service not found' }
-  return {
-    title: service.title,
-    description: service.summary,
-    alternates: { canonical: `/services/${service.slug}` },
-  }
+  if (!service) return { title: 'Service not found', robots: { index: false, follow: true } }
+
+  return buildMetadata({
+    title: service.seoTitle,
+    description: service.metaDescription,
+    path: `/services/${service.slug}`,
+  })
 }
 
 export default function ServicePage({ params }) {
@@ -30,19 +33,50 @@ export default function ServicePage({ params }) {
 
   const others = services.filter((s) => s.slug !== service.slug).slice(0, 3)
 
+  const url = absoluteUrl(`/services/${service.slug}`)
+
+  // The provider is referenced by @id rather than restated, so every service
+  // page resolves to the single Organization node declared in the root layout.
   const schema = {
     '@context': 'https://schema.org',
     '@type': 'Service',
+    '@id': `${url}#service`,
     name: service.title,
+    serviceType: service.title,
     description: service.summary,
-    provider: { '@type': 'AccountingService', name: site.name, url: site.url },
-    areaServed: 'Zimbabwe',
+    url,
+    provider: { '@id': ORG_ID },
+    areaServed: [
+      { '@type': 'Country', name: 'Zimbabwe' },
+      { '@type': 'AdministrativeArea', name: 'Southern African Development Community' },
+    ],
+    hasOfferCatalog: {
+      '@type': 'OfferCatalog',
+      name: content.includes.title,
+      itemListElement: content.includes.items.map((item) => ({
+        '@type': 'Offer',
+        itemOffered: { '@type': 'Service', name: item },
+      })),
+    },
+  }
+
+  // The visible accordion and this FAQPage node read from the same array.
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    '@id': `${url}#faq`,
+    mainEntity: content.faqs.map((f) => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.a },
+    })),
   }
 
   return (
     <Layout>
       <PageHeader
         breadcrumbs={[{ label: 'Services', href: '/services' }, { label: service.title }]}
+        path={`/services/${service.slug}`}
         eyebrow="Service"
         title={service.title}
         lead={content.lead}
@@ -58,14 +92,14 @@ export default function ServicePage({ params }) {
                 {content.intro.map((p) => <p key={p.slice(0, 40)}>{p}</p>)}
               </div>
 
-              <div className="mt-16">
+              <section className="mt-16">
                 <h2>{content.includes.title}</h2>
                 <ul className="list-check mt-6">
                   {content.includes.items.map((i) => <li key={i}>{i}</li>)}
                 </ul>
-              </div>
+              </section>
 
-              <div className="mt-16">
+              <section className="mt-16">
                 <h2>{content.approach.title}</h2>
                 <div className="steps mt-8">
                   {content.approach.steps.map((s) => (
@@ -77,9 +111,9 @@ export default function ServicePage({ params }) {
                     </div>
                   ))}
                 </div>
-              </div>
+              </section>
 
-              <div className="mt-16">
+              <section className="mt-16">
                 <h2>{content.frameworks.title}</h2>
                 <ul className="list-dash mt-6">
                   {content.frameworks.items.map((i) => <li key={i}>{i}</li>)}
@@ -90,14 +124,14 @@ export default function ServicePage({ params }) {
                     <p>{content.note}</p>
                   </aside>
                 )}
-              </div>
+              </section>
 
-              <div className="mt-16">
+              <section className="mt-16">
                 <h2>Common questions</h2>
                 <div className="mt-8">
                   <Accordion items={content.faqs} defaultOpen={[0]} />
                 </div>
-              </div>
+              </section>
             </div>
           </div>
         </div>
@@ -124,7 +158,7 @@ export default function ServicePage({ params }) {
         body="Tell us where you currently stand. We will come back with a scope, a fee basis and an honest view of whether we are the right firm for it."
         topic={service.title}
       />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+      <JsonLd data={[schema, faqSchema]} />
     </Layout>
   )
 }

@@ -4,19 +4,21 @@ import CtaBand from '@/components/ui/CtaBand'
 import Icon from '@/components/ui/Icon'
 import PageHeader from '@/components/ui/PageHeader'
 import { allInsights } from '@/lib/insights'
+import { buildMetadata } from '@/lib/seo'
 
-export const metadata = {
-  title: 'Insights',
+export const metadata = buildMetadata({
+  title: 'Zimbabwe Tax & Accounting Insights',
   description:
-    'Practical guidance on ZIMRA compliance, VAT and PAYE obligations, record keeping, exchange control and year-end reporting, written for Zimbabwean businesses by Praxis Chartered Accountants.',
-  alternates: { canonical: '/insights' },
-}
+    'Practical guidance on ZIMRA compliance, VAT, PAYE, record keeping, exchange control and year-end reporting, written for Zimbabwean businesses.',
+  path: '/insights',
+})
 
 export default function InsightsIndex() {
   return (
     <Layout>
       <PageHeader
         breadcrumbs={[{ label: 'Insights' }]}
+        path="/insights"
         eyebrow="Insights"
         title="Notes from the practice"
         lead="Guidance on the compliance and reporting questions Zimbabwean businesses actually bring us. Written to be used, not to rank."
@@ -44,10 +46,10 @@ export default function InsightsIndex() {
                   <p className="article-meta mt-4">{post.category}</p>
                   <p className="article-meta">{post.readTime} min read</p>
                 </div>
-                <div>
+                <article>
                   <h3>{post.title}</h3>
                   <p>{post.excerpt}</p>
-                </div>
+                </article>
                 <span className="article-arrow"><Icon name="arrowUpRight" size={22} /></span>
               </Link>
             ))}

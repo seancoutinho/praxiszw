@@ -3,14 +3,16 @@ import Layout from '@/components/layout/Layout'
 import Accordion from '@/components/ui/Accordion'
 import CtaBand from '@/components/ui/CtaBand'
 import PageHeader from '@/components/ui/PageHeader'
+import JsonLd from '@/components/ui/JsonLd'
 import { contact, whatsappLink } from '@/lib/site'
+import { ORG_ID, absoluteUrl, buildMetadata } from '@/lib/seo'
 
-export const metadata = {
-  title: 'Frequently Asked Questions',
+export const metadata = buildMetadata({
+  title: 'Accounting & Tax FAQs for Zimbabwe',
   description:
-    'How engagements with Praxis Chartered Accountants work — scoping, fees, timelines, industries served, and what to expect from an audit, a tax clean-up or an advisory engagement.',
-  alternates: { canonical: '/faq' },
-}
+    'How engagements with Praxis work — scoping, fees, timelines, and the compliance questions Zimbabwean businesses ask us most often.',
+  path: '/faq',
+})
 
 const groups = [
   {
@@ -103,9 +105,15 @@ const groups = [
   },
 ]
 
+// Generated from the same `groups` array the accordion renders, so the markup
+// and the structured data can never describe different questions.
 const faqSchema = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
+  '@id': `${absoluteUrl('/faq')}#faq`,
+  url: absoluteUrl('/faq'),
+  inLanguage: 'en-ZW',
+  publisher: { '@id': ORG_ID },
   mainEntity: groups.flatMap((g) =>
     g.items.map((i) => ({
       '@type': 'Question',
@@ -120,6 +128,7 @@ export default function FaqPage() {
     <Layout>
       <PageHeader
         breadcrumbs={[{ label: 'Firm', href: '/about' }, { label: 'FAQ' }]}
+        path="/faq"
         eyebrow="Frequently asked questions"
         title="How working with us actually works"
         lead="Engagement process, fees, scope and the compliance questions we are asked most. If yours is not here, ask us directly — most of these started as a client question."
@@ -151,7 +160,7 @@ export default function FaqPage() {
       </section>
 
       <CtaBand />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <JsonLd data={faqSchema} />
     </Layout>
   )
 }

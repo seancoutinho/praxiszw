@@ -11,11 +11,15 @@ export default function Footer() {
           <div className="footer-grid">
             <div>
               <Link href="/" className="footer-logo" aria-label={`${site.name} — home`}>
+                {/* Decorative: the link's aria-label already announces the
+                    firm name, so alt text here would be read out twice. The
+                    logo's own description lives in the Organization schema. */}
                 <Image
                   src="/assets/images/logo-light.png"
-                  alt={site.name}
+                  alt=""
                   width={459}
                   height={193}
+                  sizes="138px"
                 />
               </Link>
               <p className="footer-about">

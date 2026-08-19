@@ -15,6 +15,21 @@ const nextConfig = {
    */
   async redirects() {
     return [
+      /**
+       * ONE canonical host. `https://www.praxisaccountants.co.zw` is the form
+       * every internal link, canonical tag and sitemap entry already uses, so
+       * the apex is 301'd onto it. Without this both hosts serve the same
+       * pages and Google indexes two copies of the site, splitting equity.
+       *
+       * Placed first so it resolves before any path-level rule below.
+       */
+      {
+        source: '/:path*',
+        has: [{ type: 'host', value: 'praxisaccountants.co.zw' }],
+        destination: 'https://www.praxisaccountants.co.zw/:path*',
+        permanent: true,
+      },
+
       // Services moved under /services/*
       { source: '/tax-management', destination: '/services/tax-management', permanent: true },
       { source: '/strategy-planning', destination: '/services/strategy-planning', permanent: true },
