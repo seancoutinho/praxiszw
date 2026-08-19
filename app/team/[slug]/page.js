@@ -6,6 +6,7 @@ import CtaBand from '@/components/ui/CtaBand'
 import Icon from '@/components/ui/Icon'
 import PageHeader from '@/components/ui/PageHeader'
 import team, { getTeamMember } from '@/lib/team'
+import { contact, contactHref } from '@/lib/site'
 
 export function generateStaticParams() {
   return team.map((t) => ({ slug: t.slug }))
@@ -26,6 +27,8 @@ export default function TeamMemberPage({ params }) {
   if (!person) notFound()
 
   const others = team.filter((t) => t.slug !== person.slug)
+  // The firm's main line is reachable on WhatsApp; other direct lines are not.
+  const isWhatsApp = person.phoneHref.replace(/[^\d]/g, '') === contact.whatsapp
 
   return (
     <Layout>
@@ -37,7 +40,7 @@ export default function TeamMemberPage({ params }) {
 
       <section className="section">
         <div className="container">
-          <div className="split split--top" style={{ gridTemplateColumns: 'minmax(0,0.75fr) minmax(0,1.25fr)' }}>
+          <div className="split split--top split--aside">
             <div>
               <div className="person-photo">
                 <Image
@@ -58,8 +61,15 @@ export default function TeamMemberPage({ params }) {
                     <a className="link-underline" href={`mailto:${person.email}`}>{person.email}</a>
                   </li>
                   <li>
-                    <Icon name="phone" size={16} />
-                    <a className="link-underline" href={`tel:${person.phoneHref}`}>{person.phone}</a>
+                    <Icon name={isWhatsApp ? 'whatsapp' : 'phone'} size={16} />
+                    <a
+                      className="link-underline"
+                      href={contactHref(person.phoneHref)}
+                      {...(isWhatsApp ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                    >
+                      {person.phone}
+                      {isWhatsApp && <span className="visually-hidden"> — chat on WhatsApp</span>}
+                    </a>
                   </li>
                 </ul>
                 <div className="social-row">

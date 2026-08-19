@@ -122,6 +122,7 @@ export default function ServicePage({ params }) {
       <CtaBand
         title={`Need help with ${service.title.toLowerCase()}?`}
         body="Tell us where you currently stand. We will come back with a scope, a fee basis and an honest view of whether we are the right firm for it."
+        topic={service.title}
       />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
     </Layout>

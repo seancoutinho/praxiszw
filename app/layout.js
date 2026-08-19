@@ -1,5 +1,5 @@
 import './globals.css'
-import { inter, serif } from '@/lib/font'
+import { lato } from '@/lib/font'
 import { contact, site } from '@/lib/site'
 
 export const metadata = {
@@ -62,7 +62,7 @@ const organisationSchema = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en-ZW" className={`${inter.variable} ${serif.variable}`}>
+    <html lang="en-ZW" className={lato.variable}>
       <head>
         {/* Reveal animations are JS-driven; without JS the content must stay visible. */}
         <noscript>

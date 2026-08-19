@@ -5,7 +5,9 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'
 import Icon from '@/components/ui/Icon'
-import { contact, primaryNav } from '@/lib/site'
+import { contact, primaryNav, whatsappLink } from '@/lib/site'
+import WhatsAppButton from '@/components/elements/WhatsAppButton'
+
 
 /**
  * One header component for every page. The old site rendered the navigation
@@ -57,19 +59,20 @@ export default function Header() {
     setOpenMenu(label)
   }
   const hoverClose = () => {
-    closeTimer.current = setTimeout(() => setOpenMenu(null), 120)
+    closeTimer.current = setTimeout(() => setOpenMenu(null), 180)
   }
 
   return (
     <>
-      <a className="skip-link" href="#main">Skip to content</a>
-
       <div className="header-utility">
         <div className="container">
           <ul className="utility-list">
             <li>
-              <Icon name="phone" size={14} />
-              <a href={`tel:${contact.phoneHref}`}>{contact.phone}</a>
+              <Icon name="whatsapp" size={14} />
+              <a href={whatsappLink()} target="_blank" rel="noopener noreferrer">
+                {contact.phone}
+                <span className="visually-hidden"> — chat on WhatsApp</span>
+              </a>
             </li>
             <li>
               <Icon name="mail" size={14} />
@@ -126,10 +129,23 @@ export default function Header() {
                         <div className="nav-panel" role="group" aria-label={item.label}>
                           {item.children.map((child) => (
                             <Link key={child.href} href={child.href} onBlur={hoverClose}>
-                              <span className="nav-panel-title">{child.label}</span>
-                              {child.desc && <span className="nav-panel-desc">{child.desc}</span>}
+                              {child.icon && (
+                                <span className="nav-panel-icon">
+                                  <Icon name={child.icon} size={18} />
+                                </span>
+                              )}
+                              <span>
+                                <span className="nav-panel-title">{child.label}</span>
+                                {child.desc && <span className="nav-panel-desc">{child.desc}</span>}
+                              </span>
                             </Link>
                           ))}
+                          <div className="nav-panel-foot">
+                            <Link href={item.href} onBlur={hoverClose}>
+                              {item.panelCta ?? `All ${item.label.toLowerCase()}`}
+                              <Icon name="arrowRight" size={15} />
+                            </Link>
+                          </div>
                         </div>
                       </>
                     ) : (
@@ -147,6 +163,7 @@ export default function Header() {
             </nav>
 
             <div className="header-actions">
+            <WhatsAppButton />
               <Link href="/contact" className="btn btn--primary">
                 Book a consultation
               </Link>
@@ -226,8 +243,13 @@ export default function Header() {
 
         <div className="drawer-foot">
           <Link href="/contact" className="btn btn--primary btn--block">Book a consultation</Link>
-          <a href={`tel:${contact.phoneHref}`} className="btn btn--ghost btn--block">
-            <Icon name="phone" size={16} /> {contact.phone}
+          <a
+            href={whatsappLink()}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn btn--ghost btn--block"
+          >
+            <Icon name="whatsapp" size={16} /> Chat on WhatsApp
           </a>
         </div>
       </div>

@@ -3,7 +3,7 @@ import Layout from '@/components/layout/Layout'
 import Accordion from '@/components/ui/Accordion'
 import CtaBand from '@/components/ui/CtaBand'
 import PageHeader from '@/components/ui/PageHeader'
-import { contact } from '@/lib/site'
+import { contact, whatsappLink } from '@/lib/site'
 
 export const metadata = {
   title: 'Frequently Asked Questions',
@@ -140,7 +140,8 @@ export default function FaqPage() {
             <p className="callout-title">Still unanswered?</p>
             <p>
               Email <a className="link-underline" href={`mailto:${contact.email}`}>{contact.emailLabel}</a> or
-              call <a className="link-underline" href={`tel:${contact.phoneHref}`}>{contact.phone}</a>. If it is
+              message us on WhatsApp at{' '}
+              <a className="link-underline" href={whatsappLink()} target="_blank" rel="noopener noreferrer">{contact.phone}</a>. If it is
               a quick question we will just answer it — you do not need to become a client first.
               You can also read our <Link className="link-underline" href="/insights">Insights</Link> for
               longer treatments of the compliance topics above.

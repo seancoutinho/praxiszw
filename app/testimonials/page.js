@@ -33,22 +33,6 @@ export default function TestimonialsPage() {
                 </figcaption>
               </figure>
             ))}
-
-            {/* Ready for additional client feedback — see CHANGELOG.md */}
-            <figure className="quote-card">
-              <span className="quote-mark" aria-hidden="true">&ldquo;</span>
-              <blockquote className="placeholder-note">
-                [Client testimonial — Praxis to provide]
-                <br /><br />
-                Send the quote, the person&rsquo;s name, their role and their organisation, along
-                with written permission to publish. This card then renders identically to the
-                three above.
-              </blockquote>
-              <figcaption className="quote-attrib">
-                <div className="name">[Client name]</div>
-                <div className="org">[Role, Organisation]</div>
-              </figcaption>
-            </figure>
           </div>
 
           <div className="callout mt-16" style={{ maxWidth: '52rem' }}>

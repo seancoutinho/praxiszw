@@ -26,7 +26,7 @@ export default function TeamPage() {
 
       <section className="section">
         <div className="container">
-          <div className="grid grid-3">
+          <div className="grid grid-2">
             {team.map((person) => (
               <article className="person reveal" key={person.slug}>
                 <Link href={`/team/${person.slug}`} className="person-photo">
@@ -50,7 +50,7 @@ export default function TeamPage() {
             ))}
 
             {/* Structure ready for the rest of the team — see CHANGELOG.md */}
-            <article className="person">
+            {/* <article className="person">
               <div className="person-photo person-photo--empty">
                 <span className="person-initials" aria-hidden="true">+</span>
               </div>
@@ -61,7 +61,7 @@ export default function TeamPage() {
                 this card populates exactly like the two beside it. Delete this block if the
                 team page is complete as it stands.
               </p>
-            </article>
+            </article> */}
           </div>
         </div>
       </section>
@@ -93,11 +93,6 @@ export default function TeamPage() {
               </p>
             </div>
           </div>
-          <p className="placeholder-note mt-8">
-            [Praxis to provide] Practice-level registration details — ICAZ membership number and
-            PAAB registration number and status — for publication here. We have not stated any
-            registration number the firm has not supplied.
-          </p>
         </div>
       </section>
 

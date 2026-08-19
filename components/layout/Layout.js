@@ -1,4 +1,5 @@
 import BackToTop from '@/components/elements/BackToTop'
+import WhatsAppButton from '@/components/elements/WhatsAppButton'
 import Reveal from '@/components/elements/Reveal'
 import Footer from './Footer'
 import Header from './Header'
@@ -10,6 +11,7 @@ export default function Layout({ children }) {
       <Header />
       <main id="main">{children}</main>
       <Footer />
+      <WhatsAppButton />
       <BackToTop />
       <Reveal />
     </>

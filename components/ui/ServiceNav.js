@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import Icon from '@/components/ui/Icon'
-import { contact, services } from '@/lib/site'
+import { services, whatsappLink } from '@/lib/site'
 
 export default function ServiceNav({ current }) {
   return (
@@ -30,8 +30,12 @@ export default function ServiceNav({ current }) {
           <Icon name="arrowRight" size={15} />
         </Link>
         <p style={{ marginTop: '1rem' }}>
-          <a href={`tel:${contact.phoneHref}`} style={{ color: '#fff', fontWeight: 600 }}>
-            {contact.phone}
+          <a
+            href={whatsappLink(current ? services.find((s) => s.slug === current)?.title : undefined)}
+            style={{ color: '#fff', fontWeight: 700, display: 'inline-flex', alignItems: 'center', gap: '0.45rem' }} target="_blank" rel="noopener noreferrer"
+          >
+            <Icon name="whatsapp" size={16} />
+            Chat on WhatsApp
           </a>
         </p>
       </div>

@@ -117,11 +117,6 @@ export default function AboutPage() {
                   <li>Owner-managed businesses, NGOs and public-sector entities</li>
                   <li>Multi-currency reporting handled as standard</li>
                 </ul>
-                <p className="placeholder-note mt-6">
-                  [Praxis to provide] Client and staff numbers, and any ICAZ / PAAB registration
-                  numbers the firm wishes to display. We have not published a figure or a
-                  registration number the firm has not supplied.
-                </p>
               </div>
 
               <div className="card mt-8">

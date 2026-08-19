@@ -9,7 +9,7 @@ export default function InsightsPreview() {
   return (
     <section className="section">
       <div className="container">
-        <div className="split split--top" style={{ gridTemplateColumns: 'minmax(0,1fr) minmax(0,1.6fr)' }}>
+        <div className="split split--top split--feed">
           <SectionHead
             eyebrow="Insights"
             title="Practical guidance for Zimbabwean businesses"

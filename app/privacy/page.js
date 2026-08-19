@@ -1,6 +1,6 @@
 import Layout from '@/components/layout/Layout'
 import PageHeader from '@/components/ui/PageHeader'
-import { contact, site } from '@/lib/site'
+import { contact, site, whatsappLink } from '@/lib/site'
 
 export const metadata = {
   title: 'Privacy Policy',
@@ -39,7 +39,8 @@ export default function PrivacyPage() {
               {site.legalName}, of {contact.addressOneLine}, is responsible for the personal
               information described in this policy. You can reach us
               at <a href={`mailto:${contact.email}`}>{contact.emailLabel}</a> or on{' '}
-              <a href={`tel:${contact.phoneHref}`}>{contact.phone}</a>.
+              <a href={whatsappLink()} target="_blank" rel="noopener noreferrer">{contact.phone}</a>{' '}
+              on WhatsApp.
             </p>
 
             <h2>What we collect</h2>
@@ -57,6 +58,16 @@ export default function PrivacyPage() {
               identity and registration documents, and correspondence with third parties such as
               ZIMRA, your bank or your other advisers.
             </p>
+            <h3>If you contact us on WhatsApp</h3>
+            <p>
+              Several buttons on this site open a WhatsApp conversation with us.
+              WhatsApp is operated by Meta, and any message you send through it is
+              processed under Meta&rsquo;s own terms and privacy policy, not ours — including
+              the phone number you are messaging from. We receive and retain the contents
+              of that conversation in the same way as any other client correspondence.
+              If you would rather not use WhatsApp, email or telephone reach us equally well.
+            </p>
+
             <h3>Information collected automatically</h3>
             <p>
               This website does not run third-party analytics or advertising trackers. Standard

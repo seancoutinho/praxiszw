@@ -1,6 +1,6 @@
 import ConsultationForm from '@/components/forms/ConsultationForm'
 import Icon from '@/components/ui/Icon'
-import { contact } from '@/lib/site'
+import { contact, whatsappLink } from '@/lib/site'
 
 export default function ConsultationCta() {
   return (
@@ -23,8 +23,8 @@ export default function ConsultationCta() {
             </ul>
 
             <div className="mt-10" style={{ display: 'grid', gap: '0.75rem' }}>
-              <a href={`tel:${contact.phoneHref}`} className="link-arrow" style={{ color: '#fff' }}>
-                <Icon name="phone" size={16} /> {contact.phone}
+              <a href={whatsappLink()} className="link-arrow" style={{ color: '#fff' }} target="_blank" rel="noopener noreferrer">
+                <Icon name="whatsapp" size={16} /> Chat on WhatsApp — {contact.phone}
               </a>
               <a href={`mailto:${contact.email}`} className="link-arrow" style={{ color: '#fff' }}>
                 <Icon name="mail" size={16} /> {contact.emailLabel}

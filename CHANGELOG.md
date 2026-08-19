@@ -93,13 +93,20 @@ Built a single design system in `app/globals.css` (1,216 lines) replacing all
 
 ### Typography
 
-Replaced Inter + Jost (14 static font files, 7 weights each) with **Source Serif 4**
-for headings and **Inter** for body and UI.
+**Lato** across the whole site — headings, body, UI and data — replacing the
+template's Inter + Jost (14 static files, 7 weights each).
 
-Both are **self-hosted variable fonts** — one file per style, covering the whole
-weight range. Nothing is fetched from Google at build time or at run time, so
-there is no third-party request when a client loads the site and no external
-dependency in the build.
+Four styles ship: 400 and its italic for body copy, 700 for headings and UI
+emphasis, 900 for the largest display sizes. They are **self-hosted**, so
+nothing is fetched from Google at build time or run time: no third-party request
+when a client loads the site, and no external dependency in the build.
+
+Because Lato has no 500 or 600, every intermediate weight in the design system
+was snapped to a real one (400 / 700 / 900). Left as-is, the browser would have
+synthesised those into a blurry faux-bold. Headings moved from 400 to 700 — a
+weight the serif did not need but a sans does to carry a headline — with
+tracking tightened to compensate, and the largest display sizes take Lato Black
+at −0.032em.
 
 ### Hero
 
@@ -268,7 +275,7 @@ Consolidated into one source of truth (`lib/site.js`):
 | `public/` payload | **302 MB** | **476 KB** |
 | CSS lines loaded per page | 31,433 | 1,216 (one file) |
 | Runtime dependencies | 12 | 4 |
-| Font files | 14 static | 6 variable, self-hosted |
+| Font payload | 14 static files | 8 self-hosted Lato files — 91 KB latin, 22 KB latin-ext |
 | First Load JS | — | 78.5 KB shared, ~95 KB per page |
 | Pages pre-rendered | — | 31, all static |
 | Per-page metadata | 1 (root only) | every page |
@@ -289,6 +296,61 @@ Consolidated into one source of truth (`lib/site.js`):
 - **22 permanent redirects** preserve every old URL — service pages, `/about-us`,
   `/team-details/*`, the blog, and all eleven removed demo pages.
 
+### Follow-up changes (same pass)
+
+Four changes requested after the first review:
+
+1. **Lato everywhere**, as described under *Typography* above.
+
+2. **Mega-menu navigation.** The "Services" and "Firm" dropdowns were 320px
+   panels anchored to their nav item. They are now container-width mega panels
+   on a **4-column grid** — six services read as a row of four plus a row of two,
+   rather than a long list. Each entry gained its service icon, and each panel
+   closes with a full-width link to the section index. Below 1280px the grid
+   drops to two columns, since four squeezed the descriptions too hard. This
+   required moving positioning off `.nav-item` and onto the header container, so
+   `.nav-link` took over as the anchor for the current-page underline.
+
+3. **Phone CTAs now open WhatsApp.** Every call-to-action that dialled
+   +263 772 243 934 is now a `wa.me` deep link opening in a new tab, with the
+   WhatsApp mark in place of the handset icon: header utility bar, mobile drawer,
+   footer, the CTA band on every page, the service sidebar, the homepage
+   consultation block, and the contact, FAQ and privacy pages.
+
+   Messages are **prefilled and contextual** — opening a chat from a service page
+   pre-writes "…about Tax Management", so the enquiry arrives with context
+   instead of an empty "Hi". The text is written to be sent as-is, with no
+   bracketed blanks for the visitor to fill in.
+
+   Raymond Mupeti's direct line (+263 773 710 691) is a **different number** and
+   correctly remains a normal `tel:` link. This is handled by a `contactHref()`
+   helper that compares against the firm's WhatsApp number rather than being
+   hard-coded per page.
+
+   The privacy policy gained a short section on WhatsApp, since messages sent
+   through it are processed by Meta under Meta's terms rather than ours — a real
+   data-protection consideration once it becomes a primary contact channel.
+
+4. **Floating WhatsApp button**, bottom-right on every page. It expands from a
+   56px circle to a labelled pill on hover where a pointer exists, and stays a
+   circle on touch. Back-to-top was restacked above it so the two do not collide.
+
+   **Colour note:** WhatsApp's brand green (`#25D366`) gives white text only
+   **1.98:1**, and the button's own edge only **1.90:1** against the page — both
+   hard WCAG failures. The button uses a deeper shade of the same hue
+   (`#0B7A43`), which is still unmistakably WhatsApp but clears 5.41:1 for the
+   label and 5.19:1 for the button boundary.
+
+### Bug found and fixed during this pass
+
+Three layouts — the contact page, team profiles and the homepage insights
+preview — set `grid-template-columns` as an **inline style**, which beat the
+`.split` media query. They never collapsed to a single column on phones, so
+content was rendering two-up at 414px. This was introduced in the first pass and
+missed because only the homepage was checked at mobile width. The overrides are
+now modifier classes (`.split--aside`, `.split--form`, `.split--feed`) declared
+ahead of the breakpoint so it can reset them. Verified at 414px.
+
 ### Verification performed
 
 - Production build: clean, 31 static pages.
@@ -299,7 +361,11 @@ Consolidated into one source of truth (`lib/site.js`):
 - All 22 redirects confirmed returning 308 to the correct destination.
 - Browser console: no errors or React warnings on `/`, `/contact`, `/faq`, `/team`.
 - Contrast audit across 21 text/background pairs — all pass WCAG AA.
-- Rendering checked at 1440px and 430px.
+- Rendering checked at 1440px, 414px and 430px, including the mega menu hover
+  state and the WhatsApp button's collapsed and expanded forms (driven over the
+  DevTools protocol, since hover cannot be captured with a plain screenshot).
+- Every `tel:` link to the firm's number confirmed replaced by a `wa.me` link
+  across all 26 pages; Raymond Mupeti's separate direct line confirmed unchanged.
 
 ### Files removed
 
@@ -319,31 +385,35 @@ invented.** Each item needs real data from Praxis before launch.
 
 ### Blocking — these are wrong or unconfirmed on the live site today
 
-1. **Email address.** The site now uses `info@praxisaccountants.com` throughout,
-   which is the address the old site used most often. But the live domain is
-   `praxisaccountants.co.zw`, and the old site also carried `contact@` and
-   `support@`. **Confirm the correct address**, then update
-   `contact.email` in `lib/site.js`.
-2. **Enquiry recipient.** Both forms currently deliver to
-   `bonifacecoutinho@gmail.com`, a personal Gmail inherited from the old build.
-   This should be a firm mailbox. Update `RECIPIENT` in `lib/emailjs.js`.
+1. ~~**Email address.**~~ **Resolved.** Praxis supplied
+   `bcoutinho@praxisaccountants.co.zw`, now used site-wide, and the team direct
+   addresses are `bcoutinho@` and `rmpeti@praxisaccountants.co.zw`.
+2. **Enquiry recipient — still open.** Both forms still deliver to
+   `bonifacecoutinho@gmail.com`, inherited from the old build. Now that a firm
+   address exists this should almost certainly point at it, but **we have not
+   changed it**: delivery depends on how the EmailJS template is configured, and
+   we cannot verify a live send from here. Silently repointing a working contact
+   form is riskier than leaving a flagged TODO. Change `RECIPIENT` in
+   `lib/emailjs.js`, then send one test enquiry to confirm it arrives.
 3. **Office address.** Standardised as *Suite 226, Stanley House, Cnr Jason Moyo
    Avenue & First Street, Harare*. The old map pointed to Ruwa instead — please
    confirm which is current, and confirm the map pin.
-4. **Phone number.** Standardised as `+263 772 243 934` from the `tel:` link in
-   the old code. Confirm this is the correct main line, and whether the firm
-   wants a landline shown as well.
+4. **Phone number / WhatsApp.** Standardised as `+263 772 243 934`, taken from the
+   `tel:` link in the old code. **Every phone call-to-action on the site now opens
+   a WhatsApp chat to this number**, so please confirm two things: that it is the
+   correct main line, and that **it is an active WhatsApp account someone
+   monitors**. If the firm also wants a dialable landline shown, send it and we
+   will add it alongside.
 5. **Office hours.** Currently Mon–Fri 08:00–17:00 CAT, Saturday by appointment.
    This was **not** on the old site — it is a reasonable default that needs
    confirming or replacing.
 
 ### Credentials and registration
 
-6. **ICAZ and PAAB registration numbers.** The site states that the practice is
-   led by an ICAZ member (which the old site claimed and which is retained), and
-   explains what ICAZ and PAAB are. It does **not** state any registration number,
-   because none was supplied. If Praxis wants these displayed, send the numbers
-   and current status. Placeholders are marked on `/about` and `/team`.
+6. ~~**ICAZ and PAAB registration numbers.**~~ **Closed by the client** — the
+   placeholder blocks on `/about` and `/team` were removed, so no registration
+   number is displayed. The site still explains what ICAZ and PAAB are and that
+   the practice is ICAZ-led. Reopen this if the firm later wants numbers shown.
 7. **Is the practice PAAB-registered to sign audit reports?** The site describes
    audit work. The `/insights/audit-review-or-compilation` article tells readers
    to check the signing practitioner's registration — we should be able to answer
@@ -354,9 +424,9 @@ invented.** Each item needs real data from Praxis before launch.
 8. **Years in operation.** "Since 2012" is used throughout, taken from the old
    site's `SINCE 2012` badge. But the Boniface Coutinho biography said he has been
    audit partner *"since May 2011"*. Confirm the founding year.
-9. **Client and staff numbers.** No figures are published anywhere, because none
-   were supplied. If Praxis wants credibility numbers on the homepage or about
-   page ("X clients", "Y years combined experience"), send real figures.
+9. ~~**Client and staff numbers.**~~ **Closed by the client** — the placeholder
+   was removed and no figures are published. Nothing on the site claims a client
+   count or a staff count.
 10. **Sector claims.** The site says the firm works with owner-managed businesses,
     NGOs/donor-funded organisations, and public-sector entities, and claims
     particular depth in public-sector audit — inferred from Boniface's UDCORP
@@ -389,17 +459,14 @@ invented.** Each item needs real data from Praxis before launch.
     which helps considerably, but **professional headshots would make more
     difference to how the site reads than any other single change.** Same
     background, same framing, both people.
-15. **Rest of the team.** A clearly-marked placeholder card sits on `/team`. Send
-    name, role, photo, qualifications and biography for anyone else, or say the
-    page is complete as it stands and we will remove the card.
-16. **Team direct contacts.** `boniface@` and `raymond@praxisaccountants.com` are
-    carried over from the old site and are subject to the same domain question as
-    item 1.
+15. ~~**Rest of the team.**~~ **Closed by the client** — the placeholder card was
+    removed and `/team` now presents the two named people in a two-column layout.
+16. ~~**Team direct contacts.**~~ **Resolved** — see item 1.
 
 ### Content
 
-17. **Fourth testimonial.** A marked placeholder card is on `/testimonials`. Send
-    the quote, name, role, organisation, and written permission to publish.
+17. ~~**Fourth testimonial.**~~ **Closed by the client** — the placeholder card was
+    removed. The three attributed quotes remain. Item 18 below still stands.
 18. **Existing testimonials — confirm permission.** The three retained quotes were
     already published by Praxis, but please confirm each client is still happy to
     be named.

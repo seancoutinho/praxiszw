@@ -2,7 +2,7 @@ import Layout from '@/components/layout/Layout'
 import ContactForm from '@/components/forms/ContactForm'
 import Icon from '@/components/ui/Icon'
 import PageHeader from '@/components/ui/PageHeader'
-import { contact } from '@/lib/site'
+import { contact, whatsappLink } from '@/lib/site'
 
 export const metadata = {
   title: 'Contact',
@@ -23,7 +23,7 @@ export default function ContactPage() {
 
       <section className="section">
         <div className="container">
-          <div className="split split--top" style={{ gridTemplateColumns: 'minmax(0,0.85fr) minmax(0,1.15fr)' }}>
+          <div className="split split--top split--form">
             <div>
               <h2>Details</h2>
               <ul className="footer-contact mt-6" style={{ color: 'var(--ink-2)' }}>
@@ -44,10 +44,12 @@ export default function ContactPage() {
                   </span>
                 </li>
                 <li>
-                  <Icon name="phone" size={18} />
+                  <Icon name="whatsapp" size={18} />
                   <span>
-                    <strong style={{ color: 'var(--navy-800)' }}>Telephone</strong><br />
-                    <a className="link-underline" href={`tel:${contact.phoneHref}`}>{contact.phone}</a>
+                    <strong style={{ color: 'var(--navy-800)' }}>WhatsApp</strong><br />
+                    <a className="link-underline" href={whatsappLink()} target="_blank" rel="noopener noreferrer">{contact.phone}</a>
+                    <br />
+                    <span className="hint">Usually the fastest way to reach us.</span>
                   </span>
                 </li>
                 <li>

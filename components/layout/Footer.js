@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import Icon from '@/components/ui/Icon'
-import { contact, footerNav, site } from '@/lib/site'
+import { contact, footerNav, site, whatsappLink } from '@/lib/site'
 
 export default function Footer() {
   return (
@@ -72,8 +72,11 @@ export default function Footer() {
                   <a href={`mailto:${contact.email}`}>{contact.emailLabel}</a>
                 </li>
                 <li>
-                  <Icon name="phone" size={16} />
-                  <a href={`tel:${contact.phoneHref}`}>{contact.phone}</a>
+                  <Icon name="whatsapp" size={16} />
+                  <a href={whatsappLink()} target="_blank" rel="noopener noreferrer">
+                    {contact.phone}
+                    <span className="visually-hidden"> — chat on WhatsApp</span>
+                  </a>
                 </li>
                 <li>
                   <Icon name="clock" size={16} />
