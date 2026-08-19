@@ -38,6 +38,12 @@
   --ink-3:    #575e6b;
   --ink-4:    #6a6f78;
 
+  /* WhatsApp. Their brand green (#25d366) fails WCAG on our paper background —
+     white text on it is 1.98:1 and the button edge 1.90:1. This is the same hue
+     deepened to 5.41:1 for the label and 5.19:1 for the boundary. */
+  --wa: #0b7a43;
+  --wa-dark: #096436;
+
   /* Semantic */
   --bg: var(--paper);
   --surface: var(--white);
@@ -297,6 +303,9 @@ h5, h6 {
 
 .btn--on-navy { border-color: rgba(255,255,255,0.35); color: #fff; }
 .btn--on-navy:hover { background: rgba(255,255,255,0.1); border-color: #fff; }
+
+.btn--whatsapp { background: var(--wa); color: #fff; }
+.btn--whatsapp:hover { background: var(--wa-dark); }
 
 .btn--lg { padding: 1rem 1.875rem; font-size: var(--t-base); }
 .btn--sm { padding: 0.5rem 1rem; font-size: var(--t-xs); }
@@ -787,6 +796,13 @@ a.card:hover, .card--link:hover { border-color: var(--navy-300); box-shadow: var
 .header-actions { display: flex; align-items: center; gap: var(--s-3); flex: none; }
 @media (max-width: 1080px) { .nav, .header-actions .btn { display: none; } }
 
+/* Between 1081px and 1199px the two CTAs plus the mega-menu nav crowd the bar,
+   so the WhatsApp button drops to its icon and keeps an accessible name. */
+@media (max-width: 1199px) {
+  .header-actions .btn--whatsapp { padding-inline: 0.85rem; }
+  .header-actions .btn--whatsapp .btn-label { display: none; }
+}
+
 .menu-toggle {
   display: none;
   align-items: center;
@@ -1261,12 +1277,6 @@ a.card:hover, .card--link:hover { border-color: var(--navy-300); box-shadow: var
 /* --- Floating WhatsApp button ------------------------------------------- */
 
 .wa-fab {
-  /* WhatsApp's brand green (#25d366) gives white text only 1.98:1 and the
-     button edge only 1.90:1 against the paper background — both hard failures.
-     This is a deeper shade of the same hue: still unmistakably WhatsApp, but
-     5.41:1 for the label and 5.19:1 for the button's own boundary. */
-  --wa: #0b7a43;
-  --wa-dark: #096436;
   position: fixed;
   right: var(--s-6);
   bottom: var(--s-6);

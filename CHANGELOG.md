@@ -341,6 +341,16 @@ Four changes requested after the first review:
    (`#0B7A43`), which is still unmistakably WhatsApp but clears 5.41:1 for the
    label and 5.19:1 for the button boundary.
 
+### Header call-to-action
+
+A **WhatsApp button now sits beside "Book a consultation"** in the header,
+sharing the same accessible green as the floating button. It shows an icon and
+label at full width and collapses to the icon alone between 1081px and 1199px,
+where the mega-menu nav plus two CTAs crowd the bar. Below 1080px both CTAs give
+way to the menu toggle, since the drawer already carries its own WhatsApp
+button. The greens moved from `.wa-fab` up to the token layer so both share one
+definition.
+
 ### Bug found and fixed during this pass
 
 Three layouts — the contact page, team profiles and the homepage insights
@@ -388,13 +398,11 @@ invented.** Each item needs real data from Praxis before launch.
 1. ~~**Email address.**~~ **Resolved.** Praxis supplied
    `bcoutinho@praxisaccountants.co.zw`, now used site-wide, and the team direct
    addresses are `bcoutinho@` and `rmpeti@praxisaccountants.co.zw`.
-2. **Enquiry recipient — still open.** Both forms still deliver to
-   `bonifacecoutinho@gmail.com`, inherited from the old build. Now that a firm
-   address exists this should almost certainly point at it, but **we have not
-   changed it**: delivery depends on how the EmailJS template is configured, and
-   we cannot verify a live send from here. Silently repointing a working contact
-   form is riskier than leaving a flagged TODO. Change `RECIPIENT` in
-   `lib/emailjs.js`, then send one test enquiry to confirm it arrives.
+2. **Enquiry recipient — set, but please send one test enquiry.** Now points at
+   `bcoutinho@praxisaccountants.co.zw` instead of the personal Gmail. Note: the
+   address had been entered as `praxisac**oo**untants.co.zw` and has been
+   corrected — a typo here fails **silently**, because EmailJS accepts the
+   request and the mail simply never arrives. Worth one live test before launch.
 3. **Office address.** Standardised as *Suite 226, Stanley House, Cnr Jason Moyo
    Avenue & First Street, Harare*. The old map pointed to Ruwa instead — please
    confirm which is current, and confirm the map pin.
@@ -493,8 +501,11 @@ invented.** Each item needs real data from Praxis before launch.
 22. **Careers page.** `/career` was a template page with placeholder vacancies. It
     has been removed and redirects to `/contact`. If Praxis is hiring, it is worth
     rebuilding properly.
-23. **Favicon.** Still the template's. A favicon cut from the logo mark would be
-    a small improvement.
+23. ~~**Favicon.**~~ **Done by the client** — a full icon set was added
+    (`favicon.svg`, `favicon.ico`, 96px and 180px PNGs, plus a web manifest with
+    192px/512px icons) and wired into the document head. The leftover template
+    `app/favicon.ico` was deleted: it was shadowed by the new one, but two
+    competing favicon sources is a trap that could flip on a Next upgrade.
 24. **Next.js version.** The project is on 13.4.19. Upgrading is straightforward
     and is worth doing for the security patches, but it was left out of this pass
     to keep the change set reviewable.

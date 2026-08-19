@@ -6,8 +6,6 @@ import { usePathname } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'
 import Icon from '@/components/ui/Icon'
 import { contact, primaryNav, whatsappLink } from '@/lib/site'
-import WhatsAppButton from '@/components/elements/WhatsAppButton'
-
 
 /**
  * One header component for every page. The old site rendered the navigation
@@ -163,7 +161,16 @@ export default function Header() {
             </nav>
 
             <div className="header-actions">
-            <WhatsAppButton />
+              <a
+                href={whatsappLink()}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn--whatsapp"
+                aria-label="Chat with Praxis on WhatsApp"
+              >
+                <Icon name="whatsapp" size={18} />
+                <span className="btn-label">WhatsApp</span>
+              </a>
               <Link href="/contact" className="btn btn--primary">
                 Book a consultation
               </Link>
