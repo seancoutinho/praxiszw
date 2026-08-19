@@ -904,8 +904,42 @@ a.card:hover, .card--link:hover { border-color: var(--navy-300); box-shadow: var
     radial-gradient(120% 90% at 85% 12%, rgba(111, 139, 86, 0.22), transparent 58%),
     radial-gradient(90% 80% at 8% 100%, rgba(31, 69, 143, 0.4), transparent 62%),
     linear-gradient(160deg, var(--navy-950) 0%, var(--navy-800) 58%, var(--navy-700) 100%);
-  z-index: -2;
+  z-index: -3;
 }
+
+/* Ambient 4s loop. Fades in only once it is actually playing, so a blocked
+   autoplay or a slow connection leaves the gradient above showing rather than
+   a frozen frame. The left-hand darkening is baked into the footage. */
+.hero-video {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 1.1s var(--ease);
+}
+.hero-video[data-ready='true'] { opacity: 1; }
+
+.hero-scrim {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 1.1s var(--ease);
+  background:
+    linear-gradient(90deg,
+      rgba(4, 16, 42, 0.90) 0%,
+      rgba(4, 16, 42, 0.82) 26%,
+      rgba(4, 16, 42, 0.46) 52%,
+      rgba(4, 16, 42, 0) 74%),
+    linear-gradient(to top, rgba(4, 16, 42, 0.55) 0%, rgba(4, 16, 42, 0) 38%);
+}
+.hero-scrim[data-ready='true'] { opacity: 1; }
 .hero::after {
   content: '';
   position: absolute;
@@ -932,7 +966,7 @@ a.card:hover, .card--link:hover { border-color: var(--navy-300); box-shadow: var
 .hero h1 { color: #fff; font-size: var(--t-5xl); font-weight: 900; letter-spacing: -0.032em; }
 .hero .hero-lead {
   font-size: var(--t-lg);
-  color: rgba(255, 255, 255, 0.78);
+  color: rgba(255, 255, 255, 0.88);
   max-width: 34rem;
   margin-top: var(--s-6);
   text-wrap: pretty;

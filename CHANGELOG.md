@@ -272,7 +272,7 @@ Consolidated into one source of truth (`lib/site.js`):
 
 | Metric | Before | After |
 |---|---|---|
-| `public/` payload | **302 MB** | **476 KB** |
+| `public/` payload | **302 MB** | **4.4 MB** (of which 4.0 MB is the hero video set and the favicon pack) |
 | CSS lines loaded per page | 31,433 | 1,216 (one file) |
 | Runtime dependencies | 12 | 4 |
 | Font payload | 14 static files | 8 self-hosted Lato files — 91 KB latin, 22 KB latin-ext |
@@ -351,6 +351,44 @@ way to the menu toggle, since the drawer already carries its own WhatsApp
 button. The greens moved from `.wa-fab` up to the token layer so both share one
 definition.
 
+### Hero motion
+
+The hero gained an ambient **4-second seamless loop** behind the headline: a
+perspective ledger grid receding to a vanishing point, a slowly drifting data
+network, a soft light on a closed elliptical path, and a bar series with a
+rising trend line. Deep navy throughout, drawn from the same brand tokens as the
+CSS gradient. No stock footage.
+
+It was **authored, not sourced** — a canvas scene rendered frame by frame through
+headless Chrome, then encoded. That matters for three reasons: it uses the exact
+brand palette, it can be regenerated or retimed from
+`components/sections/home/HeroBackdrop.js`'s companion scene at any resolution,
+and every motion has a period that divides evenly into the loop so it repeats
+without a visible seam. The seam was measured rather than eyeballed: the
+difference between the last and first frames is *smaller* than between any two
+adjacent frames mid-loop.
+
+**Delivery.** 1920×1080 at 24fps. VP9/WebM at 175 KB is served first; a 313 KB
+H.264 MP4 covers older Safari; a 27 KB poster paints instantly. A desktop
+visitor downloads roughly 200 KB extra, on the homepage only.
+
+**It is decoration, so it is conditional.** The video is not mounted at all when
+the visitor prefers reduced motion, when the viewport is under 768px (a 16:9
+loop crops to almost nothing on a phone, and it is not worth mobile data), or
+when the browser reports Save-Data. It mounts after first paint so it never
+competes with LCP, and fades in only once it is genuinely playing — a blocked
+autoplay leaves the original gradient showing rather than a frozen frame.
+
+**Readability was the constraint, and it needed fixing.** The footage carries its
+own left-hand darkening, but that was not enough: measured against the source
+frames, the hero's lead paragraph fell to **3.67:1** over the brightest part of
+the loop — below AA. Worse, a baked-in mask cannot hold, because `object-fit:
+cover` crops the frame differently at every hero aspect ratio. So the guarantee
+was moved into CSS as a scrim that tracks the real hero box, and the lead's
+opacity went from 0.78 to 0.88. Re-measured on the *rendered page* across three
+viewport widths and five points in the loop, sampling the actual composited
+pixels behind the text: headline **14.46:1**, lead **11.40:1**. Both pass.
+
 ### Bug found and fixed during this pass
 
 Three layouts — the contact page, team profiles and the homepage insights
@@ -376,6 +414,13 @@ ahead of the breakpoint so it can reset them. Verified at 414px.
   DevTools protocol, since hover cannot be captured with a plain screenshot).
 - Every `tel:` link to the firm's number confirmed replaced by a `wa.me` link
   across all 26 pages; Raymond Mupeti's separate direct line confirmed unchanged.
+- Hero video confirmed to mount at 1440px and 768px, and **not** to mount under
+  `prefers-reduced-motion` or at 414px.
+- Hero text contrast re-measured on the rendered page over the moving video.
+- Decorative `alt=""` images (the three logos, inside links that already carry
+  their own `aria-label`) verified through the browser's accessibility tree
+  rather than by markup inspection — the links compute the correct name, and
+  alt text there would have been announced twice.
 
 ### Files removed
 

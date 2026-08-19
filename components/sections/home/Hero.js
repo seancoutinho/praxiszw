@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import HeroBackdrop from '@/components/sections/home/HeroBackdrop'
 import Icon from '@/components/ui/Icon'
 import { site } from '@/lib/site'
 
@@ -10,6 +11,7 @@ import { site } from '@/lib/site'
 export default function Hero() {
   return (
     <section className="hero">
+      <HeroBackdrop />
       <div className="container">
         <div className="hero-inner">
           <div>
