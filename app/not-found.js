@@ -24,8 +24,7 @@ export default function NotFound() {
           <p className="eyebrow">Error 404</p>
           <h1 className="mt-6">We could not find that page</h1>
           <p className="lead mt-6">
-            The link may be out of date. This site was rebuilt in 2026 and a number of pages
-            moved — most old addresses redirect automatically, but not all of them.
+            The link may be out of date. You can return to the homepage or contact us for help.
           </p>
 
           <div className="hero-cta" style={{ marginTop: '2rem' }}>
