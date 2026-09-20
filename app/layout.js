@@ -61,6 +61,13 @@ export const metadata = {
   },
   alternates: { canonical: '/' },
   formatDetection: { telephone: false },
+  // Set here rather than as <link>/<meta> tags in <head> so the studio layout
+  // can swap in its own installable manifest.
+  manifest: '/site.webmanifest',
+  // Via `other`, not `appleWebApp`: the latter also emits
+  // apple-mobile-web-app-capable, which would open the site chromeless from
+  // an iOS home screen.
+  other: { 'apple-mobile-web-app-title': 'Praxis Accountants' },
 }
 
 export const viewport = {
@@ -77,8 +84,6 @@ export default function RootLayout({ children }) {
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <link rel="shortcut icon" href="/favicon.ico" />
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-        <meta name="apple-mobile-web-app-title" content="Praxis Accountants" />
-        <link rel="manifest" href="/site.webmanifest" />
         {/* Reveal animations are JS-driven; without JS the content must stay visible. */}
         <noscript>
           <style>{`.reveal { opacity: 1 !important; transform: none !important; }`}</style>

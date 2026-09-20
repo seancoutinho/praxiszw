@@ -15,6 +15,10 @@ export const metadata = buildMetadata({
   path: '',
 })
 
+// The insights feed is refreshed on publish via the `insights` cache tag;
+// this is only the backstop.
+export const revalidate = 3600
+
 export default function HomePage() {
   return (
     <Layout>

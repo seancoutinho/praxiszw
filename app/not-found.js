@@ -14,8 +14,8 @@ export const metadata = {
   alternates: { canonical: null },
 }
 
-export default function NotFound() {
-  const posts = getRecentInsights(2)
+export default async function NotFound() {
+  const posts = await getRecentInsights(2)
 
   return (
     <Layout>

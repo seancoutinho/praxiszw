@@ -6,10 +6,16 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "cms": "insights-cms",
+    "cms:user": "insights-cms create-user",
+    "cms:migrate": "insights-cms import content/insights-seed.mjs --status published",
+    "cms:seed-batch-2": "insights-cms import content/insights-batch-2.mjs --status published"
   },
   "dependencies": {
     "emailjs-com": "^3.2.0",
+    "insights-cms": "file:packages/insights-cms",
+    "mongodb": "^6.21.0",
     "next": "13.4.19",
     "react": "18.2.0",
     "react-dom": "18.2.0"

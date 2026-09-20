@@ -3,7 +3,7 @@ import Layout from '@/components/layout/Layout'
 import CtaBand from '@/components/ui/CtaBand'
 import Icon from '@/components/ui/Icon'
 import PageHeader from '@/components/ui/PageHeader'
-import { allInsights } from '@/lib/insights'
+import { getAllInsights } from '@/lib/insights'
 import { buildMetadata } from '@/lib/seo'
 
 export const metadata = buildMetadata({
@@ -13,7 +13,12 @@ export const metadata = buildMetadata({
   path: '/insights',
 })
 
-export default function InsightsIndex() {
+// Refreshed on publish via the `insights` cache tag; this is only the backstop.
+export const revalidate = 3600
+
+export default async function InsightsIndex() {
+  const allInsights = await getAllInsights()
+
   return (
     <Layout>
       <PageHeader

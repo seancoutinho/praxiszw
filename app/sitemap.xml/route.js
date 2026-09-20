@@ -1,17 +1,38 @@
-import { allInsights } from '@/lib/insights'
+import { getAllInsightsFresh } from '@/lib/insights'
 import { services, site } from '@/lib/site'
 import team from '@/lib/team'
 
 /**
- * Generated from the content, not hand-maintained, so a new service or article
- * appears in the sitemap the moment it exists in lib/.
+ * Generated from the content, not hand-maintained, so a new service appears the
+ * moment it exists in lib/ and a new article the moment it is published.
  *
  * Every URL is absolute and built from `site.url` — the one canonical host.
  * Priorities: the homepage and the commercial pages people search for rank
  * highest, editorial sits in the middle, legal pages at the bottom.
+ *
+ * Written as a route handler rather than Next's `app/sitemap.js` convention
+ * because that convention is pre-rendered at build time in Next 13.4 and
+ * ignores `dynamic`/`revalidate` — a sitemap baked at build time would not list
+ * anything published afterwards. This renders per request from an uncached
+ * read, which a sitemap can afford: it is small, and only crawlers fetch it.
  */
-export default function sitemap() {
+export const runtime = 'nodejs'
+export const dynamic = 'force-dynamic'
+
+const escapeXml = (s) =>
+  s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')
+
+const urlEntry = ({ url, lastModified, changeFrequency, priority }) =>
+  `  <url>
+    <loc>${escapeXml(url)}</loc>
+    <lastmod>${lastModified.toISOString()}</lastmod>
+    <changefreq>${changeFrequency}</changefreq>
+    <priority>${priority}</priority>
+  </url>`
+
+export async function GET() {
   const now = new Date()
+  const allInsights = await getAllInsightsFresh()
 
   const staticRoutes = [
     { path: '', priority: 1.0, changeFrequency: 'monthly' },
@@ -33,7 +54,7 @@ export default function sitemap() {
     priority: r.priority,
   }))
 
-  return [
+  const entries = [
     ...staticRoutes,
 
     // Service pages sit alongside /services in importance — these are the
@@ -61,4 +82,16 @@ export default function sitemap() {
       priority: 0.5,
     })),
   ]
+
+  const xml = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${entries.map(urlEntry).join('\n')}
+</urlset>`
+
+  return new Response(xml, {
+    headers: {
+      'Content-Type': 'application/xml; charset=utf-8',
+      'Cache-Control': 'public, s-maxage=300, stale-while-revalidate=3600',
+    },
+  })
 }
