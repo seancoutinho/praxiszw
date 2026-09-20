@@ -9,7 +9,8 @@
     "lint": "next lint",
     "cms": "insights-cms",
     "cms:user": "insights-cms create-user",
-    "cms:migrate": "insights-cms import content/insights-seed.mjs --status published"
+    "cms:migrate": "insights-cms import content/insights-seed.mjs --status published",
+    "cms:seed-batch-2": "insights-cms import content/insights-batch-2.mjs --status published"
   },
   "dependencies": {
     "emailjs-com": "^3.2.0",

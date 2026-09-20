@@ -57,8 +57,12 @@ export const { GET, POST, PATCH, DELETE } = cms.routes
 import { unstable_cache } from 'next/cache'
 import { cms, INSIGHTS_TAG } from '@/lib/cms'
 
+// Keyed per deployment: Vercel restores .next/cache into each build, and
+// without this a build can render from an earlier build's cached list.
+const DEPLOYMENT = process.env.VERCEL_DEPLOYMENT_ID || process.env.VERCEL_GIT_COMMIT_SHA || 'local'
+
 export const getAllInsights = () =>
-  unstable_cache(() => cms.repo.listPublished(), ['insights', 'all'], {
+  unstable_cache(() => cms.repo.listPublished(), ['insights', 'all', DEPLOYMENT], {
     tags: [INSIGHTS_TAG],
     revalidate: 3600,
   })()
@@ -172,5 +176,7 @@ The CLI reads `MONGODB_URI`, `MONGODB_DB` and `CMS_COLLECTION_PREFIX` from the e
 These come from Next 13.4 itself. All of them go away on Next 14 or later.
 
 - **`revalidatePath` doesn't reach pages that never call `fetch()`.** Purge a tag that `unstable_cache` stamped onto the page instead, as shown above.
-- **Route handlers are never invalidated by tag.** This includes `sitemap.xml`. They refresh on their own `revalidate` interval.
+- **Route handlers are never invalidated by tag.** They refresh on their own `revalidate` interval.
+- **`app/sitemap.js` is pre-rendered at build time** and ignores `dynamic` and `revalidate`, so it never lists posts published after a build. Serve the sitemap from a route handler instead (`app/sitemap.xml/route.js` with `dynamic = 'force-dynamic'`), reading `cms.repo.listPublished()` uncached. The Praxis site has one to copy.
+- **The data cache survives builds.** `.next/cache` is restored between Vercel builds, so key `unstable_cache` by deployment, as in step 4.
 - **A post that goes offline still returns HTTP 200.** When `notFound()` runs in an on-demand-generated page, the "not found" render is cached with status 200. Add `robots: { index: false }` in `generateMetadata` for missing posts so search engines drop the URL.

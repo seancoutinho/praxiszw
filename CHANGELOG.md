@@ -692,7 +692,8 @@ all of them are now async:
 Every read is cached under an `insights` tag, which publishing purges. The
 insights index, each article and the homepage feed update the moment
 something is published or unpublished, with no rebuild. Newly published
-articles render on their first visit. The sitemap refreshes within the hour.
+articles render on their first visit. The sitemap is rendered per request, so
+it is always current (see "Batches 1 and 2" below).
 
 The 9 existing articles were moved to `content/insights-seed.mjs` for a
 one-off import. Their rendered HTML was checked against the previous build
@@ -764,9 +765,78 @@ there.
   "Article not found" and carries `noindex`, so search engines drop it, but the
   status code is wrong. `master` already does this for any unknown article
   address. It matters more now that posts can be unpublished. Upgrading Next
-  (item 24 below) fixes it. The upgrade would also make the sitemap refresh
-  instantly, and remove two workarounds in `packages/insights-cms` (see its
-  README, "Next 13.4 caveats").
+  (item 24 below) fixes it. The upgrade would also remove two workarounds in
+  `packages/insights-cms` (see its README, "Next 13.4 caveats").
+
+### Batches 1 and 2: ten client articles (21 September 2026)
+
+Praxis supplied ten articles in two PDFs ("Praxis Insights: Batch 1" and
+"Batch 2"). They are restructured into the site's block format in
+`content/insights-batch-2.mjs` and imported into the `praxis` database as
+published posts (`npm run cms:seed-batch-2`, idempotent). The site now has 19
+insights.
+
+- **Copy.** The client's wording is kept. Each "Summary" became the excerpt,
+  each "Confirm against current sources" note a verify block, and each "How
+  Praxis can help" paragraph a closing callout. The worked USD example in the
+  cash-flow article is marked as illustrative, as the PDFs asked. SEO titles
+  and meta descriptions were written for each, within the 39-character title
+  budget.
+- **Dates** run at roughly three-week intervals from 6 March to 18 September
+  2026. They fill the gap between the February and August articles, so the
+  feed reads as a steady cadence. The budget article is dated last, since it
+  is the timely one ahead of the Q4 budget statement.
+- **Categories.** Two are new: *Public sector* (3 articles) and *Forensic and
+  risk* (1). The PDF's "Tax and advisory" for the budget article is filed
+  under *Advisory*, which keeps the category list to eight.
+- **Read times** are the client's stated 3 minutes. The word-count estimate
+  gives 1–2 minutes for these list-heavy pieces, so they are stored as
+  overrides; editing one in the studio can clear it.
+
+Two changes to how pages are built came out of this:
+
+- **The sitemap is now a route handler (`app/sitemap.xml/route.js`),** read
+  live from the database on each request. It was Next's `app/sitemap.js`
+  convention, which Next 13.4 pre-renders at build time regardless of
+  `dynamic` or `revalidate`, so articles imported or published after a build
+  would not have been listed. It is cached at the CDN for 5 minutes. The
+  output is the same XML as before, and was checked to be well-formed. A post
+  inserted directly into the database appeared in it on the next request, and
+  dropped out when removed.
+- **The insights data cache is keyed per deployment** (`VERCEL_DEPLOYMENT_ID`,
+  falling back to the commit SHA). Vercel restores `.next/cache` into each
+  build, and without the key a build reused the article list cached by an
+  earlier build. This was caught in testing: a fresh build showed the old 9
+  articles while the database held 19. With the key, a second build over a
+  warm cache picked up a newly added article.
+
+### Company registration article (21 September 2026)
+
+"Registering your business in Zimbabwe: what it costs, and why to formalise
+now" (`company-registration-zimbabwe`, Advisory, dated 21 September 2026)
+was written from the client's brief and published. The site has 20 insights.
+
+- It states the firm's fees plainly, as asked: **USD 150** to register any
+  entity type and **USD 30** for a tax clearance application. These are
+  Praxis's own prices, so they sit outside the verify-flag rule.
+- It covers every entity type Praxis registers: sole traders, partnerships,
+  PBCs, Pvt Ltd and public companies. "PBL" in the brief was read as a public
+  company (PLC), the term the structure article uses. The entity descriptions
+  match that article.
+- It explains why formalising pays and why to let Praxis handle it.
+- Statutory detail (documents, government filing fees, turnaround, the
+  withholding tax on suppliers without tax clearance) is described in general
+  terms, with verify flags.
+
+**Needs client confirmation.** Does the USD 150 include the Registrar's
+government fees, or are those extra? The article avoids saying either way:
+it promises "the full cost in writing before any work starts". If the fee is
+all-in, saying so would make the offer stronger. Either way it is a
+one-line edit in the studio.
+
+After the first deploy, delete `content/insights-batch-2.mjs`,
+`content/insights-company-registration.mjs` and the `cms:seed-batch-2` script,
+along with the batch-1 seed file.
 
 ---
 

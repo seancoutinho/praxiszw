@@ -9,7 +9,7 @@ export default function Testimonials() {
       <div className="container">
         <SectionHead
           eyebrow="Client feedback"
-          title="In our clients’ words"
+          title="What our clients’ say"
           lead="Published with permission. Every quote below comes from a business we have worked with directly."
         />
 

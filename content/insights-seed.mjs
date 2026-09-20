@@ -34,7 +34,7 @@ const insights = [
     dateLabel: '29 August 2026',
     readTime: 10,
     category: 'Advisory',
-    tags: ['Company formation', 'PBC', 'Private company', 'COBE Act', 'Liability'],
+    tags: ['Company formation', 'PBC', 'PVT', 'Private company', 'COBE Act', 'Liability'],
     body: [
       {
         t: 'callout',
