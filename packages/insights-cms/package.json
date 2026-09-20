@@ -1,0 +1,26 @@
+{
+  "name": "insights-cms",
+  "version": "0.1.0",
+  "private": true,
+  "description": "MongoDB-backed insights/blog backend for Next.js route handlers, with a CLI for accounts and imports.",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.js",
+    "./derive": "./src/derive.js",
+    "./schema": "./src/schema.js"
+  },
+  "bin": {
+    "insights-cms": "./bin/cli.js"
+  },
+  "files": [
+    "src",
+    "bin",
+    "README.md"
+  ],
+  "peerDependencies": {
+    "mongodb": ">=6.0.0 <8"
+  },
+  "engines": {
+    "node": ">=18.17"
+  }
+}

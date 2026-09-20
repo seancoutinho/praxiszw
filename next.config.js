@@ -3,6 +3,10 @@ const nextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
 
+  // The insights CMS is a local package (packages/insights-cms) shipped as
+  // untranspiled ESM.
+  transpilePackages: ['insights-cms'],
+
   images: {
     formats: ['image/avif', 'image/webp'],
     deviceSizes: [360, 480, 640, 828, 1080, 1280, 1600, 1920],
@@ -73,6 +77,22 @@ const nextConfig = {
           { key: 'X-Frame-Options', value: 'SAMEORIGIN' },
           { key: 'Permissions-Policy', value: 'camera=(), microphone=(), geolocation=()' },
         ],
+      },
+      /**
+       * The insights studio and its private API are never indexed. /studio is
+       * also disallowed in robots.js. (`:path*` matches zero segments too, so
+       * this covers /studio itself.) The studio pages are static shells with
+       * no user data — everything personal comes from the API, whose
+       * responses are all `Cache-Control: no-store`.
+       */
+      ...['/studio/:path*', '/api/cms/admin/:path*', '/api/cms/auth/:path*'].map((source) => ({
+        source,
+        headers: [{ key: 'X-Robots-Tag', value: 'noindex, nofollow' }],
+      })),
+      // Lets the worker at /studio/sw.js control /studio itself, not just /studio/….
+      {
+        source: '/studio/sw.js',
+        headers: [{ key: 'Service-Worker-Allowed', value: '/studio' }],
       },
       {
         source: '/assets/:path*',

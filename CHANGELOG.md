@@ -633,6 +633,143 @@ schema graph are server-only and never enter the client bundle; the JSON-LD adds
 
 ---
 
+## Insights studio and CMS
+
+**Date:** 19 September 2026
+**Branch:** `insights-studio`
+
+Insights used to be hard-coded in `lib/insights.js`, so every new article needed
+a developer and a deploy. They now live in MongoDB. Praxis writes and publishes
+them at **`/studio`**, an installable web app on the same domain. No link to
+it appears anywhere on the public site.
+
+### What was built
+
+- **`packages/insights-cms/`** — the backend as a self-contained package: the
+  Mongo data layer, validation, the HTTP API (as route handlers), sessions and
+  a CLI. It never imports `next/*`, so another Next.js site can take the
+  folder, add two small files and an env var, and have the same backend. See
+  its README.
+- **`app/api/cms/[...path]`** — one catch-all route that serves:
+  - the public feed (`GET /api/cms/insights`, `/insights/:slug`)
+  - sign-in
+  - the studio's read/write API
+- **`/studio`** — the authoring app (`app/studio`, `components/studio`):
+  - **Dashboard:** drafts, scheduled, live and archived posts, with search.
+  - **Block editor:** the same block types the article renderer uses. Text
+    pasted from Word splits into paragraphs and bullet lists automatically.
+  - **Live preview:** rendered with the real `ArticleBody`, next to a Google
+    result preview.
+  - **Search guidance:** character guides for the SEO title and meta
+    description.
+  - **Scheduling:** a future publish date keeps the post hidden until that day
+    (Harare time).
+- **Publishing flow:**
+  - Drafts autosave.
+  - Live posts change only when someone clicks *Update live*. That save is
+    checked as strictly as a publish.
+  - All unsaved work is kept on the device, so a dropped connection loses
+    nothing, and it is offered back on the next visit.
+  - Two devices can't silently overwrite each other; the author chooses which
+    version wins.
+- **Installable:** the studio has its own manifest and service worker, scoped
+  to `/studio`, so installing it installs the studio rather than the website. It
+  opens offline to the last pages viewed.
+- **Accounts:** email and password, created from the command line
+  (`npm run cms:user`). There is no public sign-up. Everyone signed in can
+  publish; there is no separate reviewer role.
+
+### How the public pages changed
+
+`lib/insights.js` now reads from Mongo. The helpers kept the same names, and
+all of them are now async:
+
+- `getAllInsights`
+- `getInsight`
+- `getRecentInsights`
+- `getRelatedInsights`
+
+Every read is cached under an `insights` tag, which publishing purges. The
+insights index, each article and the homepage feed update the moment
+something is published or unpublished, with no rebuild. Newly published
+articles render on their first visit. The sitemap refreshes within the hour.
+
+The 9 existing articles were moved to `content/insights-seed.mjs` for a
+one-off import. Their rendered HTML was checked against the previous build
+and is identical, apart from `<head>` tag order.
+
+### Supporting changes
+
+- `ArticleBody` list and table keys are now positional. Content an author types
+  can repeat, which content-based keys would not allow.
+- `robots.js` disallows `/studio`. The studio and the private API also send
+  `X-Robots-Tag: noindex`.
+- The site manifest and the Apple web-app title moved from hand-written `<head>`
+  tags into metadata, so the studio can swap in its own. The public pages
+  render the same tags as before.
+- `.env*.local` added to `.gitignore`. `.env.example` added.
+
+### To go live
+
+1. **Set the env vars.** On Vercel, set `MONGODB_URI` and `MONGODB_DB=praxis`
+   for Production and Preview. The build reads from Mongo, so they're needed at
+   build time as well as at runtime.
+2. **Allow Vercel through Atlas.** Its Network Access list must let Vercel
+   connect; Vercel has no fixed IPs, so this is usually `0.0.0.0/0`.
+3. ~~**Import the articles.**~~ **Done, 19 September 2026.** All 9 are in the
+   `praxis` database as published posts, checked field for field against
+   `content/insights-seed.mjs`. Re-running `npm run cms:migrate` is safe: it
+   upserts by slug. Repeat it against any other database used for previews.
+4. **Create the logins:**
+   `npm run cms:user -- --email someone@praxisaccountants.co.zw --name "…"`.
+   The command asks for a password and does not echo it, so whoever runs it
+   should be the person choosing the password, or it should be changed on
+   first sign-in at `/studio/account`. No accounts exist yet.
+   Then share `https://www.praxisaccountants.co.zw/studio` with the client.
+5. **Clean up after the first deploy.** Delete `content/insights-seed.mjs` and
+   the `cms:migrate` script once the site is serving from Mongo in production.
+   They are kept for now so the import can be re-run against another database.
+
+The Atlas password contains `$` and `&`. In `.env.local` it must be
+percent-encoded (`%24`, `%26`), because Next reads `$` in an env file as a
+variable reference and skips the whole file if it can't resolve it. Vercel's
+environment variables are not parsed that way, so the raw password belongs
+there.
+
+### Verification performed
+
+- **Import:** all 9 articles imported and matched the seed field for field,
+  including every body block. Running the import twice left 9.
+- **Rendered HTML:** a production build rendered the same HTML as `master` for
+  the homepage, `/insights`, all 9 articles, the 404 page and the sitemap
+  (apart from build timestamps).
+- **API suite (47 checks, against `next start`):**
+  - Sign-in, throttling and CSRF refusal.
+  - Validation, the publish gate and stale-save detection.
+  - Scheduling, and slug-change protection.
+  - Publish, edit, unpublish, archive and delete. Each one showed on the site
+    straight away.
+- **Studio in headless Chrome, desktop and phone:**
+  - Sign-in.
+  - Paste from Word.
+  - Autosave, and reload restoring the content.
+  - Editing offline, then saving on reconnect.
+  - Publishing, then unpublishing and deleting.
+  - Service worker registered with scope `/studio`.
+  - No horizontal scroll on a phone.
+
+### Found while doing this, not fixed
+
+- **Next 13.4 serves a "not found" article with HTTP 200.** The page shows
+  "Article not found" and carries `noindex`, so search engines drop it, but the
+  status code is wrong. `master` already does this for any unknown article
+  address. It matters more now that posts can be unpublished. Upgrading Next
+  (item 24 below) fixes it. The upgrade would also make the sitemap refresh
+  instantly, and remove two workarounds in `packages/insights-cms` (see its
+  README, "Next 13.4 caveats").
+
+---
+
 ## Needs client input
 
 Everything below is a placeholder or an unverified claim. **None of it has been

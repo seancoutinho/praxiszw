@@ -6,16 +6,21 @@ import CtaBand from '@/components/ui/CtaBand'
 import Icon from '@/components/ui/Icon'
 import PageHeader from '@/components/ui/PageHeader'
 import JsonLd from '@/components/ui/JsonLd'
-import { allInsights, getInsight, getRelatedInsights } from '@/lib/insights'
+import { getAllInsights, getInsight, getRelatedInsights } from '@/lib/insights'
 import { site } from '@/lib/site'
 import { ORG_ID, absoluteUrl, buildMetadata, ogImage } from '@/lib/seo'
 
-export function generateStaticParams() {
-  return allInsights.map((p) => ({ slug: p.slug }))
+// Articles published after the build render on first request, then cache.
+export const dynamicParams = true
+// Refreshed on publish via the `insights` cache tag; this is only the backstop.
+export const revalidate = 3600
+
+export async function generateStaticParams() {
+  return (await getAllInsights()).map((p) => ({ slug: p.slug }))
 }
 
-export function generateMetadata({ params }) {
-  const post = getInsight(params.slug)
+export async function generateMetadata({ params }) {
+  const post = await getInsight(params.slug)
   if (!post) return { title: 'Article not found', robots: { index: false, follow: true } }
 
   // `seoTitle` is a shortened form of the headline that keeps the composed
@@ -37,11 +42,11 @@ export function generateMetadata({ params }) {
   })
 }
 
-export default function InsightPage({ params }) {
-  const post = getInsight(params.slug)
+export default async function InsightPage({ params }) {
+  const post = await getInsight(params.slug)
   if (!post) notFound()
 
-  const related = getRelatedInsights(post.slug, 3)
+  const related = await getRelatedInsights(post.slug, 3)
 
   const url = absoluteUrl(`/insights/${post.slug}`)
 

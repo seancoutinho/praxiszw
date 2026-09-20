@@ -1,8 +1,13 @@
 /**
- * Renders the structured block content in lib/insights.js.
+ * Renders an insight's structured block content (see lib/insights.js).
  *
  * Content is stored as data rather than HTML strings so nothing is injected
- * with dangerouslySetInnerHTML and every block gets consistent styling.
+ * with dangerouslySetInnerHTML and every block gets consistent styling. The
+ * studio's preview renders through this same component, so what an author
+ * previews is exactly what gets published.
+ *
+ * Keys are positional: authors can legitimately repeat a list item or a
+ * table's first cell, and content keys would collide.
  */
 export default function ArticleBody({ blocks }) {
   return (
@@ -14,9 +19,9 @@ export default function ArticleBody({ blocks }) {
           case 'h3':
             return <h3 key={i}>{b.c}</h3>
           case 'ul':
-            return <ul key={i}>{b.items.map((it) => <li key={it}>{it}</li>)}</ul>
+            return <ul key={i}>{b.items.map((it, j) => <li key={j}>{it}</li>)}</ul>
           case 'ol':
-            return <ol key={i}>{b.items.map((it) => <li key={it}>{it}</li>)}</ol>
+            return <ol key={i}>{b.items.map((it, j) => <li key={j}>{it}</li>)}</ol>
           case 'callout':
             return (
               <aside className="callout" key={i}>
@@ -38,11 +43,11 @@ export default function ArticleBody({ blocks }) {
               <div className="table-wrap" key={i}>
                 <table>
                   <thead>
-                    <tr>{b.head.map((h) => <th key={h} scope="col">{h}</th>)}</tr>
+                    <tr>{b.head.map((h, j) => <th key={j} scope="col">{h}</th>)}</tr>
                   </thead>
                   <tbody>
-                    {b.rows.map((row) => (
-                      <tr key={row[0]}>
+                    {b.rows.map((row, r) => (
+                      <tr key={r}>
                         {row.map((cell, ci) => <td key={ci}>{cell}</td>)}
                       </tr>
                     ))}

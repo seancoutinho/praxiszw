@@ -1,17 +1,22 @@
-import { allInsights } from '@/lib/insights'
+import { getAllInsights } from '@/lib/insights'
 import { services, site } from '@/lib/site'
 import team from '@/lib/team'
 
 /**
- * Generated from the content, not hand-maintained, so a new service or article
- * appears in the sitemap the moment it exists in lib/.
+ * Generated from the content, not hand-maintained, so a new service appears the
+ * moment it exists in lib/ and a new article within the hour of publishing.
  *
  * Every URL is absolute and built from `site.url` — the one canonical host.
  * Priorities: the homepage and the commercial pages people search for rank
  * highest, editorial sits in the middle, legal pages at the bottom.
  */
-export default function sitemap() {
+// Next 13.4 doesn't purge route handlers by cache tag, so unlike the pages the
+// sitemap picks up newly published articles on this interval (within the hour).
+export const revalidate = 3600
+
+export default async function sitemap() {
   const now = new Date()
+  const allInsights = await getAllInsights()
 
   const staticRoutes = [
     { path: '', priority: 1.0, changeFrequency: 'monthly' },

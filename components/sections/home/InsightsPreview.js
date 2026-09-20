@@ -3,8 +3,8 @@ import Icon from '@/components/ui/Icon'
 import SectionHead from '@/components/ui/SectionHead'
 import { getRecentInsights } from '@/lib/insights'
 
-export default function InsightsPreview() {
-  const posts = getRecentInsights(3)
+export default async function InsightsPreview() {
+  const posts = await getRecentInsights(3)
 
   return (
     <section className="section">
