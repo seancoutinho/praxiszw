@@ -799,8 +799,13 @@ Two changes to how pages are built came out of this:
   live from the database on each request. It was Next's `app/sitemap.js`
   convention, which Next 13.4 pre-renders at build time regardless of
   `dynamic` or `revalidate`, so articles imported or published after a build
-  would not have been listed. It is cached at the CDN for 5 minutes. The
-  output is the same XML as before, and was checked to be well-formed. A post
+  would not have been listed. It is cached at the CDN for 5 minutes, and the
+  XML was checked to be well-formed. `<lastmod>` now appears only where a real
+  date exists: each article's own date, and the newest article's date on the
+  homepage and `/insights`. Rendered per request, a "now" timestamp would have
+  told Google every page changed on every fetch, and Google stops trusting
+  lastmod values that behave like that. This was live briefly after the first
+  deploy and was fixed on 21 September. A post
   inserted directly into the database appeared in it on the next request, and
   dropped out when removed.
 - **The insights data cache is keyed per deployment** (`VERCEL_DEPLOYMENT_ID`,
@@ -834,9 +839,31 @@ it promises "the full cost in writing before any work starts". If the fee is
 all-in, saying so would make the offer stronger. Either way it is a
 one-line edit in the studio.
 
-After the first deploy, delete `content/insights-batch-2.mjs`,
-`content/insights-company-registration.mjs` and the `cms:seed-batch-2` script,
-along with the batch-1 seed file.
+### Rental income article (22 September 2026)
+
+"Rental income in Zimbabwe: current legal and tax obligations"
+(`rental-income-zimbabwe-tax-obligations`, Tax compliance, dated
+22 September 2026) was supplied as finished copy and published. The site has
+21 insights.
+
+- The wording is unchanged. Blocks carry plain text, not links, so the inline
+  citations became a closing "Sources" callout: ZIMRA Public Notice 08 of 2026,
+  the Rent Regulations, the Commercial Premises (Lease Control) Act, the
+  Constitution, and Propzone's landlord and tenant guides.
+- The presumptive-tax facts from the text are also gathered into an "at a
+  glance" table: the 15% rate, final tax, the 30-day registration, returns by
+  the 5th, payment by the 10th, and the 100% penalty.
+- The figures are kept as supplied, since they are sourced, and carry verify
+  flags per the house rule.
+
+A note on imports: an article imported with the CLI is live on its own page
+and in the sitemap straight away. The `/insights` list and homepage feed
+refresh within about an hour, or at once on the next deploy or the next
+publish from the studio. Only studio actions clear the site's cache.
+
+After the first deploy, delete the seed files in `content/` (batch 1,
+batch 2, company registration, rental income) and the `cms:migrate` and
+`cms:seed-batch-2` scripts.
 
 ---
 
